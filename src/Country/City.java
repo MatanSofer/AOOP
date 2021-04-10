@@ -1,0 +1,35 @@
+package Country;
+import java.util.List;
+
+import Location.Location;
+import Population.Person;
+
+public class City extends Settlement
+{
+	public City(String name , Location location, List<Person> people , RamzorColor ramzorcolor)
+	{
+		super(name,location,people,ramzorcolor);
+	}
+	
+	
+	public RamzorColor calculateRamzorGrade()
+	{
+	
+		double p = contagiousPercent();
+		
+		double result = 0.2*(Math.pow(4,1.25*p));
+		
+		if (result <= 0.4)
+			return RamzorColor.Green;
+		else if (result <= 0.6)
+			return RamzorColor.Yellow;
+		else if (result <= 0.8)
+			return RamzorColor.Orange;
+		else
+			return RamzorColor.Red;
+	}
+	
+	
+	
+	
+}
