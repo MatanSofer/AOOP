@@ -2,27 +2,31 @@ package Location;
 
 public class Size 
 {
-
 	private int width;
 	private int height;
 	
-	public Size(int width , int height)
+	public Size(int width , int height)  //constructor for all fields
 	{
 		this.width=width;
 		this.height=height;
 	}
 	
-	public int getWidth()
+	public int getWidth() // return the width
 	{
 		return this.width;
 	}
-	public int getHeight()
+	public int getHeight()  // return the width
 	{
 		return this.height;
 	}
-	public String toString() 
+	public String toString()  //to string
 	{
 		return "Width is : " + width +
 				"Height is : " +height;
+	}
+
+	public boolean isEqual(Size other)  //is equal 
+	{
+		return this.getHeight() == other.getHeight() && this. getWidth() == other. getWidth();
 	}
 }

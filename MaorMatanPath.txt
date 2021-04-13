@@ -1,0 +1,5 @@
+City;Ashdod;0;0;50;50;300000
+City;Beer-Sheva;0;0;80;80;350000
+Moshav;Gevim;15;15;10;20;10000
+Kibbutz;Nirim;2;3;190;50;12000
+Moshav;Shtulim;15;10;30;30;7000

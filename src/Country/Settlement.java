@@ -6,98 +6,121 @@ import Location.*;
 public class Settlement 
 {
 		
-	 private String name;
+	 private String name;  //all fields the included in settlement
 	 private Location location;
 	 private List<Person>  people;
 	 private RamzorColor ramzorcolor;
+	 private double ramzorRating; //this is additional field for saving ramzor VALUE
 	 
-	 public Settlement(String name , Location location, List<Person> people , RamzorColor ramzorcolor)
+	 public Settlement() //default constructor (there isnt use now , maybe in future )
+	 {
+		 this.name = "NULL";
+		 this.location = null;
+		 this.people = null;
+		 this.ramzorcolor = null;
+		 this.ramzorRating = 0.4;
+	 }
+	 public Settlement(String name , Location location, List<Person> people , RamzorColor ramzorcolor) // constructor for all fields
 	 {
 		 this.name = new String(name);
 		 this.location = new Location(location);
 		 this.people = new ArrayList<Person>(people);
 		 this.ramzorcolor = ramzorcolor;
+		 this.ramzorRating = 0.4;
 	 }
-	 public Settlement(Settlement other)
+	 public Settlement(Settlement other) //copy constructor
 	 {
 		 this.name= new String(other.getName());
 		 this.location= new Location(other.getLocation());
-		 this.people = other.people;/////by refrence (not by value)
+		 this.people = other.people;
 		 this.ramzorcolor = other.getColor();
 	 
 	 }
-	 public RamzorColor calculateRamzorGrade()
+	 public RamzorColor calculateRamzorGrade() //this method implemented in "sons"
 	 {
 		return ramzorcolor;
 	 }
  
-	 public double contagiousPercent()
+	 public double contagiousPercent() //calculate the percent value between 0 to 1 of sick people
 	 {
-			int sickCounter=0;
+			double sickCounter=0;
 			for (int i=0 ; i< people.size(); i++)
 			{
 				if(people.get(i) instanceof Sick)
 					sickCounter++;
 			}
-			return  people.size()/sickCounter; 
+			return  sickCounter/this.people.size();   //return the percent
 	 }
 	 
 	 
 	 
-	 public Point randomLocation()
+	 public static Point randomLocation(Point point ,Size size) //return random location in the settle
 	 {
-		 return new Point((int)Math.random()*200-100,(int)Math.random()*200-100);
+		 int x=((int)(Math.random()*size.getWidth()))+point.getX() ;
+		 int y=((int)(Math.random()*size.getHeight()))+point.getY() ;
+		 return new Point(x,y);
 	 }
 	 
-	 public boolean addPerson(Person other)
+	 public boolean addPerson(Person other) //add another person to settle people array
 	 {
 			this.people.add(other);
 		 	return true;
 	 }
-
-	 
-	 
-	 public boolean transferPerson(Person other , Settlement one)
+ 
+	 public boolean transferPerson(Person other , Settlement one) //will be used in future
 	 {
 		 return true;
 	 }
 	
-	
-	 public void setColor(RamzorColor newColor)
+	 public void setColor(RamzorColor newColor) //set the ramzor color
 	 {
 		 this.ramzorcolor=newColor;
 		 
 	 }
-	 public RamzorColor getColor()
+	 public double getRamzorRating()  //get ramzor rating
 	 {
-		 return this.ramzorcolor;
+		 return this.ramzorRating;
 	 }
-	
+	 public void setRamzorRating(double newRating)  //set ramzor rating
+	 {
+		this.ramzorRating = newRating;
+	 }
 	 
+	public RamzorColor getColor()  //get ramzor color
+	{
+		return this.ramzorcolor;
+	}
+	
+	public List<Person> getPeople()  //get population list
+	{
+		return this.people;
+	}
 	
 	
-	
-	
-	public String getName()
+	public String getName()  //return name
 	{
 		return this.name;	
 	}
 	
-	public Location getLocation()
+	public Location getLocation()  //return location
 	{
 		return this.location;
 	}
 	
-	public String toString()
+	public String toString() //to string
 	{
-		String peoplestring = "";
-		for (int i=0 ;i<people.size();i++){
-			peoplestring += people.get(i).toString();
-		}
-		return "The name is: "+ name+
-		"\nThe location on the map is:"+location+
-		"\nThe ramzor color is: "+ramzorcolor+
-		"\nList of people: "+peoplestring;
+
+		return " The name is: "+ name+
+		"\n The location on the map is:"+location+
+		"\n The ramzor color is: "+ramzorcolor;
+
 		
+	}
+
+	public boolean isEqual(Settlement other)  //is equal
+	{
+		 return (this.getName() == other.getName() && this.getLocation() == other.getLocation() &&
+		  this.getPeople() == other.getPeople() && this.getColor() == other.getColor() &&
+		   this.getRamzorRating() == other.getRamzorRating());
 	}
 }

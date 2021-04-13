@@ -6,18 +6,17 @@ import Population.Person;
 
 public class City extends Settlement
 {
-	public City(String name , Location location, List<Person> people , RamzorColor ramzorcolor)
+	public City(String name , Location location, List<Person> people , RamzorColor ramzorcolor)  //constructor for all fields
 	{
 		super(name,location,people,ramzorcolor);
 	}
 	
 	
-	public RamzorColor calculateRamzorGrade()
+	public RamzorColor calculateRamzorGrade()  //calculate ramzor grade , set ramzor rating value
 	{
-	
 		double p = contagiousPercent();
-		
 		double result = 0.2*(Math.pow(4,1.25*p));
+		this.setRamzorRating(result);
 		
 		if (result <= 0.4)
 			return RamzorColor.Green;
@@ -28,8 +27,4 @@ public class City extends Settlement
 		else
 			return RamzorColor.Red;
 	}
-	
-	
-	
-	
 }

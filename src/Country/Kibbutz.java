@@ -6,40 +6,17 @@ import Population.Person;
 
 public class Kibbutz extends Settlement
 {
-	public Kibbutz(String name , Location location, List<Person> people , RamzorColor ramzorcolor)
+	public Kibbutz(String name , Location location, List<Person> people , RamzorColor ramzorcolor) //constructor for all fields
 	{
 		super(name,location,people,ramzorcolor);
 	}
 	
-	public RamzorColor calculateRamzorGrade()
+	public RamzorColor calculateRamzorGrade() //calculate ramzor grade , set ramzor rating value
 	{
-		int c;
-		
-	    if(this.getColor() == RamzorColor.Green) 
-	    {
-            c=0;
-	    }
-        else if (this.getColor() == RamzorColor.Green) 
-        {
-            c=1;
-        }
-        else if (this.getColor() == RamzorColor.Yellow)
-        {
-            c=2;
-        }
-        else if (this.getColor() == RamzorColor.Orange)
-        {   
-            c=3;
-        }
-        else
-        {
-            c=4;
-		}
-		
+		double c = getRamzorRating();
 		double p = contagiousPercent();
-		
 		double result = 0.45+(Math.pow(1.5,c)*Math.pow((p-0.4),3));
-		
+		this.setRamzorRating(result);
 		if (result <= 0.4)
 			return RamzorColor.Green;
 		else if (result <= 0.6)

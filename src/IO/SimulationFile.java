@@ -1,73 +1,77 @@
 package IO;
-
 import java.io.*;
 import Country.*;
+import Country.Map;
 import Location.*;
 import Population.*;
-import Virus.*;
-import IO.*;
 import java.util.*;
 
-public class SimulationFile 
-{
+public class SimulationFile {
 
-		SimulationFile(File file) {
-		try (BufferedReader br = new BufferedReader( new FileReader(file))) {
+	private Map map; //map field include all settlement list
+
+	public SimulationFile(File file)  //file parameter
+	{
+		try (BufferedReader br = new BufferedReader( new FileReader(file))) 
+		{
 				System.out.println(file.getName() + " ****************");
+
+
+		
 				
-				
-				//Make an empty array of settelmets****
-				List<Settlement> arr = new ArrayList<Settlement>();
-				
-					
-				//spaces removal	
+				List<Settlement> arr = new ArrayList<Settlement>();//Make an empty array of settlements
 				String s1 = br.readLine();
-				while(s1 != null)
+				while(s1 != null) // reading each line from file until we finish read all lines
 				{
-					String words[] = s1.split(";");
-					s1 = br.readLine();
 					
-					Healthy[] people = new Healthy[Integer.parseInt(words[6])];
-					for(int i = 0 ; i < Integer.parseInt(words[6]) ; i ++)
+					Settlement settlement; //settlement referens (for all settle built )
+					String words[] = s1.split(";"); //split each line for indexes sapereted by ;
+                    for (int i = 0 ; i < words.length ;i++) //this loop for spaces removal
+                    	words[i]=words[i].trim();
+					s1 = br.readLine(); //read next line
+					
+					List<Person> people = new ArrayList<Person>(); //new empty dynamic people list
+
+					Point point = new Point(Integer.parseInt(words[2]),Integer.parseInt(words[3])); //build new point
+					Size size = new Size(Integer.parseInt(words[4]),Integer.parseInt(words[5]));  //build new size object
+					Location location = new Location(size,point);  //build new location object
+					
+					if(words[0].equals("City"))            //check what is the right settle type , then build it by all the other object and green light 
+					{
+						settlement = new City(words[1],location,people,RamzorColor.Green);
+						arr.add(settlement);
+					}
+					else if(words[0].equals("Moshav"))
+					{	
+						settlement = new Moshav(words[1],location,people,RamzorColor.Green);
+						arr.add(settlement);
+					}
+					else if(words[0].equals("Kibbutz"))
+					{	
+						settlement = new Kibbutz(words[1],location,people,RamzorColor.Green);
+						arr.add(settlement);
+					}
+					else                 //this is for condition when we didnt fount a match for settle kind from file
 					{
 						
-						people[i] = new Healthy(CalculateAge() , locations[i] , new Settlement())
+						settlement = new Settlement(words[1],location,people,RamzorColor.Green);
+						arr.add(settlement);
+						System.out.println("Couldnt read settlement - " + words[1]);
 					}
 					
-					Point point = new Point(Integer.parseInt(words[2]),Integer.parseInt(words[3]));
-					Size size = new Size(Integer.parseInt(words[4]),Integer.parseInt(words[5]));
-					Location location = new Location(size,point); //need to replace just for check
-					if(words[0] == "City")
+					for(int i = 0 ; i < Integer.parseInt(words[6]) ; i ++) //create and add all healthy people to the settle population
 					{
-						City city = new City(words[1],location,people,RamzorColor.Green);
-						arr.add(city);
-					}
-					if(words[0] == "Moshav")
-					{	
-						Moshav moshav = new Moshav(words[1],location,people,RamzorColor.Green);
-						arr.add(moshav);
-					}
-					if(words[0] == "Kibbutz")
-					{	
-						Kibbutz kibbutz = new Kibbutz(words[1],location,people,RamzorColor.Green);
-						arr.add(kibbutz);
+						
+						settlement.addPerson(new Healthy(CalculateAge() , Settlement.randomLocation(point,size) ,settlement));
 					}
 					
+
+
+				this.map = new Map(arr); 
 				}
-				//for loop for each line of text***
-				
-				//Read line of txt (each artibutes seperated by ;)***
-				
-				//Build an array of persons in the area of the settelment***
-				
-				//Build settelment with the given artibutes***
-				
-				//
-					
-					
 				System.out.println("EOF ****************");
-				}
-		catch(FileNotFoundException e) {
+			}
+		catch(FileNotFoundException e) { 
 			System.err.printf("File %s not found : %s%n", file.getName(), e.getMessage());
 		}
 		catch(IOException e) {
@@ -76,12 +80,36 @@ public class SimulationFile
 	}
 		
 
-		public int CalculateAge()
-		{
-			double y =  Math.random()*4;  
-			double x = 4;///made it because idk how to
-			int res = (int)((5*x)+y);
-			return res;
-		}
+	
 
+	public Map getMap() // return map field
+	{
+		return map;
+	}
+
+	
+	
+	public int CalculateAge() //function that calculate age by normal distribution
+	{
+		double y =  Math.random()*4;  
+        Random x = new Random();
+        double val;
+        do {
+        	  val = x.nextGaussian();
+        	
+        	} while (val <= -1 || val>=1);
+       
+        
+       return (int)((5*((val*6)+9))+y);
+
+	}
+	
+	
+	
 }
+
+
+
+
+
+
