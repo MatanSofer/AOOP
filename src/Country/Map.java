@@ -9,8 +9,7 @@ public class Map {
 
 	private Settlement[] settlements; // field include all settles
 
-	public Map(List<Settlement> other) // constructor get a dynamic array but we convert it to static array(as field
-										// type)
+	public Map(List<Settlement> other) // constructor get a dynamic array but we convert it to static array(as field type)
 	{
 		this.settlements = new Settlement[other.size()];
 		for (int i = 0; i < other.size(); i++) {
@@ -108,19 +107,13 @@ public class Map {
 						{
 							numberofTryingToContagion++;
 							randomPersonFronSettle = (int) (Math.random() * this.getSettlements()[i].getPeople().size()); // random index in population
-							// System.out.println("Random man settle " +(i+1)+ " is index : " +
-							// randomPersonFronSettle); //for checking the random indexes
 
 							virus = ((Sick) this.getSettlements()[i].getPeople().get(j)).getVirus(); // virus refernce to the virus of the sick
 							if (virus.tryToContagion(this.getSettlements()[i].getPeople().get(j),
-									this.getSettlements()[i].getPeople().get(randomPersonFronSettle))) // if the sick
-																										// succeed to
-																										// contage the
-																										// second person
+									this.getSettlements()[i].getPeople().get(randomPersonFronSettle))) // if the sick succeed to contage the second person
 							{
 								NewSickIndexes.add(randomPersonFronSettle); // add new sick index to the dynamic array
-								temp = this.getSettlements()[i].getPeople().get(randomPersonFronSettle).contagion(virus); 
-                // temp person refernce to the new sick
+								temp = this.getSettlements()[i].getPeople().get(randomPersonFronSettle).contagion(virus); // temp person refernce to the new sick
 								this.getSettlements()[i].getPeople().set(randomPersonFronSettle, temp); // switch between
 																										// the refrences (same person with same details ,just became sick)
 							}
@@ -132,16 +125,11 @@ public class Map {
 				}
 
 				System.out.println("----------------------");
-				this.getSettlements()[i].setColor(this.getSettlements()[i].calculateRamzorGrade()); // setting the ramzor
-																									// grade and color
+				this.getSettlements()[i].setColor(this.getSettlements()[i].calculateRamzorGrade()); // setting the ramzor grade and color
 				System.out.println("Number of trying in settle " + this.getSettlements()[i].getName()
-						+ " that the sick population try to contagion are : " + numberofTryingToContagion); // printing
-																											// number of
-																											// tries
-				System.out.println("New ramzor rating : " + this.getSettlements()[i].getRamzorRating()); // printing new
-																										// ramzor grade
-				System.out.println("New ramzor color : " + this.getSettlements()[i].getColor()); // printing new ramzor
-																								// color
+						+ " that the sick population try to contagion are : " + numberofTryingToContagion); // printing number of tries
+				System.out.println("New ramzor rating : " + this.getSettlements()[i].getRamzorRating()); // printing new ramzor grade
+				System.out.println("New ramzor color : " + this.getSettlements()[i].getColor()); // printing new ramzor color
 				for (int k = 0; k < this.getSettlements().length; k++) // check in the end of simulation how many sick people
 					Clock.nextTick();// move the clock one tick foward
 				sickCounter = 0;
@@ -158,10 +146,11 @@ public class Map {
 	}
 
 	public String toString() {
-		String settlementlist = " ";
+		String settlementlist = "-------toString for all settlements-------\n";
 		for (int i = 0; i < this.settlements.length; i++) 
 		{
-			settlementlist +=settlements[i].toString();
+			
+			settlementlist +=settlements[i].toString()+"\n";
 		}
 		return settlementlist;
 	}

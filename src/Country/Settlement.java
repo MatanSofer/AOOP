@@ -109,12 +109,11 @@ public class Settlement
 	
 	public String toString() //to string
 	{
+        
+		return "The name is: "+ name+
+		"\nThe location on the map is:"+location+
+		"\nThe ramzor color is: "+ramzorcolor+"\n";
 
-		return " The name is: "+ name+
-		"\n The location on the map is:"+location+
-		"\n The ramzor color is: "+ramzorcolor;
-
-		
 	}
 
 	public boolean isEqual(Settlement other)  //is equal

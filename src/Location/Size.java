@@ -22,7 +22,7 @@ public class Size
 	public String toString()  //to string
 	{
 		return "Width is : " + width +
-				"Height is : " +height;
+				" Height is : " +height;
 	}
 
 	public boolean isEqual(Size other)  //is equal 
