@@ -7,24 +7,20 @@ import Population.*;
 import java.util.*;
 
 public class SimulationFile {
-
+	
 	private Map map; //map field include all settlement list
 
 	public SimulationFile(File file)  //file parameter
 	{
-		try (BufferedReader br = new BufferedReader( new FileReader(file))) 
+		try (BufferedReader br = new BufferedReader( new FileReader(file) )) 
 		{
 				System.out.println(file.getName() + " ****************");
-
-
-		
-				
 				List<Settlement> arr = new ArrayList<Settlement>();//Make an empty array of settlements
 				String s1 = br.readLine();
 				while(s1 != null) // reading each line from file until we finish read all lines
 				{
 					
-					Settlement settlement; //settlement referens (for all settle built )
+					Settlement settlement; //settlement reference (for all settle built )
 					String words[] = s1.split(";"); //split each line for indexes sapereted by ;
                     for (int i = 0 ; i < words.length ;i++) //this loop for spaces removal
                     	words[i]=words[i].trim();
@@ -65,8 +61,6 @@ public class SimulationFile {
 						settlement.addPerson(new Healthy(CalculateAge() , Settlement.randomLocation(point,size) ,settlement));
 					}
 					
-
-
 				this.map = new Map(arr); 
 				}
 				System.out.println("EOF ****************");

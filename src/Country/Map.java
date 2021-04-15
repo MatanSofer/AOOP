@@ -1,5 +1,5 @@
-package Country;
 
+package Country;
 import java.util.*;
 import Population.*;
 import Simulation.Clock;
@@ -58,6 +58,7 @@ public class Map {
 					settle.getPeople().set(j, temp);
 				}
 			}
+			this.getSettlements()[i].setColor(this.getSettlements()[i].calculateRamzorGrade()); // setting the ramzor grade and color
 
 		}
 	}
@@ -83,7 +84,7 @@ public class Map {
 	public void simulate6Days() {
     Person temp;
     IVirus virus;
-		List<Integer> NewSickIndexes = new ArrayList<Integer>(); // this helps us to recognize new sick people so we can
+	List<Integer> NewSickIndexes = new ArrayList<Integer>(); // this helps us to recognize new sick people so we can
 																	// to skip on them and dont let them try contage new people
 		int numberofTryingToContagion; // number of contagion tries
 		int sickCounter = 0; // count number of sick for each settle
@@ -91,7 +92,7 @@ public class Map {
 
 		for (int p = 0; p < 5; p++) // the simulation should be ran 5 times
 		{
-
+			NewSickIndexes.clear();
 			System.out.println("\"############################################   Simulation number : " + (p + 1)
 					+ "    ############################################"); // the number of simulation
 			for (int i = 0; i < this.getSettlements().length; i++) // run for each settle
@@ -130,8 +131,8 @@ public class Map {
 						+ " that the sick population try to contagion are : " + numberofTryingToContagion); // printing number of tries
 				System.out.println("New ramzor rating : " + this.getSettlements()[i].getRamzorRating()); // printing new ramzor grade
 				System.out.println("New ramzor color : " + this.getSettlements()[i].getColor()); // printing new ramzor color
-				for (int k = 0; k < this.getSettlements().length; k++) // check in the end of simulation how many sick people
-					Clock.nextTick();// move the clock one tick foward
+				
+					
 				sickCounter = 0;
 				for (int j = 0; j < this.getSettlements()[i].getPeople().size(); j++) {
 					if (this.getSettlements()[i].getPeople().get(j) instanceof Sick) {
@@ -143,6 +144,7 @@ public class Map {
 
 			}
 		}
+		Clock.nextTick();// move the clock one tick foward
 	}
 
 	public String toString() {

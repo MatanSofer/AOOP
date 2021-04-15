@@ -27,7 +27,7 @@ public class SouthAfricanVariant implements IVirus
     public boolean tryToKill(Sick other)  //the function calculate if the sick people might die
     {
     	double p;
-		long t = Simulation.Clock.now()-other.getContagiousTime();;
+		long t = Simulation.Clock.now()-other.getContagiousTime();
     	if(other.getAge() >= 0 && other.getAge() <=18)
 		{
     		p = Math.max(0 , (0.05-(0.01*0.05)) * Math.pow(t-15,2)  );

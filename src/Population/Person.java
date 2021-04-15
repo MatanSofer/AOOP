@@ -37,13 +37,13 @@ public abstract class Person
 
 	public double getDistance(Point otherLocation) //calculate distance between to points objects
 	{
-		return Math.sqrt(Math.pow(location.getX()-otherLocation.getX(),2)+Math.pow(location.getY()-otherLocation.getY(),2));
+		return Math.sqrt((Math.pow(location.getX()-otherLocation.getX(),2))+(Math.pow(location.getY()-otherLocation.getY(),2)));
 	}
 
 	public String toString()  //to string
 	{
 		return "The age of the Person is "+age+"\n"+
-	    "his health condition :"+ getType() +" \n"+
+	    "his health condition :"+ getType() +" \\n"+
 		settlement.toString()+"\n";
 		 
 	}

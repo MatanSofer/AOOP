@@ -18,7 +18,7 @@ public class BritishVariant implements IVirus
 		}
     	
 		double d = one.getDistance(two.getLocation());
-    	double p = contagionProbability(two)*Math.min(1,0.14*Math.exp(2-(0.25*d)));
+    	double p = two.contagionProbability()*Math.min(1,0.14*Math.exp(2-(0.25*d)));
     	return p >= Math.random();
 	
     }
