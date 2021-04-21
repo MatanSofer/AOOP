@@ -12,14 +12,22 @@ public class Settlement
 	 private List<Person>  people;
 	 private RamzorColor ramzorcolor;
 	 private double ramzorRating; //this is additional field for saving ramzor VALUE
+     private int maxPopulation;
+	 private int vaccineDose; 
+     List<Settlement> settlements = new ArrayList<Settlement>();
+     List<Person> sickPeople = new ArrayList<Person>();
+     List<Person> healthyPeople = new ArrayList<Person>();
+
+    
 	 
-	 public Settlement() //default constructor (there isnt use now , maybe in future )
+	 public Settlement() //default constructor (there isn't use now , maybe in future )
 	 {
 		 this.name = "NULL";
 		 this.location = null;
 		 this.people = null;
 		 this.ramzorcolor = null;
 		 this.ramzorRating = 0.4;
+		 this.vaccineDose=0; 
 	 }
 	 public Settlement(String name , Location location, List<Person> people , RamzorColor ramzorcolor) // constructor for all fields
 	 {
@@ -27,7 +35,8 @@ public class Settlement
 		 this.location = new Location(location);
 		 this.people = new ArrayList<Person>(people);
 		 this.ramzorcolor = ramzorcolor;
-		 this.ramzorRating = 0.4;
+		 //this.ramzorRating = 0.4;
+	     this.vaccineDose=0; 
 	 }
 	 public Settlement(Settlement other) //copy constructor
 	 {

@@ -82,9 +82,9 @@ public class Map {
 	}
 
 	public void simulate6Days() {
-    Person temp;
-    IVirus virus;
-	List<Integer> NewSickIndexes = new ArrayList<Integer>(); // this helps us to recognize new sick people so we can
+		Person temp;
+		IVirus virus;
+		List<Integer> NewSickIndexes = new ArrayList<Integer>(); // this helps us to recognize new sick people so we can
 																	// to skip on them and dont let them try contage new people
 		int numberofTryingToContagion; // number of contagion tries
 		int sickCounter = 0; // count number of sick for each settle
@@ -104,7 +104,7 @@ public class Map {
 					if (this.getSettlements()[i].getPeople().get(j) instanceof Sick
 							&& NewSickIndexes.contains(j) == false) // 2 condition :people is sick , the sick man isnt a new sick.
 					{
-						for (int k = 0; k < 6; k++) // try 6 times
+						for (int k = 0; k < 10; k++) // try 6 times
 						{
 							numberofTryingToContagion++;
 							randomPersonFronSettle = (int) (Math.random() * this.getSettlements()[i].getPeople().size()); // random index in population
@@ -144,7 +144,7 @@ public class Map {
 
 			}
 		}
-		Clock.nextTick();// move the clock one tick foward
+		Clock.nextTick();// move the clock one tick forward
 	}
 
 	public String toString() {

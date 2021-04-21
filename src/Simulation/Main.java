@@ -10,10 +10,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		SimulationFile simulationfile = new SimulationFile(loadFileFunc() );
+		SimulationFile simulationfile = new SimulationFile(loadFileFunc());
 		Map map = simulationfile.getMap(); //return value from simulation ; reference to map.
 		System.out.println(map); //print all settle string
-		map.SickPplInnit();//Initialise 1% (infect population).
+		map.SickPplInnit();//Initialize 1% (infect population).
 		System.out.println("\n-------In the first intiallization : -------\n");
 		map.printSickPpl();//Print sick population.
 		System.out.println("\n-------Simulating virus spread in 6 days-------\n");
@@ -21,9 +21,6 @@ public class Main {
 		System.out.println("\n--------------------------");
 		System.out.println("END OF SIMULATION RESULT\n");
 		map.printSickPpl();//Print sick population.
-		
-		
-    
 	}
 	
 	private static File loadFileFunc() 

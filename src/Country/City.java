@@ -3,6 +3,8 @@ package Country;
 import java.util.List;
 import Location.Location;
 import Population.Person;
+import java.awt.Color;
+
 
 public class City extends Settlement
 {
@@ -18,13 +20,17 @@ public class City extends Settlement
 		double result = 0.2*(Math.pow(4,1.25*p));
 		this.setRamzorRating(result);
 		
-		if (result <= 0.4)
-			return RamzorColor.Green;
-		else if (result <= 0.6)
-			return RamzorColor.Yellow;
-		else if (result <= 0.8)
-			return RamzorColor.Orange;
-		else
-			return RamzorColor.Red;
+		return RamzorColor.gradeToColor(result);
+		
+//		if (result <= 0.4)
+//			return RamzorColor.Green;
+//		else if (result <= 0.6)
+//			return RamzorColor.Yellow;
+//		else if (result <= 0.8)
+//			return RamzorColor.Orange;
+//		else
+//			return RamzorColor.Red;
+		
+		
 	}
 }
