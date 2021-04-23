@@ -2,15 +2,16 @@
 package Virus;
 import Population.*;
 
+
 public class BritishVariant implements IVirus
 {
+	private static boolean[] mutations = new boolean[] {false,false};
+	
 	public double contagionProbability(Person other) //calculate the probability of person for contagion
 	{
-		
 			return 0.7 * other.contagionProbability();
-		
-		
 	}
+	
     public boolean tryToContagion(Person one, Person two) //first person is sick , the other might be sick or not ,calculate the chances for contagion by the sick person
     {
     	if(two instanceof Sick )
@@ -37,4 +38,12 @@ public class BritishVariant implements IVirus
 		}
     	return (p>= Math.random());
     }
+    
+    public boolean[] getMutations() {
+    	return mutations;
+    }
+    public void setMutation(int index,boolean value) {
+    	mutations[index] = value;
+    }
+    
 }

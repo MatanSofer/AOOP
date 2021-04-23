@@ -4,6 +4,8 @@ import Population.*;
 
 public class SouthAfricanVariant implements IVirus 
 {
+	private static boolean[] mutations = new boolean[] {false,false};
+	
 	public double contagionProbability(Person other) //calculate the probability of person for contagion
 	{
 		if(other.getAge() >= 0 && other.getAge() <=18)
@@ -39,4 +41,13 @@ public class SouthAfricanVariant implements IVirus
 		}
     	return p >= Math.random();
     }
+    
+    public boolean[] getMutations() {
+    	return mutations;
+    }
+    
+    public void setMutation(int index,boolean value) {
+    	mutations[index] = value;
+    }
+    
 }

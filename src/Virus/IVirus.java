@@ -7,4 +7,6 @@ public interface IVirus {  // this interface is for all the viruses classes 3 me
 	public double contagionProbability(Person other);
     public boolean tryToContagion(Person one, Person two);
     public boolean tryToKill(Sick other);
+    public boolean[] getMutations();
+    public void setMutation(int index,boolean value);
 }
