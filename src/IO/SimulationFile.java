@@ -15,7 +15,9 @@ public class SimulationFile {
 	{
 		try (BufferedReader br = new BufferedReader( new FileReader(file) )) 
 		{
+		
 				System.out.println(file.getName() + " ****************");
+				int populationCapacity;
 				List<Settlement> arr = new ArrayList<Settlement>();//Make an empty array of settlements
 				String s1 = br.readLine();
 				while(s1 != null) // reading each line from file until we finish read all lines
@@ -32,26 +34,26 @@ public class SimulationFile {
 					Point point = new Point(Integer.parseInt(words[2]),Integer.parseInt(words[3])); //build new point
 					Size size = new Size(Integer.parseInt(words[4]),Integer.parseInt(words[5]));  //build new size object
 					Location location = new Location(size,point);  //build new location object
-					
+					populationCapacity = (int)(Integer.parseInt(words[6]) * 1.3);
 					if(words[0].equals("City"))            //check what is the right settle type , then build it by all the other object and green light 
 					{
-						settlement = new City(words[1],location,people,RamzorColor.Green);
+						settlement = new City(words[1],location,people,RamzorColor.Green,populationCapacity);
 						arr.add(settlement);
 					}
 					else if(words[0].equals("Moshav"))
 					{	
-						settlement = new Moshav(words[1],location,people,RamzorColor.Green);
+						settlement = new Moshav(words[1],location,people,RamzorColor.Green,populationCapacity);
 						arr.add(settlement);
 					}
 					else if(words[0].equals("Kibbutz"))
 					{	
-						settlement = new Kibbutz(words[1],location,people,RamzorColor.Green);
+						settlement = new Kibbutz(words[1],location,people,RamzorColor.Green,populationCapacity);
 						arr.add(settlement);
 					}
 					else                 //this is for condition when we didnt fount a match for settle kind from file
 					{
 						
-						settlement = new Settlement(words[1],location,people,RamzorColor.Green);
+						settlement = new Settlement(words[1],location,people,RamzorColor.Green,populationCapacity);
 						arr.add(settlement);
 						System.out.println("Couldnt read settlement - " + words[1]);
 					}

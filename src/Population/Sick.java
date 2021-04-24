@@ -29,8 +29,7 @@ public class Sick extends Person
     public Person recover() // returns new similar person with different health condition , now he covalescent 
     {
     	Point locationCopy = new Point(getLocation());
-    	Settlement settlementCopy = new Settlement(getSettlement());
-    	Convalescent covalescent = new Convalescent(getAge(),locationCopy,settlementCopy,virus);
+    	Convalescent covalescent = new Convalescent(getAge(),locationCopy,getSettlement(),virus);
     	return covalescent;
     	
     }

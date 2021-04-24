@@ -17,7 +17,7 @@ public class Clock
 	}
 
 	public static long diffrence(long newTime) { // Gives time difference
-		return newTime - time ;
+		return Math.ceil((time - newTime) / ticksPerDay) ;
 	}
 	
 }

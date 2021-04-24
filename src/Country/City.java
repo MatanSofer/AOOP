@@ -8,9 +8,9 @@ import java.awt.Color;
 
 public class City extends Settlement
 {
-	public City(String name , Location location, List<Person> people , RamzorColor ramzorcolor)  //constructor for all fields
+	public City(String name , Location location, List<Person> people , RamzorColor ramzorcolor,int maxPopulation)  //constructor for all fields
 	{
-		super(name,location,people,ramzorcolor);
+		super(name,location,people,ramzorcolor,maxPopulation);
 	}
 	
 	

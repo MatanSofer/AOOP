@@ -95,7 +95,13 @@ public class Settlement
 		{
 			return false;
 		}
-		one.getColor().getInSettleProbability() * other.getSettlement().getColor().getInSettleProbability();
+		double randomProbability = Math.random();
+		if(one.getColor().getInSettleProbability() * other.getSettlement().getColor().getInSettleProbability() <= randomProbability)
+		{
+			return false;
+		}
+		
+		
 		 return true;
 	 }
 	

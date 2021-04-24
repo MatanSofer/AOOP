@@ -5,6 +5,7 @@ import Population.*;
 public class SouthAfricanVariant implements IVirus 
 {
 	private static boolean[] mutations = new boolean[] {false,false};
+	private static IVirus[] mutations_types = new IVirus[] {new BritishVariant(),new ChineseVariant()};
 	
 	public double contagionProbability(Person other) //calculate the probability of person for contagion
 	{
@@ -45,9 +46,14 @@ public class SouthAfricanVariant implements IVirus
     public boolean[] getMutations() {
     	return mutations;
     }
-    
+    public IVirus[] getMutations_types() {
+    	return mutations_types;
+    }
     public void setMutation(int index,boolean value) {
     	mutations[index] = value;
     }
     
+    public String getType() {
+    	return "SouthAfricanVariant";
+    }
 }

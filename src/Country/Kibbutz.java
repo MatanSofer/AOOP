@@ -7,9 +7,9 @@ import Population.Person;
 
 public class Kibbutz extends Settlement
 {
-	public Kibbutz(String name , Location location, List<Person> people , RamzorColor ramzorcolor) //constructor for all fields
+	public Kibbutz(String name , Location location, List<Person> people , RamzorColor ramzorcolor,int maxPopulation) //constructor for all fields
 	{
-		super(name,location,people,ramzorcolor);
+		super(name,location,people,ramzorcolor,maxPopulation);
 	}
 	
 	public RamzorColor calculateRamzorGrade() //calculate ramzor grade , set ramzor rating value

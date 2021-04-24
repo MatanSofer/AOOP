@@ -1,5 +1,8 @@
 //* Authors: Maor Arnon (ID: 205974553) and Matan Sofer (ID:208491811)
 package Population;
+import java.util.ArrayList;
+import java.util.List;
+
 import Country.Settlement;
 import Location.Point;
 import Virus.*;
@@ -22,9 +25,14 @@ public class Convalescent extends Person
 
 	public Person contagion(IVirus virus)  // returns new similar person with different health condition , now he sick
 	{
+		List<IVirus> mutations=new ArrayList<IVirus>();
+		mutations.add(virus);
+		for (int i =0 ;i<virus.getMutations().length; i++)
+			if(virus.getMutations()[i])
+				mutations.add(virus.getMutations_types()[i]);
+		IVirus new_virus = mutations.get((int)(Math.random()*virus.getMutations().length));
 		Point locationCopy = new Point(getLocation());
-		Settlement settlementCopy = new Settlement(getSettlement());
-		Sick sickperson = new Sick(getAge(),locationCopy,settlementCopy,Clock.now(),virus);
+		Sick sickperson = new Sick(getAge(),locationCopy,getSettlement(),Clock.now(),new_virus);
 		return sickperson;
 	}
 	
