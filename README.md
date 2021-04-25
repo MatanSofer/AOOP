@@ -1,4 +1,4 @@
-# AOOP project  | <img src="https://img.shields.io/badge/Version-0.3.3-green" alt="Version" >  | ![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)
+# AOOP project  | <img src="https://img.shields.io/badge/Version-0.3.3-green" alt="Version" > |   <img src="https://img.shields.io/badge/Downloads-0-lightgreen" alt="Version" > | ![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)
 <img src="https://upload.wikimedia.org/wikipedia/he/4/44/SCE_logo.png" align="right"
      alt="SCE logo" width="320" height="98">
 
