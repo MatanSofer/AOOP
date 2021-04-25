@@ -8,7 +8,7 @@
  &  Matan Sofer| <img src="https://img.shields.io/badge/Matan-Gay-pink" alt="Version" >
  
 <hr>
-<img src="https://github.com/MatanSofer/AOOP/blob/main/img/Logo.gif?raw=true" align="center">
+<img src="https://github.com/MatanSofer/AOOP/blob/main/img/Logo.gif?raw=true" alt="Logo" class="center">
 
      This project is a simplified simulation of a spreading virus using binomial distribution , 
      drawn map representing location and hazzard level of each settlement , 
