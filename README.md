@@ -11,5 +11,5 @@
 Feel free to use this code for any porpuse.
 
 
-<code><strong><sup><strike>Ignore this only for using tags for future use</strike></sup></strong></code>
+<code><strong><sup><strike>Ignore this (tags for future use)</strike></sup></strong></code>
 
