@@ -4,7 +4,7 @@
      alt="SCE logo" width="320" height="98">
 
 
- By: Maor Arnon | <img src="https://img.shields.io/badge/Maor-Chad-blue" alt="Version" > 
+ By: Maor Arnon | <img src="https://img.shields.io/badge/Maor-GayAssEater-blue" alt="Version" > 
  
  &  Matan Sofer| <img src="https://img.shields.io/badge/Matan-TransGender-pink" alt="Version" >
  
