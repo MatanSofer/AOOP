@@ -1,4 +1,4 @@
- AOOP project
+# AOOP project  | <img alt="GitHub manifest version" src="https://img.shields.io/github/manifest-json/v/MatanSofer/AOOP">
  
  By: Maor Arnon & Matan Sofer
 
