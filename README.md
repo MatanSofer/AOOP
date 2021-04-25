@@ -27,7 +27,7 @@ Feel free to use this code for any porpuse.
 <caption>caption</caption>
 <mark>mark</mark>
 <span>span</span>
-<time>00:00</time>
+<strike>00:00</strike>
     h1 h2 h3 h4 h5 h6 h7 h8 br b i strong em a pre code img tt
           div ins del sup sub p ol ul table thead tbody tfoot blockquote
           dl dt dd kbd q samp var hr ruby rt rp li tr td th s strike summary
