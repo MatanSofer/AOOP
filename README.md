@@ -6,7 +6,7 @@
 
  By: Maor Arnon | <img src="https://img.shields.io/badge/Maor-Chad-blue" alt="Version" > 
  
- &  Matan Sofer| <img src="https://img.shields.io/badge/Matan-Gay-pink" alt="Version" >
+ &  Matan Sofer| <img src="https://img.shields.io/badge/Matan-TransGender-pink" alt="Version" >
  
 <hr>
 <h1 align="center">
