@@ -9,35 +9,25 @@ public class Settlement
 		
 	 private String name;  //all fields the included in settlement
 	 private Location location;
-	 private List<Person> people;
+	 private List<Person>  people;
 	 private RamzorColor ramzorcolor;
 	 private double ramzorRating; //this is additional field for saving ramzor VALUE
-     private int maxPopulation;
-	 private int vaccineDose; 
-     List<Settlement> connectedSettlements = new ArrayList<Settlement>();
-     List<Person> sickPeople = new ArrayList<Person>();
-     List<Person> healthyPeople = new ArrayList<Person>();
-
-    
 	 
-	 public Settlement() //default constructor (there isn't use now , maybe in future )
+	 public Settlement() //default constructor (there isnt use now , maybe in future )
 	 {
 		 this.name = "NULL";
 		 this.location = null;
 		 this.people = null;
 		 this.ramzorcolor = null;
 		 this.ramzorRating = 0.4;
-		 this.vaccineDose=0; 
 	 }
-	 public Settlement(String name , Location location, List<Person> people , RamzorColor ramzorcolor,int maxPopulation) // constructor for all fields
+	 public Settlement(String name , Location location, List<Person> people , RamzorColor ramzorcolor) // constructor for all fields
 	 {
 		 this.name = new String(name);
 		 this.location = new Location(location);
 		 this.people = new ArrayList<Person>(people);
 		 this.ramzorcolor = ramzorcolor;
-		 this.maxPopulation = maxPopulation;
-		 //this.ramzorRating = 0.4;
-	    //this.vaccineDose=0; 
+		 this.ramzorRating = 0.4;
 	 }
 	 public Settlement(Settlement other) //copy constructor
 	 {
@@ -62,18 +52,8 @@ public class Settlement
 			}
 			return  sickCounter/this.people.size();   //return the percent
 	 }
-	 public void sickHealtharray(Person other)  
-	 {
-		if(other instanceof Sick )
-		{
-			this.sickPeople.add(other);
-		}
-		else if(other instanceof Healthy )
-		{
-			this.healthyPeople.add(other);
-		}
-		
-	}
+	 
+	 
 	 
 	 public static Point randomLocation(Point point ,Size size) //return random location in the settle
 	 {
@@ -85,33 +65,14 @@ public class Settlement
 	 public boolean addPerson(Person other) //add another person to settle people array
 	 {
 			this.people.add(other);
-			sickHealtharray(other) ;
 		 	return true;
 	 }
  
 	 public boolean transferPerson(Person other , Settlement one) //will be used in future
 	 {
-		if(this.getPeople().size() >= this.maxPopulation)
-		{
-			return false;
-		}
-		double randomProbability = Math.random();
-		if(one.getColor().getInSettleProbability() * other.getSettlement().getColor().getInSettleProbability() <= randomProbability)
-		{
-			return false;
-		}
-		
-		
 		 return true;
 	 }
-	public List<Settlement> getconnectedSettlements()
-	{
-		return this.connectedSettlements;
-	}
-	public void setconnectedSettlements(Settlement other)
-	{
-		this.connectedSettlements.add(other);
-	}
+	
 	 public void setColor(RamzorColor newColor) //set the ramzor color
 	 {
 		 this.ramzorcolor=newColor;
