@@ -1,10 +1,5 @@
-# Size Limit [![Cult Of Martians][cult-img]][cult]
+# AOOP project  | <img src="https://img.shields.io/badge/Version-0.3.3-green" alt="Version" >
 
-<img src="https://ai.github.io/size-limit/logo.svg" align="right"
-
-# AOOP project  | <img src="https://img.shields.io/badge/Version-0.3.3-green" alt="Version" > 
-
-     alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
  By: Maor Arnon | <img src="https://img.shields.io/badge/Maor-Chad-blue" alt="Version" > 
  
  &  Matan Sofer| <img src="https://img.shields.io/badge/Matan-Gay-pink" alt="Version" >
