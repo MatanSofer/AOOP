@@ -1,5 +1,5 @@
-# AOOP project  | <img alt="GitHub manifest version" src="0.3.3">
- 
+# AOOP project  |
+<img src="https://img.shields.io/badge/Version-0.3.3-green" alt="Version" >
  By: Maor Arnon & Matan Sofer
 
 This project is a simplified simulation of a spreading virus using binomial distribution , drawn map representing location and hazzard level of each settlement ,
