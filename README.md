@@ -20,7 +20,7 @@
    * **advanced OOP** 
    * **and Java in general .**
 
-Feel free to use this code for any porpuse.
+Feel free to use this code for any porpuse <sup> (Please do not misuse for malicious intent) </sub>
 
 
 <code><strong><sup><strike>Ignore this (tags for future use)</strike></sup></strong></code>
