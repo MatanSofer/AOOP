@@ -24,7 +24,7 @@ Feel free to use this code for any porpuse <sup> (Please do not misuse for malic
 
 
 
-<img src="https://github.com/MatanSofer/AOOP/logo.gif" />
+<img src="https://github.com/MatanSofer/AOOP/blob/main/img/logo.gif?raw=true" />
 
 
 <code><strong><sup><strike>Ignore this (tags for future use)</strike></sup></strong></code>
