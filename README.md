@@ -1,6 +1,6 @@
-# AOOP project  | <img src="https://img.shields.io/badge/Version-0.3.3-green" alt="Version" > 
+# AOOP project  | <img src="https://img.shields.io/badge/Version-0.3.3-green" alt="Version" >  | ![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)
 <img src="https://upload.wikimedia.org/wikipedia/he/4/44/SCE_logo.png" align="right"
-     alt="Size Limit logo by Anton Lovchikov" width="320" height="98">
+     alt="SCE logo" width="320" height="98">
 
 
  By: Maor Arnon | <img src="https://img.shields.io/badge/Maor-Chad-blue" alt="Version" > 
