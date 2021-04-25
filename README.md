@@ -8,10 +8,17 @@
  &  Matan Sofer| <img src="https://img.shields.io/badge/Matan-Gay-pink" alt="Version" >
  
 <hr>
-    This project is a simplified simulation of a spreading virus using binomial distribution , 
-    drawn map representing location and hazzard level of each settlement ,
-    mutation chart and more.
-    In this project we demonstrate our knowledge in multy-threading , GUI , advanced OOP , and Java in general .
+
+     This project is a simplified simulation of a spreading virus using binomial distribution , 
+     drawn map representing location and hazzard level of each settlement , 
+     mutation chart and more.
+   <hr>
+   
+   In this project we demonstrate our knowledge in:
+   * **multy-threading** 
+   * **GUI** 
+   * **advanced OOP** 
+   * **and Java in general .**
 
 Feel free to use this code for any porpuse.
 
