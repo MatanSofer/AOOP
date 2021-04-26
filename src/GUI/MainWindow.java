@@ -23,7 +23,7 @@ public class MainWindow extends JFrame
 {
 
 //		private final JLabel lb1,lb2;
-		private JMenuBar bar;
+		private MenuBar bar;
 		private Map map;
 		private JSlider slider;
 		private GraphicMap graphic_map;
@@ -45,8 +45,10 @@ public class MainWindow extends JFrame
 			north.setLayout(new BoxLayout(north , BoxLayout.LINE_AXIS));
 			south.setLayout(new BoxLayout(south, BoxLayout.LINE_AXIS));
 			
+			setJMenuBar(new MenuBar());
+			
 			//north
-			north.add(new JMenuBar)
+			north.add(new JMenuBar());
 			
 			//center 
 			center.add(new GraphicMap(map));
@@ -60,8 +62,8 @@ public class MainWindow extends JFrame
 			
 		
 			
-			//this.setSize(1050,250);
-			
+			center.setPreferredSize(new Dimension(800,800));
+			setResizable(false);
 			this.pack();
 			this.setVisible(true);
 			

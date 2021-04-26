@@ -7,7 +7,7 @@ import java.io.File;
 import javax.swing.JFrame;
 
 import Country.*;
-import GUI.StatWindow;
+import GUI.*;
 import IO.SimulationFile;
 
 public class Main {
@@ -28,7 +28,7 @@ public class Main {
 		System.out.println("\n--------------------------");
 		System.out.println("END OF SIMULATION RESULT\n");
 		map.printSickPpl();//Print sick population.
-		
+		MainWindow mainwindow = new MainWindow(map);
 		StatWindow statwindow = new StatWindow(map);
 		statwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
