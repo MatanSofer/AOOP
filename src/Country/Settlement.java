@@ -108,9 +108,17 @@ public class Settlement
 	{
 		return this.connectedSettlements;
 	}
-	public void setconnectedSettlements(Settlement other)
+	public void appendconnectedSettlements(Settlement other)
 	{
 		this.connectedSettlements.add(other);
+	}
+	public void printconnectedSettlements()
+	{
+		System.out.println("For settlement " + getName()+" connected settlements are :");
+		for(int i = 0 ; i < this.connectedSettlements.size(); i++)
+		{	
+			System.out.println(this.connectedSettlements.get(i).getName());
+		}
 	}
 	 public void setColor(RamzorColor newColor) //set the ramzor color
 	 {

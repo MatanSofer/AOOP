@@ -23,4 +23,8 @@ public class Clock
 	{
 		Clock.ticksPerDay = ticksPerDay;
 	}
+	public void settime(long time)
+	{
+		Clock.time = time;
+	}
 }

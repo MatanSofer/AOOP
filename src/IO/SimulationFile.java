@@ -38,16 +38,14 @@ public class SimulationFile {
 	                    	words1[i]=words1[i].trim();
 	                	origin.add(words1[1]);
 	                	destination.add(words1[2]);
-	                	
-					}
-					else {
-						
+	                	s1 = br.readLine();
+	                	continue;
+					}	
+				  
 						words = s1.split(";"); //split each line for indexes sapereted by ;
 	                    for (int i = 0 ; i < words.length ;i++) //this loop for spaces removal
 	                    	words[i]=words[i].trim();
-					}
 				
-                    
                     
 					    
                     
@@ -94,6 +92,10 @@ public class SimulationFile {
 				}
 				this.map = new Map(arr); 
 				connectSettle(origin ,destination,arr);
+				for(int i = 0 ; i < arr.size(); i++)
+				{
+					map.getSettlements()[i].printconnectedSettlements();
+				}
 				System.out.println("EOF ****************");
 			}
 		catch(FileNotFoundException e) { 
@@ -116,7 +118,9 @@ public class SimulationFile {
     				{
     						if(arr.get(k).getName().equals(destination.get(j)))
     						{
-    							arr.get(i).setconnectedSettlements(arr.get(k));
+    							arr.get(i).appendconnectedSettlements(arr.get(k));
+    							arr.get(k).appendconnectedSettlements(arr.get(i));
+			
     						}
     				}
     				
