@@ -11,7 +11,10 @@ public class Kibbutz extends Settlement
 	{
 		super(name,location,people,ramzorcolor,maxPopulation);
 	}
-	
+	public String getType()
+	{
+		return "Kibbutz";
+	}
 	public RamzorColor calculateRamzorGrade() //calculate ramzor grade , set ramzor rating value
 	{
 		double c = getRamzorRating();

@@ -13,7 +13,10 @@ public class Moshav extends Settlement
 		super(name ,location,people ,ramzorcolor,maxPopulation);
 		
 	}
-	
+	public String getType()
+	{
+		return "Moshav";
+	}
 	public RamzorColor calculateRamzorGrade()  //calculate ramzor grade , set ramzor rating value
 	{
         double c = getRamzorRating();

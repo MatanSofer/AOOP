@@ -13,7 +13,8 @@ public class Settlement
 	 private RamzorColor ramzorcolor;
 	 private double ramzorRating; //this is additional field for saving ramzor VALUE
      private int maxPopulation;
-	 private int vaccineDose; 
+	 private int vaccineDose=0; 
+	 private int deadpopulation=0;
      List<Settlement> connectedSettlements = new ArrayList<Settlement>();
      List<Person> sickPeople = new ArrayList<Person>();
      List<Person> healthyPeople = new ArrayList<Person>();
@@ -143,8 +144,19 @@ public class Settlement
 	{
 		return this.people;
 	}
-	
-	
+	public int getPeopleSize()
+	{
+		int tot = getPeople().size() ;
+		return tot;
+	}
+	public int getVaccineDose()
+	{
+		return this.vaccineDose;
+	}
+	public int getdeadPopulation()
+	{
+		return this.deadpopulation;
+	}
 	public String getName()  //return name
 	{
 		return this.name;	
@@ -154,6 +166,11 @@ public class Settlement
 	{
 		return this.location;
 	}
+	public String getType()
+	{
+		return "Settlement";
+	}
+	
 	
 	public String toString() //to string
 	{

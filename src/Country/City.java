@@ -13,7 +13,10 @@ public class City extends Settlement
 		super(name,location,people,ramzorcolor,maxPopulation);
 	}
 	
-	
+	public String getType()
+	{
+		return "City";
+	}
 	public RamzorColor calculateRamzorGrade()  //calculate ramzor grade , set ramzor rating value
 	{
 		double p = contagiousPercent();

@@ -28,14 +28,14 @@ public class Healthy extends Person
 	
 	public Person contagion(IVirus virus) // returns new similar person with different health condition , now he sick
 	{
-//		List<IVirus> mutations=new ArrayList<IVirus>();
-//		mutations.add(virus);
-//		for (int i =0 ;i<virus.getMutations().length; i++)
-//			if(virus.getMutations()[i])
-//				mutations.add(virus.getMutations_types()[i]);
-//		IVirus new_virus = mutations.get((int)(Math.random()*virus.getMutations().length));
+		List<IVirus> mutations=new ArrayList<IVirus>();
+		mutations.add(virus);
+		for (int i =0 ;i<virus.getMutations().length; i++)
+			if(virus.getMutations()[i])
+				mutations.add(virus.getMutations_types()[i]);
+		IVirus new_virus = mutations.get((int)(Math.random()*mutations.size()));
 		Point locationCopy = new Point(getLocation());
-		Sick sickperson = new Sick(getAge(),locationCopy,getSettlement(),Clock.now(),virus);
+		Sick sickperson = new Sick(getAge(),locationCopy,getSettlement(),Clock.now(),new_virus);
 		return sickperson;
 	}
 

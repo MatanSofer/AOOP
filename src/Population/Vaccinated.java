@@ -52,7 +52,7 @@ public class Vaccinated extends Person
 		for (int i =0 ;i<virus.getMutations().length; i++)
 			if(virus.getMutations()[i])
 				mutations.add(virus.getMutations_types()[i]);
-		IVirus new_virus = mutations.get((int)(Math.random()*virus.getMutations().length));
+		IVirus new_virus = mutations.get((int)(Math.random()*mutations.size()));
 		Point locationCopy = new Point(getLocation());
 		Sick sickperson = new Sick(getAge(),locationCopy,getSettlement(),Clock.now(),new_virus);
 		return sickperson;

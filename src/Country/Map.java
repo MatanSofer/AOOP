@@ -157,4 +157,10 @@ public class Map {
 		return settlementlist;
 	}
 
+	public Settlement at(int rowIndex) 
+	{
+		
+		return this.getSettlements()[rowIndex];
+	}
+
 }
