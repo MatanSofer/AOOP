@@ -11,6 +11,8 @@ import GUI.*;
 import IO.SimulationFile;
 
 public class Main {
+	
+	private static Map map = new Map();
 
 	public static void main(String[] args) {
 		
@@ -18,8 +20,12 @@ public class Main {
 		
 		
 		SimulationFile simulationfile = new SimulationFile(loadFileFunc());
-		Map map = simulationfile.getMap(); //return value from simulation ; reference to map.
+		map = simulationfile.getMap(); //return value from simulation ; reference to map.
 		System.out.println(map); //print all settle string
+		
+		MainWindow mainwindow = new MainWindow();
+		StatWindow statwindow = new StatWindow(map);
+		
 		map.SickPplInnit();//Initialize 1% (infect population).
 		System.out.println("\n-------In the first intiallization : -------\n");
 		map.printSickPpl();//Print sick population.
@@ -28,14 +34,12 @@ public class Main {
 		System.out.println("\n--------------------------");
 		System.out.println("END OF SIMULATION RESULT\n");
 		map.printSickPpl();//Print sick population.
-		MainWindow mainwindow = new MainWindow(map);
-		StatWindow statwindow = new StatWindow(map);
 		
 		statwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	private static File loadFileFunc() 
+	public static File loadFileFunc() 
 	{
         FileDialog fd = new FileDialog((Frame) null, "Please choose a file:", FileDialog.LOAD);
         fd.setVisible(true);
@@ -45,5 +49,14 @@ public class Main {
         System.out.println(f.getPath());
         return f;
     }
+	
+	public static Map getMap() {
+		return map;
+	}
+	
+	public static void setMap(Map newMap) {
+		map = newMap;
+	}
+	
 
 }

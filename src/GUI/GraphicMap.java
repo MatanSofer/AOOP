@@ -6,13 +6,14 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JPanel;
 import Country.*;
+import Simulation.Main;
 
 public class GraphicMap extends JPanel {
-	private Map map;
+
 	
-	public GraphicMap(Map map){
+	public GraphicMap (){
 		super();
-		this.map = map;
+
 	}
 	
 	public void Screen() {
@@ -24,7 +25,7 @@ public class GraphicMap extends JPanel {
 		Graphics2D gr = (Graphics2D) g;
 		gr.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
-		for (Settlement settlement : map.getSettlements())
+		for (Settlement settlement : Main.getMap().getSettlements())
 		{
 			for (Settlement settlement2 : settlement.getconnectedSettlements()) {
 				gr.setColor(Color.BLACK);
@@ -45,9 +46,10 @@ public class GraphicMap extends JPanel {
 				
 				gr.drawLine(center1_x,center1_y,center2_x,center2_y);
 			}
+			
 		}
 		
-		for (Settlement settlement : map.getSettlements())
+		for (Settlement settlement : Main.getMap().getSettlements())
 		{
 			int y=settlement.getLocation().getPoint().getY();
 			int x=settlement.getLocation().getPoint().getX();
@@ -67,18 +69,14 @@ public class GraphicMap extends JPanel {
 		}
 		
 		gr.setColor(Color.BLACK);
-		for (Settlement settlement : map.getSettlements())
+		for (Settlement settlement : Main.getMap().getSettlements())
 		{
 			int y=settlement.getLocation().getPoint().getY();
 			int x=settlement.getLocation().getPoint().getX();
-//			int width=settlement.getLocation().getSize().getWidth();
-//			int height=settlement.getLocation().getSize().getHeight();
-//			gr.drawRect(x,y,width,height);
-//			
-//			gr.setColor(settlement.getColor().getColor());
 			gr.drawString(settlement.getName(),x, y);
 	
 		}
+		
 		
 	}
 }

@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableRowSorter;
 
 import Country.Map;
@@ -58,11 +59,8 @@ public class StatWindow extends JFrame implements ActionListener
 				public void actionPerformed(ActionEvent e)
 				{
 					int selectedRow = allStats.getCurrRow();
-					//System.out.println(map.getSettlements()[selectedRow].getsickPeople().size());
 					map.getSettlements()[selectedRow].jtableMakeSick();
-					//System.out.println(map.getSettlements()[0].getsickPeople().size());
-					//allStats.getmodel().setValueAt(doses.getText(),allStats.getCurrRow(),4);
-					//setVisible(false);
+					allStats.fireTableDataChanged();
 				}			
 			
 			

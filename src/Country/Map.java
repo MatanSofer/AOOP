@@ -1,6 +1,8 @@
 //* Authors: Maor Arnon (ID: 205974553) and Matan Sofer (ID:208491811)
 package Country;
 import java.util.*;
+
+import GUI.MainWindow;
 import Population.*;
 import Simulation.Clock;
 import Virus.*;
@@ -15,6 +17,11 @@ public class Map {
 		for (int i = 0; i < other.size(); i++) {
 			this.settlements[i] = other.get(i);
 		}
+	}
+	
+	public Map()
+	{
+		this.settlements = new Settlement[0];
 	}
 
 	public Settlement[] getSettlements() // return the list of settlements
@@ -90,8 +97,12 @@ public class Map {
 		int sickCounter = 0; // count number of sick for each settle
 		int randomPersonFronSettle; // this var will get a random value in range of( 0 to settle population)
 
-		for (int p = 0; p < 5; p++) // the simulation should be ran 5 times
+		for (int p = 0; p < 100; p++) // the simulation should be ran 5 times
 		{
+			Clock.nextTick();// move the clock one tick forward
+			
+			//MainWindow.getGraphicMap().repaint();
+			
 			NewSickIndexes.clear();
 			System.out.println("\"############################################   Simulation number : " + (p + 1)
 					+ "    ############################################"); // the number of simulation
@@ -145,8 +156,8 @@ public class Map {
 				this.getSettlements()[i].updateSickHealthy();
 				
 			}
+			
 		}
-		Clock.nextTick();// move the clock one tick forward
 	}
 
 	public String toString() {
@@ -163,6 +174,11 @@ public class Map {
 	{
 		
 		return this.getSettlements()[rowIndex];
+	}
+	
+	public void SimulationV2() {
+		
+		
 	}
 
 }

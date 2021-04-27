@@ -17,9 +17,9 @@ public class Settlement
      private int maxPopulation;
 	 private int vaccineDose=0; 
 	 private int deadpopulation=0;
-     List<Settlement> connectedSettlements = new ArrayList<Settlement>();
-     List<Person> sickPeople = new ArrayList<Person>();
-     List<Person> healthyPeople = new ArrayList<Person>();
+     private List<Settlement> connectedSettlements = new ArrayList<Settlement>();
+     private List<Person> sickPeople = new ArrayList<Person>();
+     private List<Person> healthyPeople = new ArrayList<Person>();
 
     
 	 
@@ -57,17 +57,21 @@ public class Settlement
  
 	 public double contagiousPercent() //calculate the percent value between 0 to 1 of sick people
 	 {
-		 	
-			double sickCounter=0;
-			for (int i=0 ; i< people.size(); i++)
-			{
-				if(people.get(i) instanceof Sick)
-					sickCounter++;
-			}
-			return  sickCounter/this.people.size();   //return the percent
+		 	double precent= (double)sickPeople.size()/(double)getHealthyPeopleSize();
+
+			return  precent;   //return the percent
 	 }
 
 
+	 public String contagiousPrecentString() {
+		 
+		 	double precent=contagiousPercent();
+		 	int precent_i = (int)(( precent) * 100);
+		 	String precent_s = precent_i+"%";
+		 	return precent_s;
+	 }
+	 
+	 
 	 public static Point randomLocation(Point point ,Size size) //return random location in the settle
 	 {
 		 int x=((int)(Math.random()*size.getWidth()))+point.getX() ;
@@ -78,19 +82,27 @@ public class Settlement
 	 public boolean addPerson(Person other) //add another person to settle people array
 	 {
 			this.people.add(other);
-	
+			
+			   if(other instanceof Sick )
+				{
+					this.sickPeople.add(other);
+				}
+				else if(other instanceof Healthy )
+				{
+					this.healthyPeople.add(other);
+				}
 		 	return true;
 	 }
 	 
 	 public void jtableMakeSick()
 	 {
-		 System.out.println("ss");
+		 System.out.println("ss"+getSickPeopleSize());
 		 Person temp;
 		 
 		 for(int i = 0 ; i < 0.01*healthyPeople.size(); i++)
 		 {
 			 
-			 temp = healthyPeople.get(i).contagion(new ChineseVariant());  ///מאורררררררר
+			 temp = healthyPeople.get(i).contagion(new ChineseVariant());  ///׳�׳�׳•׳¨׳¨׳¨׳¨׳¨׳¨׳¨׳¨
 			 sickPeople.add(temp);
 			 healthyPeople.remove(i);
 			 
@@ -100,8 +112,7 @@ public class Settlement
 	 
 	 public void updateSickHealthy()
 	 {
-		 healthyPeople.clear();
-		 sickPeople.clear();
+	
 		 for(int i = 0 ; i < people.size() ; i++)
 		 {
 			   if(people.get(i) instanceof Sick )

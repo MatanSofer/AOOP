@@ -32,7 +32,7 @@ public class statsJTable extends JPanel
 	public statsJTable(Map map ,JTextField tf1)
 	{
 		
-		model = new StatCenterTable(map);
+		model = new StatCenterTable();
 		table = new JTable(model);
 		this.tf1=tf1;
 		table.setRowSorter(sorter = new TableRowSorter<StatCenterTable>(model));
@@ -82,6 +82,11 @@ public class statsJTable extends JPanel
 		}catch(PatternSyntaxException e) {
 			//wont update
 		}
+	}
+
+	public void fireTableDataChanged() {
+		// TODO Auto-generated method stub
+		model.fireTableDataChanged();
 	}
 	
 	
