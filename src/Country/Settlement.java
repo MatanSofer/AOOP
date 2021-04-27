@@ -2,6 +2,8 @@
 package Country;
 import java.util.*;
 import Population.*;
+import Virus.ChineseVariant;
+import Virus.SouthAfricanVariant;
 import Location.*;
 
 public class Settlement 
@@ -55,6 +57,7 @@ public class Settlement
  
 	 public double contagiousPercent() //calculate the percent value between 0 to 1 of sick people
 	 {
+		 	
 			double sickCounter=0;
 			for (int i=0 ; i< people.size(); i++)
 			{
@@ -63,19 +66,8 @@ public class Settlement
 			}
 			return  sickCounter/this.people.size();   //return the percent
 	 }
-	 public void sickHealtharray(Person other)  
-	 {
-		if(other instanceof Sick )
-		{
-			this.sickPeople.add(other);
-		}
-		else if(other instanceof Healthy )
-		{
-			this.healthyPeople.add(other);
-		}
-		
-	}
-	 
+
+
 	 public static Point randomLocation(Point point ,Size size) //return random location in the settle
 	 {
 		 int x=((int)(Math.random()*size.getWidth()))+point.getX() ;
@@ -86,10 +78,42 @@ public class Settlement
 	 public boolean addPerson(Person other) //add another person to settle people array
 	 {
 			this.people.add(other);
-			sickHealtharray(other) ;
+	
 		 	return true;
 	 }
- 
+	 
+	 public void jtableMakeSick()
+	 {
+		 System.out.println("ss");
+		 Person temp;
+		 
+		 for(int i = 0 ; i < 0.01*healthyPeople.size(); i++)
+		 {
+			 
+			 temp = healthyPeople.get(i).contagion(new ChineseVariant());  ///מאורררררררר
+			 sickPeople.add(temp);
+			 healthyPeople.remove(i);
+			 
+		 }
+	 }
+
+	 
+	 public void updateSickHealthy()
+	 {
+		 healthyPeople.clear();
+		 sickPeople.clear();
+		 for(int i = 0 ; i < people.size() ; i++)
+		 {
+			   if(people.get(i) instanceof Sick )
+				{
+					this.sickPeople.add(people.get(i));
+				}
+				else if(people.get(i) instanceof Healthy )
+				{
+					this.healthyPeople.add(people.get(i));
+				}
+		 }
+	 }
 	 public boolean transferPerson(Person other , Settlement one) //will be used in future
 	 {
 		if(this.getPeople().size() >= this.maxPopulation)
@@ -144,14 +168,34 @@ public class Settlement
 	{
 		return this.people;
 	}
+	public List<Person> getsickPeople()  //get population list
+	{
+		return this.sickPeople;
+	}
+	public List<Person> gethealthygetPeople()  //get population list
+	{
+		return this.healthyPeople;
+	}
 	public int getPeopleSize()
 	{
 		int tot = getPeople().size() ;
 		return tot;
 	}
+	public int getSickPeopleSize()
+	{
+		return sickPeople.size();
+	}
+	public int getHealthyPeopleSize()
+	{
+		return healthyPeople.size();
+	}
 	public int getVaccineDose()
 	{
 		return this.vaccineDose;
+	}
+	public void setVaccineDose(int newDoses)
+	{
+		this.vaccineDose+=newDoses;
 	}
 	public int getdeadPopulation()
 	{

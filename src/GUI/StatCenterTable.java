@@ -7,7 +7,7 @@ class StatCenterTable extends AbstractTableModel
 	private  Map map;
 	private final String[] columnNames = {"Settlement Name" , "Settlement Type"
 		,"RamzorColor" , "Sick percentages" , "Vaccine dose number","Dead people Number"
-		,"Current population number"};
+		,"Current population number" ,"Sick people in settle" , "Healthy peopleIn settle"};
 	
 	
 	public StatCenterTable(Map map)
@@ -28,7 +28,7 @@ class StatCenterTable extends AbstractTableModel
 	
 	public int getColumnCount() 
 	{
-		return 7;
+		return 9;
 	}
 
 
@@ -44,10 +44,35 @@ class StatCenterTable extends AbstractTableModel
 			case 4: return settlement.getVaccineDose();
 			case 5: return settlement.getdeadPopulation();
 			case 6: return settlement.getPeopleSize();
+			case 7: return settlement.getSickPeopleSize();
+			case 8: return settlement.getHealthyPeopleSize();
+			
 		}
 		return null;
 		
 	}
 	
+	
+	public boolean isCellEditable(int rowIndex , int columnIndex)
+	{
+		return columnIndex >0 ;
+	}
+	
+	public void setValueAt(String aValue , int row , int col)
+	{
+		System.out.println(row);
+		System.out.println(col);
+		int i=Integer.parseInt(aValue);  
+		Settlement settlement = map.at(row);
+		switch(col) {
+		case 4:  settlement.setVaccineDose(i);
 
+		}
+		System.out.println(map.getSettlements()[row].getVaccineDose());
+	}
+	
+	
+	
+	
+	
 }

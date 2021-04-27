@@ -29,12 +29,12 @@ public class statsJTable extends JPanel
 	
 	
 	
-	public statsJTable(Map map)
+	public statsJTable(Map map ,JTextField tf1)
 	{
 		
 		model = new StatCenterTable(map);
 		table = new JTable(model);
-		
+		this.tf1=tf1;
 		table.setRowSorter(sorter = new TableRowSorter<StatCenterTable>(model));
 		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -42,6 +42,16 @@ public class statsJTable extends JPanel
 		table.setBackground(Color.CYAN);
 		table.setFillsViewportHeight(true);
 		this.add(new JScrollPane(table));
+		
+		this.add(tf1 );
+		tf1.setToolTipText("FILTER NAME COLUMN");
+		tf1.getDocument().addDocumentListener(new DocumentListener() {
+			
+				public void insertUpdate(DocumentEvent e) {newFilter();}
+				public void removeUpdate(DocumentEvent e) {newFilter();}
+				public void changedUpdate(DocumentEvent e) {newFilter();}
+			});
+		
 		
 		
         this.setVisible(true);
@@ -55,32 +65,20 @@ public class statsJTable extends JPanel
 	{
 		return this.table ;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public void filter(JTextField tf1)
+	public int getCurrRow()
 	{
-		this.tf1=tf1;
-		this.tf1.setToolTipText("Filter Name Column");
-		this.tf1.getDocument().addDocumentListener(new DocumentListener()
-				{
-					public void insertUpdate(DocumentEvent e) {newFilter();}
-					public void removeUpdate(DocumentEvent e) {newFilter();}
-					public void changedUpdate(DocumentEvent e) {newFilter();}
-				});
+		return table.getSelectedRow();
 	}
+	
+	public StatCenterTable getmodel()
+	{
+		return this.model;
+	}
+	
+
 	private void newFilter()
 	{
-		try {sorter.setRowFilter(RowFilter.regexFilter(tf1.getText(),1));
+		try {sorter.setRowFilter(RowFilter.regexFilter(tf1.getText(),ColumnComboBox.getColumn()));
 		}catch(PatternSyntaxException e) {
 			//wont update
 		}

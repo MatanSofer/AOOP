@@ -13,7 +13,7 @@ public class ColumnComboBox extends JPanel implements ActionListener
 {
 	private static final String[] names = {"Settlement Name" , "Settlement Type"
 			,"RamzorColor" , "Sick percentages" , "Vaccine dose number","Dead people Number"
-			,"Current population number"};
+			,"Current population number" ,"Sick people in settle" , "Healthy peopleIn settle"};
 	
 	private  JComboBox<String> combo;
 	private static int column;
@@ -32,7 +32,7 @@ public class ColumnComboBox extends JPanel implements ActionListener
 	
 	
 	public void actionPerformed(ActionEvent e) {
-		int column;
+
 		if(e.getSource()==combo)
 		{
 			switch(combo.getItemAt(combo.getSelectedIndex()))
@@ -44,16 +44,21 @@ public class ColumnComboBox extends JPanel implements ActionListener
 			case "Vaccine dose number":column=4;break;
 			case "Dead people Number":column=5;break;
 			case "Current population number":column=6;break;
+			case "Sick people in settle":column=7;break;
+			case "Healthy peopleIn settle":column=8;break;
 			}
 		}
 		
 		
 	}
 	
-	public int getColumn()
+	public static int getColumn()
 	{
-		return this.column;
+		return column;
 	}
+	
+	
+	
 	
 
 }

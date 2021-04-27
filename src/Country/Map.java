@@ -124,7 +124,7 @@ public class Map {
 					}
 
 				}
-
+			
 				System.out.println("----------------------");
 				this.getSettlements()[i].setColor(this.getSettlements()[i].calculateRamzorGrade()); // setting the ramzor grade and color
 				System.out.println("Number of trying in settle " + this.getSettlements()[i].getName()
@@ -141,7 +141,9 @@ public class Map {
 				}
 				System.out.println("After simulation " + (p + 1) + " Settlement  " + this.getSettlements()[i].getName()
 						+ " Sick number are : " + sickCounter);
-
+				
+				this.getSettlements()[i].updateSickHealthy();
+				
 			}
 		}
 		Clock.nextTick();// move the clock one tick forward

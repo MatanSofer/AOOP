@@ -22,64 +22,26 @@ import javax.swing.table.TableRowSorter;
 
 import Country.Map;
 
-public class StatWindow extends JFrame
+public class StatWindow extends JFrame implements ActionListener
 {
 
-//		private final JLabel lb1,lb2;
+
 		private  JTextField tf1;
 		private Map map;
 		private statsJTable allStats;
 		private ColumnComboBox combobox;
 		private TableRowSorter<StatCenterTable>sorter;
-		
-		public StatWindow(Map map)
+		JButton button6;
+		public StatWindow(Map map )
 		{	
 			
 			super("Statistics Window");
 			this.map=map;
-			allStats = new statsJTable(map);
-			
-			combobox=new ColumnComboBox();
-//			combobox.add
-//			combobox.actionPerformed(ActionEvent e);
-//			{
-//						
-//			});
-//			
-			
 			JTextField tf1=new JTextField();
-			tf1.addActionListener(new ActionListener()
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					System.out.println(combobox.getColumn());
-						tf1.setToolTipText("Filter Name Column");
-						tf1.getDocument().addDocumentListener(new DocumentListener()
-								{
-									public void insertUpdate(DocumentEvent e) {newFilter();}
-									public void removeUpdate(DocumentEvent e) {newFilter();}
-									public void changedUpdate(DocumentEvent e) {newFilter();}
-								});
-				}
-				private void newFilter()
-				{
-						try {sorter.setRowFilter(RowFilter.regexFilter(tf1.getText(),combobox.getColumn()));
-						}catch(PatternSyntaxException e) {
-							//wont update
-						}
-				
-				}			
-			});
-				
-			
-			
-//			allStats.addActionListener(new ActionListener()
-//			{
-//				public void actionPerformed(ActionEvent e)
-//				{
-//					
-//				}			;
-//			});
+			allStats = new statsJTable(map,tf1);
+			Dialog doseFrame = new Dialog(this,button6 =new JButton("Vaccinate"),allStats);
+			combobox=new ColumnComboBox();
+
 			
 			JButton button4=new JButton("Save");
 			button4.addActionListener(new ActionListener()
@@ -95,17 +57,19 @@ public class StatWindow extends JFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					
-				}			;
-			});
+					int selectedRow = allStats.getCurrRow();
+					//System.out.println(map.getSettlements()[selectedRow].getsickPeople().size());
+					map.getSettlements()[selectedRow].jtableMakeSick();
+					//System.out.println(map.getSettlements()[0].getsickPeople().size());
+					//allStats.getmodel().setValueAt(doses.getText(),allStats.getCurrRow(),4);
+					//setVisible(false);
+				}			
 			
-			JButton button6=new JButton("Vaccinate");
-			button6.addActionListener(new ActionListener()
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					
-				}			;
+			
+			
+		
+			
+							
 		
 			
 			
@@ -148,8 +112,16 @@ public class StatWindow extends JFrame
 		this.pack();
 		this.setVisible(true);
 		
-		
+		}	
 
-	    }
-	}
+
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			;
+		}
+	
+}
+	
 

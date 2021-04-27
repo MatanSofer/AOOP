@@ -30,7 +30,9 @@ public class Main {
 		map.printSickPpl();//Print sick population.
 		MainWindow mainwindow = new MainWindow(map);
 		StatWindow statwindow = new StatWindow(map);
+		
 		statwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 	}
 	
 	private static File loadFileFunc() 
