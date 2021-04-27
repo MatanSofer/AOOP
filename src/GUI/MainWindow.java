@@ -7,12 +7,14 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.JMenuBar;
 import javax.swing.JSlider;
 
@@ -62,6 +64,10 @@ public class MainWindow extends JFrame
 			
 		
 			
+			center.setBorder(BorderFactory.createCompoundBorder(
+					BorderFactory.createTitledBorder("Display Phase"),
+			BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+			    
 			center.setPreferredSize(new Dimension(800,800));
 			setResizable(false);
 			this.pack();

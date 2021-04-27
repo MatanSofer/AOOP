@@ -49,7 +49,7 @@ public class StatWindow extends JFrame implements ActionListener
 				public void actionPerformed(ActionEvent e)
 				{
 					
-				}			;
+				}			
 			});
 			
 			JButton button5=new JButton("Add Sick");

@@ -45,24 +45,40 @@ public class GraphicMap extends JPanel {
 				
 				gr.drawLine(center1_x,center1_y,center2_x,center2_y);
 			}
-
-	
 		}
 		
 		for (Settlement settlement : map.getSettlements())
 		{
-			gr.setColor(Color.BLACK);
 			int y=settlement.getLocation().getPoint().getY();
 			int x=settlement.getLocation().getPoint().getX();
 			int width=settlement.getLocation().getSize().getWidth();
 			int height=settlement.getLocation().getSize().getHeight();
-			gr.drawRect(x,y,width,height);
 			
 			gr.setColor(settlement.getColor().getColor());
+			
 			gr.fillRect(x, y, width, height);
+			
+			gr.setColor(Color.BLACK);
+
+			gr.drawRect(x,y,width,height);
+			
+
 	
 		}
 		
+		gr.setColor(Color.BLACK);
+		for (Settlement settlement : map.getSettlements())
+		{
+			int y=settlement.getLocation().getPoint().getY();
+			int x=settlement.getLocation().getPoint().getX();
+//			int width=settlement.getLocation().getSize().getWidth();
+//			int height=settlement.getLocation().getSize().getHeight();
+//			gr.drawRect(x,y,width,height);
+//			
+//			gr.setColor(settlement.getColor().getColor());
+			gr.drawString(settlement.getName(),x, y);
+	
+		}
 		
 	}
 }

@@ -39,7 +39,7 @@ public class statsJTable extends JPanel
 		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setPreferredScrollableViewportSize(new Dimension(1010,100));
-		table.setBackground(Color.CYAN);
+		table.setBackground(Color.lightGray);
 		table.setFillsViewportHeight(true);
 		this.add(new JScrollPane(table));
 		
