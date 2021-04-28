@@ -8,3 +8,6 @@ Moshav; Saad; 400;00; 10; 60; 3000
 Kibbutz; Nirim; 650;300; 25; 30; 10000
 City; Efrat; 500;100; 10; 50; 35000
 #;Ashdod;Saad
+City;Maor; 699;100; 10; 50; 1
+City;gayCity;700;800; 22; 40; 20000
+#;Maor;gayCity

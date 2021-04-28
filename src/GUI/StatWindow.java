@@ -23,7 +23,7 @@ import javax.swing.table.TableRowSorter;
 
 import Country.Map;
 
-public class StatWindow extends JFrame implements ActionListener
+public class StatWindow extends JFrame 
 {
 
 
@@ -63,15 +63,7 @@ public class StatWindow extends JFrame implements ActionListener
 					allStats.fireTableDataChanged();
 				}			
 			
-			
-			
-		
-			
-							
-		
-			
-			
-				
+	
 				
 		});
 
@@ -111,14 +103,11 @@ public class StatWindow extends JFrame implements ActionListener
 		this.setVisible(true);
 		
 		}	
-
-
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			;
-		}
+	
+	public void updateTable() {
+		allStats.fireTableDataChanged();
+	}
+	
 	
 }
 	

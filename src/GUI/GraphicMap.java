@@ -30,14 +30,14 @@ public class GraphicMap extends JPanel {
 			for (Settlement settlement2 : settlement.getconnectedSettlements()) {
 				gr.setColor(Color.BLACK);
 				
-				int y=settlement.getLocation().getPoint().getY();
+				int y=settlement.getLocation().getPoint().getY()+10;
 				int x=settlement.getLocation().getPoint().getX();
 				int width=settlement.getLocation().getSize().getWidth();
 				int height=settlement.getLocation().getSize().getHeight();
 				int center1_x= x+width/2;
 				int center1_y= y+height/2;
 						
-				int y2=settlement2.getLocation().getPoint().getY();
+				int y2=settlement2.getLocation().getPoint().getY()+10;
 				int x2=settlement2.getLocation().getPoint().getX();
 				int width2=settlement2.getLocation().getSize().getWidth();
 				int height2=settlement2.getLocation().getSize().getHeight();
@@ -51,7 +51,7 @@ public class GraphicMap extends JPanel {
 		
 		for (Settlement settlement : Main.getMap().getSettlements())
 		{
-			int y=settlement.getLocation().getPoint().getY();
+			int y=settlement.getLocation().getPoint().getY()+10;
 			int x=settlement.getLocation().getPoint().getX();
 			int width=settlement.getLocation().getSize().getWidth();
 			int height=settlement.getLocation().getSize().getHeight();
@@ -71,7 +71,7 @@ public class GraphicMap extends JPanel {
 		gr.setColor(Color.BLACK);
 		for (Settlement settlement : Main.getMap().getSettlements())
 		{
-			int y=settlement.getLocation().getPoint().getY();
+			int y=settlement.getLocation().getPoint().getY()+10;
 			int x=settlement.getLocation().getPoint().getX();
 			gr.drawString(settlement.getName(),x, y);
 	

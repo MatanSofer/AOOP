@@ -1,10 +1,22 @@
 package GUI;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.LayoutManager;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
+import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
@@ -15,8 +27,11 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.text.html.ImageView;
 
 import IO.SimulationFile;
 import Simulation.Clock;
@@ -170,12 +185,12 @@ public class MenuBar extends JMenuBar {
 		menu.setMnemonic(KeyEvent.VK_N);
 		menu.getAccessibleContext().setAccessibleDescription(
 		      "This menu does nothing");
+		
 		menuItem = new JMenuItem("Help",new ImageIcon("img/help.png"));
 		menuItem.addActionListener(new ActionListener(){
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				JFrame topFrame1 = (JFrame) SwingUtilities.getWindowAncestor(getParent());
+				HelpDialog about = new HelpDialog(topFrame1);
 				
 			}
 		});
@@ -183,13 +198,9 @@ public class MenuBar extends JMenuBar {
 		
 		menuItem = new JMenuItem("About",new ImageIcon("img/about.png"));
 		menuItem.addActionListener(new ActionListener(){
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame f = new JFrame("About");
-				f.add(new JLabel("about text"));
-				f.setVisible(true);
-				
+				JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(getParent());
+				AboutDialog about = new AboutDialog(topFrame);
 			}
 		});
 		menu.add(menuItem);
@@ -199,19 +210,78 @@ public class MenuBar extends JMenuBar {
 		
 		
 	}
+	
 	private class AboutDialog extends JDialog {
 		
 		
 		public AboutDialog(Frame window) {
-				super(window, "Login", true);
-				this.add(new JLabel("The Authors are :\n Matan sofer \n Maor arnon"));
+			    
+
+				super(window, "About",true);
+				this.setLayout(new BorderLayout());
+				JLabel dateCreated = new JLabel("The code for this assignment was wriiten between 21/4 - 29/4");
+			    JLabel imgLabel =new JLabel();
+				JLabel imgLabel2 =new JLabel();
+				ImageIcon moon = new ImageIcon("img/maor.jpg");
+				
+				ImageIcon moon2 = new ImageIcon("img/matan.jpg");
+
+			    
+				Image image = moon.getImage(); // transform it 
+				Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+				moon = new ImageIcon(newimg);  // transform it back
+				
+				image = moon2.getImage(); // transform it 
+				newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+				moon2 = new ImageIcon(newimg);  // transform it back
+				
+				
+				imgLabel.setIcon(moon);
+				imgLabel2.setIcon(moon2);
+				this.add(imgLabel);
+				
+				
+			    JLabel text = new JLabel("The Authors are :\n Matan sofer \n Maor Arnon ");
+				
+				this.add(text,BorderLayout.NORTH);
+				this.add(imgLabel,BorderLayout.WEST);
+				this.add(imgLabel2,BorderLayout.EAST);
+				this.add(dateCreated,BorderLayout.SOUTH);
+				
+				pack();
+				setVisible(true);
 				
 		}
-		
-		
+	}	
+	private class HelpDialog extends JDialog {
+	
+			public HelpDialog(Frame window) {
+				    super(window, "Help",false);
+				    
+				    
+				    JLabel label = new JLabel("HELP FOR USER");
+				    
+				    //LATER TO FIX
+				     
+				    this.add(label);
+					
+					pack();
+					setVisible(true);		
+			}
 
 
 }
 
+
+	private Image getScaledImage(Image srcImg, int w, int h){
+  		  BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+  		  Graphics2D g2 = resizedImg.createGraphics();
+
+  		  g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+   		  g2.drawImage(srcImg, 0, 0, w, h, null);
+ 	      g2.dispose();
+
+   		  return resizedImg;
+}
 
 }

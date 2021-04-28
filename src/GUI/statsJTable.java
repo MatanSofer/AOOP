@@ -67,7 +67,7 @@ public class statsJTable extends JPanel
 	}
 	public int getCurrRow()
 	{
-		return table.getSelectedRow();
+		return table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
 	}
 	
 	public StatCenterTable getmodel()

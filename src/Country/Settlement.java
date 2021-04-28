@@ -2,7 +2,9 @@
 package Country;
 import java.util.*;
 import Population.*;
+import Virus.BritishVariant;
 import Virus.ChineseVariant;
+import Virus.IVirus;
 import Virus.SouthAfricanVariant;
 import Location.*;
 
@@ -98,11 +100,12 @@ public class Settlement
 	 {
 		 System.out.println("ss"+getSickPeopleSize());
 		 Person temp;
-		 
+		 IVirus [] random = {new ChineseVariant(),new BritishVariant(),new SouthAfricanVariant()};
+		 int randomVarient;
 		 for(int i = 0 ; i < 0.01*healthyPeople.size(); i++)
 		 {
-			 
-			 temp = healthyPeople.get(i).contagion(new ChineseVariant());  ///׳�׳�׳•׳¨׳¨׳¨׳¨׳¨׳¨׳¨׳¨
+			 randomVarient = (int)Math.random()*2;
+			 temp = healthyPeople.get(i).contagion(random[randomVarient]);  
 			 sickPeople.add(temp);
 			 healthyPeople.remove(i);
 			 
