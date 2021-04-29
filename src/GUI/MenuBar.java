@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
@@ -16,6 +17,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -102,8 +104,10 @@ public class MenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
+				JFrame topFrame1 = (JFrame) SwingUtilities.getWindowAncestor(getParent());
+				MutationDialog about = new MutationDialog(topFrame1);
+
 			}
 		});
 		menuItem.setMnemonic(KeyEvent.VK_D);
@@ -117,7 +121,7 @@ public class MenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				System.exit(0);
 				
 			}
 		});
@@ -223,7 +227,6 @@ public class MenuBar extends JMenuBar {
 			    JLabel imgLabel =new JLabel();
 				JLabel imgLabel2 =new JLabel();
 				ImageIcon moon = new ImageIcon("img/maor.jpg");
-				
 				ImageIcon moon2 = new ImageIcon("img/matan.jpg");
 
 			    
@@ -252,19 +255,22 @@ public class MenuBar extends JMenuBar {
 				setVisible(true);
 				
 		}
-	}	
+	}
+		
+	
+
+
 	private class HelpDialog extends JDialog {
 	
 			public HelpDialog(Frame window) {
 				    super(window, "Help",false);
-				    
-				    
-				    JLabel label = new JLabel("HELP FOR USER");
-				    
-				    //LATER TO FIX
-				     
-				    this.add(label);
-					
+				    JLabel imgLabel =new JLabel();
+				    ImageIcon moon = new ImageIcon("img/background.jpg");
+				    Image image = moon.getImage(); // transform it 
+					Image newimg = image.getScaledInstance(1267, 950,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+					moon = new ImageIcon(newimg);  // transform it back
+					imgLabel.setIcon(moon);
+					this.add(imgLabel);
 					pack();
 					setVisible(true);		
 			}

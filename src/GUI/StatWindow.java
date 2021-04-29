@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.regex.PatternSyntaxException;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableRowSorter;
 
+import IO.*;
 import Country.Map;
 
 public class StatWindow extends JFrame 
@@ -49,7 +51,7 @@ public class StatWindow extends JFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					
+					StatisticsFile.SaveTable("Table"+Simulation.Clock.now()+"ticks", allStats.getJTable());
 				}			
 			});
 			
@@ -77,6 +79,10 @@ public class StatWindow extends JFrame
 		JPanel center = new JPanel();
 		JPanel south =  new JPanel();
 		
+		JLabel spaces = new JLabel("                       "
+				+ "                                       "
+				+ "                                     "
+				+ "                          ");
 		center.setLayout(new BoxLayout(center , BoxLayout.LINE_AXIS));
 		north.setLayout(new BoxLayout(north , BoxLayout.LINE_AXIS));
 		south.setLayout(new BoxLayout(south, BoxLayout.LINE_AXIS));
@@ -84,6 +90,7 @@ public class StatWindow extends JFrame
 		
 		north.add(combobox);
 		north.add(tf1);	
+		south.add(spaces);
 		south.add(button4);
 		south.add(button5);
 		south.add(button6);

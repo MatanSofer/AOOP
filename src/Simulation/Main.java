@@ -72,7 +72,7 @@ public class Main {
 		{
 			Clock.nextTick();// move the clock one tick forward
 			updateAll(mainwindow ,statwindow);
-			
+			NewSickIndexes.clear();
 			
 
 			
@@ -84,12 +84,36 @@ public class Main {
 			// for each settle we have to check 0.03 from people who try to move to a connected settle and to transfer them 
 			//if settle has more then 0 doses and also health people we have to vaccine them and decrease this.doses;(1 is enough)
 			
-			
-			
-			
-			
-			
-			
+//			for (int i = 0; i < getMap().getSettlements().length; i++) // run for each settle
+//			{
+//				for (int j = 0; j < getMap().getSettlements()[i].getsickPeople().size()*0.2; j++) // run for all the people in the settle
+//				{
+//					virus = ((Sick) getMap().getSettlements()[i].getsickPeople().get(j)).getVirus();
+//						for(int k = 0 ; k < 3; k++ )
+//						{
+//							virus.tryToContagion(getMap().getSettlements()[i].getsickPeople().get(j),
+//								getMap().getSettlements()[i].gethealthygetPeople().get(k));
+//						}
+//					
+//				}
+//			}
+//			
+//			for (int i = 0; i < getMap().getSettlements().length; i++) // run for each settle
+//			{
+//				for (int j = 0; j < getMap().getSettlements()[i].getsickPeople().size(); j++) // run for all the people in the settle
+//				{
+//					virus = ((Sick) getMap().getSettlements()[i].getsickPeople().get(j)).getVirus();
+//						for(int k = 0 ; k < 3; k++ )
+//						{
+//							virus.tryToContagion(getMap().getSettlements()[i].getsickPeople().get(j),
+//								getMap().getSettlements()[i].gethealthygetPeople().get(k));
+//						}
+//					
+//				}
+//			}
+//			
+//			
+//			
 			
 			
 			

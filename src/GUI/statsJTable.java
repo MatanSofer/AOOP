@@ -69,7 +69,10 @@ public class statsJTable extends JPanel
 	{
 		return table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
 	}
-	
+//	public JTable getCurrTable()
+//	{
+//	//	return table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
+//	}
 	public StatCenterTable getmodel()
 	{
 		return this.model;

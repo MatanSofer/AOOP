@@ -38,7 +38,7 @@ class StatCenterTable extends AbstractTableModel
 		{
 			case 0: return settlement.getName();
 			case 1: return settlement.getType();
-			case 2: return settlement.getColor();
+			case 2: return settlement.getColor().toString();
 			case 3: return settlement.contagiousPrecentString();
 			case 4: return settlement.getVaccineDose();
 			case 5: return settlement.getdeadPopulation();
