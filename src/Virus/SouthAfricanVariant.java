@@ -49,11 +49,14 @@ public class SouthAfricanVariant implements IVirus
     public IVirus[] getMutations_types() {
     	return mutations_types;
     }
-    public void setMutation(int index,boolean value) {
-    	mutations[index] = value;
+    public static void setMutation(String name,boolean value) {
+    	if(name == mutations_types[0].getType())
+    		mutations[0] = value;
+    	else if(name == mutations_types[0].getType())
+    		mutations[1] = value;
     }
     
     public String getType() {
-    	return "SouthAfricanVariant";
+    	return "SouthAfrican";
     }
 }

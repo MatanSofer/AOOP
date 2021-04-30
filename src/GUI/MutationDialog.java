@@ -4,8 +4,6 @@ import java.awt.Frame;
 
 import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
-
 import javax.swing.JCheckBox;
 
 import javax.swing.JDialog;
@@ -13,6 +11,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import javax.swing.JPanel;
+import Virus.*;
 
 
 
@@ -20,58 +19,54 @@ public class MutationDialog extends JDialog {
 	
 			String [] names = {"British","Chinese","SouthAfrican"};
 			JPanel mainpanel = new JPanel(); 
-			   
-		public MutationDialog (Frame window){
-			super(window, "Mutations",true);
-			GridLayout mylayout = new GridLayout(4,4);
-			this.mainpanel.setLayout(mylayout);
+	
 			
-			JPanel panel = new JPanel();
-			panel.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
 			
-			this.mainpanel.add(panel);
-			
-			for(String name : names){
-				panel.add(new JLabel(name));
-				this.mainpanel.add(panel);
-			}
-			
-			for(String name1 : names){
-				panel.add(new JLabel(name1));
-				this.mainpanel.add(panel);
-				for(String name2 : names){
-					
-					JCheckBox checkbox = new JCheckBox();
- 					// add to a container
-					panel.add(checkbox);
-					this.mainpanel.add(panel);
-					// set state
+	public MutationDialog (Frame window){
+		super(window, "Mutations",true);	
+		setLayout(new GridLayout(0, 4, 25, 25));
+		JCheckBox checkbox ;
+		
+		add(new JLabel("\t"));
+		for(String name : names){
+			add(new JLabel(name));
+		}
+		for (int i = 0; i < 3; i++) {
+			add(new JLabel(names[i]));
+			for (int j = 0; j < 3; j++) {
+				if(i==j) {
+					add(new JLabel("V"));
+				}
+				else {
+					add(checkbox = new JCheckBox());
 					checkbox.setSelected(false);
 					// check state
 					if (checkbox.isSelected()) {
-						
-					    // do something...
-	
+						//Enable mutation
+						toggleMutation(names[i],names[j],true);
+
 					} else {
-						
-					    // do something else...
-					 
+						//Disable mutation
+						toggleMutation(names[i],names[j],false);	 
 					}
-					
 				}
 			}
-			
-			this.add(mainpanel);
-
-			
-			pack();
-			setVisible(true);
-	}	
-	
-	private void toggleMutation(String virus,String mutation){
+        }
 		
-		
+		pack();
+		setVisible(true);
+				
 	}
+	
+	private void toggleMutation(String virus,String mutation,boolean bool){
+		if(virus == names[0])
+			BritishVariant.setMutation(mutation, bool);
+		else if(virus == names[1])
+			ChineseVariant.setMutation(mutation, bool);
+		else if(virus == names[2])
+			SouthAfricanVariant.setMutation(mutation, bool);
+	}
+	
 	
 	
 
