@@ -38,17 +38,26 @@ public class Clock
 	public static long diffrence(long newTime) { // Gives time difference
 		return (long) Math.ceil((time - newTime) / ticksPerDay) ;
 	}
-	public void setticksPerDay(long ticksPerDay)
+	public static void setticksPerDay(long ticksPerDay)
 	{
 		Clock.ticksPerDay = ticksPerDay;
 	}
-	public void settime(long time)
+	public static long getticksPerDay()
+	{
+		return ticksPerDay;
+	}
+	public static void settime(long time)
 	{
 		Clock.time = time;
 	}
 	public static void setPlaying(boolean playing)
 	{
 		Clock.playing = playing;
+	}
+	
+	public static boolean getPlay()
+	{
+		return playing;
 	}
 	
 	

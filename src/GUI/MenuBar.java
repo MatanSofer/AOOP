@@ -1,26 +1,18 @@
 package GUI;
-
+import java.awt.*;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -28,14 +20,14 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.KeyStroke;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
-import javax.swing.text.html.ImageView;
 
 import IO.SimulationFile;
+import IO.StatisticsFile;
 import Simulation.Clock;
 import Simulation.Main;
 
@@ -47,7 +39,7 @@ public class MenuBar extends JMenuBar {
 	JRadioButtonMenuItem rbMenuItem;
 	JCheckBoxMenuItem cbMenuItem;
 	
-	public MenuBar() {
+	public MenuBar(StatWindow statwindow) {
 	
 		//Create the menu bar.
 		super();
@@ -83,7 +75,7 @@ public class MenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				statwindow.setVisible(true);
 				
 			}
 		});
@@ -174,7 +166,8 @@ public class MenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				JFrame topFrame2 = (JFrame) SwingUtilities.getWindowAncestor(getParent());
+				SetClicks about = new SetClicks(topFrame2);
 				
 			}
 		});
@@ -221,7 +214,7 @@ public class MenuBar extends JMenuBar {
 		public AboutDialog(Frame window) {
 			    
 
-				super(window, "About",true);
+				super(window, "About",false);
 				this.setLayout(new BorderLayout());
 				JLabel dateCreated = new JLabel("The code for this assignment was wriiten between 21/4 - 29/4");
 			    JLabel imgLabel =new JLabel();
@@ -263,7 +256,7 @@ public class MenuBar extends JMenuBar {
 	private class HelpDialog extends JDialog {
 	
 			public HelpDialog(Frame window) {
-				    super(window, "Help",false);
+				    super(window, "Help",true);
 				    JLabel imgLabel =new JLabel();
 				    ImageIcon moon = new ImageIcon("img/background.jpg");
 				    Image image = moon.getImage(); // transform it 
@@ -278,7 +271,30 @@ public class MenuBar extends JMenuBar {
 
 }
 
+	private class SetClicks extends JDialog {
+		
+		public SetClicks(Frame window) {
+			    super(window, "Set Click per day",true);
+			    this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.LINE_AXIS));
+			    JSpinner jSpinner1 = new JSpinner(new SpinnerNumberModel(0, 0, 30, 1));
+			    this.add(jSpinner1);
+			    JButton ok = new JButton("Click to set");
+			    this.add(ok);
+			    ok.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						int currentValue = (int)jSpinner1.getValue();		    
+						Long l= new Long(currentValue);
+					    Clock.setticksPerDay(l);
+					    //System.out.println(Clock.getticksPerDay()); for check
+					}
+				});
+			  
+				pack();
+				setVisible(true);		
+		}
 
+
+}
 	private Image getScaledImage(Image srcImg, int w, int h){
   		  BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
   		  Graphics2D g2 = resizedImg.createGraphics();

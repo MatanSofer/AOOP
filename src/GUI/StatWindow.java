@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.PatternSyntaxException;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,97 +26,78 @@ import javax.swing.table.TableRowSorter;
 import IO.*;
 import Country.Map;
 
-public class StatWindow extends JFrame 
-{
+public class StatWindow extends JFrame {
 
+	private JTextField tf1;
+	private Map map;
+	private statsJTable allStats;
+	private ColumnComboBox combobox;
+	private TableRowSorter<StatCenterTable> sorter;
+	JButton button6;
 
-		private  JTextField tf1;
-		private Map map;
-		private statsJTable allStats;
-		private ColumnComboBox combobox;
-		private TableRowSorter<StatCenterTable>sorter;
-		JButton button6;
-		public StatWindow(Map map )
-		{	
-			
-			super("Statistics Window");
-			this.map=map;
-			JTextField tf1=new JTextField();
-			allStats = new statsJTable(map,tf1);
-			Dialog doseFrame = new Dialog(this,button6 =new JButton("Vaccinate"),allStats);
-			combobox=new ColumnComboBox();
+	public StatWindow(Map map) {
 
-			
-			JButton button4=new JButton("Save");
-			button4.addActionListener(new ActionListener()
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					StatisticsFile.SaveTable("Table"+Simulation.Clock.now()+"ticks", allStats.getJTable());
-				}			
-			});
-			
-			JButton button5=new JButton("Add Sick");
-			button5.addActionListener(new ActionListener()
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					int selectedRow = allStats.getCurrRow();
-					map.getSettlements()[selectedRow].jtableMakeSick();
-					allStats.fireTableDataChanged();
-				}			
-			
-	
-				
+		super("Statistics Window");
+		this.map = map;
+		JTextField tf1 = new JTextField();
+		allStats = new statsJTable(map, tf1);
+		Dialog doseFrame = new Dialog(this, button6 = new JButton("Vaccinate"), allStats);
+		combobox = new ColumnComboBox();
+
+		JButton button4 = new JButton("Save");
+		button4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StatisticsFile.SaveTable("Table" + Simulation.Clock.now() + "ticks", allStats.getJTable());
+			}
 		});
 
-			
-		
-		
+		JButton button5 = new JButton("Add Sick");
+		button5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selectedRow = allStats.getCurrRow();
+				map.getSettlements()[selectedRow].jtableMakeSick();
+				allStats.fireTableDataChanged();
+			}
+
+		});
+
 		this.setLayout(new BorderLayout());
 
-		
-		JPanel north= new JPanel();
+		JPanel north = new JPanel();
 		JPanel center = new JPanel();
-		JPanel south =  new JPanel();
-		
-		JLabel spaces = new JLabel("                       "
-				+ "                                       "
-				+ "                                     "
-				+ "                          ");
-		center.setLayout(new BoxLayout(center , BoxLayout.LINE_AXIS));
-		north.setLayout(new BoxLayout(north , BoxLayout.LINE_AXIS));
+		JPanel south = new JPanel();
+
+		center.setLayout(new BoxLayout(center, BoxLayout.LINE_AXIS));
+		north.setLayout(new BoxLayout(north, BoxLayout.LINE_AXIS));
 		south.setLayout(new BoxLayout(south, BoxLayout.LINE_AXIS));
-		
-		
+
 		north.add(combobox);
-		north.add(tf1);	
-		south.add(spaces);
+		north.add(tf1);
+
+		south.add(Box.createHorizontalGlue());
 		south.add(button4);
 		south.add(button5);
 		south.add(button6);
+		south.add(Box.createHorizontalGlue());
 		center.add(allStats);
-		
-		
-		
-		this.add(center , BorderLayout.CENTER);
-		this.add(north , BorderLayout.NORTH);
-		this.add(south , BorderLayout.SOUTH);
-		
-	
-		
-		//this.setSize(1050,250);
-		
+
+		this.add(center, BorderLayout.CENTER);
+		this.add(north, BorderLayout.NORTH);
+		this.add(south, BorderLayout.SOUTH);
+
+		// this.setSize(1050,250);
+
 		this.pack();
 		this.setVisible(true);
-		
-		}	
-	
+
+	}
+
 	public void updateTable() {
 		allStats.fireTableDataChanged();
 	}
-	
-	
-}
-	
+	public statsJTable getallStats ()
+	{
+		return allStats;
+	}
 
+}

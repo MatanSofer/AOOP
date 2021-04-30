@@ -22,10 +22,11 @@ public class Main {
 //		SimulationFile simulationfile = new SimulationFile(loadFileFunc());
 //		map = simulationfile.getMap(); //return value from simulation ; reference to map.
 //		System.out.println(map); //print all settle string
-		
-		MainWindow mainwindow = new MainWindow();
 		StatWindow statwindow = new StatWindow(map);
+		statwindow.setVisible(false);
 		
+		MainWindow mainwindow = new MainWindow(statwindow);
+	
 		map.SickPplInnit();//Initialize 1% (infect population).
 		System.out.println("\n-------In the first intiallization : -------\n");
 		map.printSickPpl();//Print sick population.
@@ -72,6 +73,9 @@ public class Main {
 		{
 			Clock.nextTick();// move the clock one tick forward
 			updateAll(mainwindow ,statwindow);
+			
+			
+			
 			NewSickIndexes.clear();
 			
 
@@ -187,6 +191,10 @@ public class Main {
 	public static void updateAll(MainWindow mainwindow ,StatWindow statwindow){
 		mainwindow.updateMap();
 		statwindow.updateTable();
+	}
+	public static void getStatistic()
+	{
+		
 	}
 
 }

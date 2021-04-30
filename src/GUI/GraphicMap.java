@@ -4,16 +4,21 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JPanel;
 import Country.*;
+import Simulation.Clock;
 import Simulation.Main;
 
 public class GraphicMap extends JPanel {
 
-	
-	public GraphicMap (){
+	private StatWindow statwindow;
+	public GraphicMap (StatWindow statwindow){
 		super();
-
+		this.statwindow = statwindow;
+		 this.addMouseListener(new CustomMouseListener());
 	}
 	
 	public void Screen() {
@@ -79,5 +84,61 @@ public class GraphicMap extends JPanel {
 		
 		
 	}
+	
+	
+	
+	
+	
+	
+	private class CustomMouseListener implements MouseListener{
+
+	    public void mouseClicked(MouseEvent e) {
+	    	if(Clock.getPlay())
+	    	{
+	    		 int xFrame=e.getX();
+	    		 int yFrame=e.getY();
+	    		 
+	    		 for (Settlement settlement : Main.getMap().getSettlements())
+	    			{
+	    				int y=settlement.getLocation().getPoint().getY()+10;
+	    				int x=settlement.getLocation().getPoint().getX();
+	    				int width=settlement.getLocation().getSize().getWidth();
+	    				int height=settlement.getLocation().getSize().getHeight();
+	    		 
+	    					if( (xFrame>=x && xFrame<=width+x) &&(yFrame>=y && yFrame<=height+y) )
+	    					{
+	    						String name = settlement.getName();
+	    						statwindow.getallStats().newFilter1(name);
+	    						statwindow.setVisible(true);
+	    						
+	    					}
+	    			}
+	    		  
+	    	}
+	    }
+
+	    public void mousePressed(MouseEvent e) {
+	    	// TODO Auto-generated method stub
+	    }
+
+	    public void mouseReleased(MouseEvent e) {
+	    	// TODO Auto-generated method stub
+	    }
+
+	    public void mouseEntered(MouseEvent e) {
+	    	// TODO Auto-generated method stub
+	    }
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+	 
+	 }
+	
+	
+	
 }
 

@@ -20,8 +20,6 @@ public class ColumnComboBox extends JPanel implements ActionListener
 	
 	public ColumnComboBox()
 	{
-				
-		
 		this.setLayout(new BoxLayout(this , BoxLayout.PAGE_AXIS));
 		combo = new JComboBox<String>(names);
 		this.add(combo);

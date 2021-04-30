@@ -24,16 +24,7 @@ public class City extends Settlement
 		this.setRamzorRating(result);
 		
 		return RamzorColor.gradeToColor(result);
-		
-//		if (result <= 0.4)
-//			return RamzorColor.Green;
-//		else if (result <= 0.6)
-//			return RamzorColor.Yellow;
-//		else if (result <= 0.8)
-//			return RamzorColor.Orange;
-//		else
-//			return RamzorColor.Red;
-		
+
 		
 	}
 }

@@ -86,7 +86,13 @@ public class statsJTable extends JPanel
 			//wont update
 		}
 	}
-
+	public void newFilter1(String name)
+	{
+		try {sorter.setRowFilter(RowFilter.regexFilter(name,0));
+		}catch(PatternSyntaxException e) {
+			//wont update)
+		}
+	}
 	public void fireTableDataChanged() {
 		// TODO Auto-generated method stub
 		model.fireTableDataChanged();

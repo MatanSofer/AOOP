@@ -2,12 +2,6 @@
 package Country;
 import java.awt.Color;
 
-//public enum RamzorColor  // enum colors 
-//{
-//	
-//	Green,Yellow,Orange,Red;
-//
-//}
 
 
 public enum RamzorColor {

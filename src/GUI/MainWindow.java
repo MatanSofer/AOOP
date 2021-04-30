@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -30,8 +32,8 @@ public class MainWindow extends JFrame
 		private MenuBar bar;
 		private static JSlider slider;
 		private GraphicMap graphic_map;
-		
-		public MainWindow()
+		//private StatWindow statwindow;
+		public MainWindow(StatWindow statwindow)
 		{	
 			super("Main Window");
 
@@ -46,13 +48,13 @@ public class MainWindow extends JFrame
 			north.setLayout(new BoxLayout(north , BoxLayout.LINE_AXIS));
 			south.setLayout(new BoxLayout(south, BoxLayout.LINE_AXIS));
 			
-			setJMenuBar(new MenuBar());
+			setJMenuBar(new MenuBar(statwindow));
 			
 			//north
 			north.add(new JMenuBar());
 			
 			//center 
-			center.add(graphic_map = new GraphicMap());
+			center.add(graphic_map = new GraphicMap(statwindow));
 			
 			//south
 			south.add(slider = new JSlider(1,30,1));
@@ -101,5 +103,6 @@ public class MainWindow extends JFrame
 			graphic_map.repaint();
 		}
 		
+
 		
 	}
