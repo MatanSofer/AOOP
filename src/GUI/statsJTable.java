@@ -29,7 +29,7 @@ public class statsJTable extends JPanel
 	
 	
 	
-	public statsJTable(Map map ,JTextField tf1)
+	public statsJTable(JTextField tf1)
 	{
 		
 		model = new StatCenterTable();

@@ -2,6 +2,7 @@
 package Population;
 import Country.*;
 import Location.*;
+import Simulation.Clock;
 import Virus.*;
 
 public class Sick extends Person
@@ -45,6 +46,10 @@ public class Sick extends Person
 	public Long getContagiousTime() //return contagious time
 	{
 		return contagiousTime;
+	}
+	public Long daysFromContagion()
+	{
+		return Clock.diffrence(getContagiousTime());
 	}
 	public String getType()
 	{

@@ -24,23 +24,24 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableRowSorter;
 
 import IO.*;
+import Simulation.Main;
 import Country.Map;
 
 public class StatWindow extends JFrame {
 
 	private JTextField tf1;
-	private Map map;
+	//private Map map;
 	private statsJTable allStats;
 	private ColumnComboBox combobox;
 	private TableRowSorter<StatCenterTable> sorter;
 	JButton button6;
 
-	public StatWindow(Map map) {
+	public StatWindow() {
 
 		super("Statistics Window");
-		this.map = map;
+		//this.map = map;
 		JTextField tf1 = new JTextField();
-		allStats = new statsJTable(map, tf1);
+		allStats = new statsJTable( tf1);
 		Dialog doseFrame = new Dialog(this, button6 = new JButton("Vaccinate"), allStats);
 		combobox = new ColumnComboBox();
 
@@ -54,8 +55,9 @@ public class StatWindow extends JFrame {
 		JButton button5 = new JButton("Add Sick");
 		button5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				int selectedRow = allStats.getCurrRow();
-				map.getSettlements()[selectedRow].jtableMakeSick();
+				Main.getMap().getSettlements()[selectedRow].jtableMakeSick();
 				allStats.fireTableDataChanged();
 			}
 

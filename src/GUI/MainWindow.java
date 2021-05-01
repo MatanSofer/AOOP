@@ -57,7 +57,7 @@ public class MainWindow extends JFrame
 			center.add(graphic_map = new GraphicMap(statwindow));
 			
 			//south
-			south.add(slider = new JSlider(1,30,1));
+			south.add(slider = new JSlider(1,10,5));
 			slider.setPaintTicks(true);
 			slider.setMinorTickSpacing(1);
 			slider.setMajorTickSpacing(5);
@@ -69,7 +69,7 @@ public class MainWindow extends JFrame
 		
 			
 			center.setBorder(BorderFactory.createCompoundBorder(
-					BorderFactory.createTitledBorder("Display Phase"),
+					BorderFactory.createTitledBorder("Graphic Map"),
 			BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 			    
 			center.setPreferredSize(new Dimension(800,800));
