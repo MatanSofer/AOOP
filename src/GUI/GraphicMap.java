@@ -13,12 +13,13 @@ import Simulation.Clock;
 import Simulation.Main;
 
 public class GraphicMap extends JPanel {
+	double resulotionX=1,resulotionY=1;
 
 	private StatWindow statwindow;
 	public GraphicMap (StatWindow statwindow){
 		super();
 		this.statwindow = statwindow;
-		 this.addMouseListener(new CustomMouseListener());
+		this.addMouseListener(new CustomMouseListener());
 	}
 	
 	public void Screen() {
@@ -30,44 +31,60 @@ public class GraphicMap extends JPanel {
 		Graphics2D gr = (Graphics2D) g;
 		gr.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
+		int maxX=0,maxY=0,x,y,width,height,center1_x,center1_y,y2,x2,width2,height2,center2_x,center2_y;
+		for (Settlement settlement : Main.getMap().getSettlements())
+		{
+			y=settlement.getLocation().getPoint().getY()+10;
+			x=settlement.getLocation().getPoint().getX();
+			width=settlement.getLocation().getSize().getWidth();
+			height=settlement.getLocation().getSize().getHeight();
+			if(y+height>maxY)
+				maxY=y+height;
+			if(x+width>maxX)
+				maxX=x+width;
+			resulotionX=(double)maxX/810;
+			resulotionY=(double)maxY/810;
+		}
+		
+		
 		for (Settlement settlement : Main.getMap().getSettlements())
 		{
 			for (Settlement settlement2 : settlement.getconnectedSettlements()) {
 				gr.setColor(Color.BLACK);
 				
-				int y=settlement.getLocation().getPoint().getY()+10;
-				int x=settlement.getLocation().getPoint().getX();
-				int width=settlement.getLocation().getSize().getWidth();
-				int height=settlement.getLocation().getSize().getHeight();
-				int center1_x= x+width/2;
-				int center1_y= y+height/2;
+				y=settlement.getLocation().getPoint().getY()+10;
+				x=settlement.getLocation().getPoint().getX();
+				width=settlement.getLocation().getSize().getWidth();
+				height=settlement.getLocation().getSize().getHeight();
+				center1_x= x+width/2;
+				center1_y= y+height/2;
 						
-				int y2=settlement2.getLocation().getPoint().getY()+10;
-				int x2=settlement2.getLocation().getPoint().getX();
-				int width2=settlement2.getLocation().getSize().getWidth();
-				int height2=settlement2.getLocation().getSize().getHeight();
-				int center2_x= x2+width2/2;
-				int center2_y= y2+height2/2;
+				y2=settlement2.getLocation().getPoint().getY()+10;
+				x2=settlement2.getLocation().getPoint().getX();
+				width2=settlement2.getLocation().getSize().getWidth();
+				height2=settlement2.getLocation().getSize().getHeight();
+				center2_x= x2+width2/2;
+				center2_y= y2+height2/2;
 				
-				gr.drawLine(center1_x,center1_y,center2_x,center2_y);
+				gr.drawLine((int)(center1_x/resulotionX),(int)(center1_y/resulotionY),(int)(center2_x/resulotionX),(int)(center2_y/resulotionY));
 			}
 			
 		}
 		
 		for (Settlement settlement : Main.getMap().getSettlements())
 		{
-			int y=settlement.getLocation().getPoint().getY()+10;
-			int x=settlement.getLocation().getPoint().getX();
-			int width=settlement.getLocation().getSize().getWidth();
-			int height=settlement.getLocation().getSize().getHeight();
+			y=settlement.getLocation().getPoint().getY()+10;
+			x=settlement.getLocation().getPoint().getX();
+			width=settlement.getLocation().getSize().getWidth();
+			height=settlement.getLocation().getSize().getHeight();
 			
 			gr.setColor(settlement.getColor().getColor());
 			
-			gr.fillRect(x, y, width, height);
+			gr.fillRect((int)(x/resulotionX), (int)(y/resulotionY), (int)(width/resulotionX), (int)(height/resulotionY));
 			
 			gr.setColor(Color.BLACK);
 
-			gr.drawRect(x,y,width,height);
+			gr.drawRect((int)(x/resulotionX),(int)(y/resulotionY),(int)(width/resulotionX),(int)(height/resulotionY));
 			
 
 	
@@ -76,9 +93,9 @@ public class GraphicMap extends JPanel {
 		gr.setColor(Color.BLACK);
 		for (Settlement settlement : Main.getMap().getSettlements())
 		{
-			int y=settlement.getLocation().getPoint().getY()+10;
-			int x=settlement.getLocation().getPoint().getX();
-			gr.drawString(settlement.getName(),x, y);
+			y=settlement.getLocation().getPoint().getY()+10;
+			x=settlement.getLocation().getPoint().getX();
+			gr.drawString(settlement.getName(),(int)(x/resulotionX), (int)(y/resulotionY));
 	
 		}
 		
@@ -93,17 +110,16 @@ public class GraphicMap extends JPanel {
 	private class CustomMouseListener implements MouseListener{
 
 	    public void mouseClicked(MouseEvent e) {
-	    	if(Main.getPlay())
-	    	{
+	    	
 	    		 int xFrame=e.getX();
 	    		 int yFrame=e.getY();
 	    		 
 	    		 for (Settlement settlement : Main.getMap().getSettlements())
 	    			{
-	    				int y=settlement.getLocation().getPoint().getY()+10;
-	    				int x=settlement.getLocation().getPoint().getX();
-	    				int width=settlement.getLocation().getSize().getWidth();
-	    				int height=settlement.getLocation().getSize().getHeight();
+	    				int y=(int)((settlement.getLocation().getPoint().getY()+10)/resulotionY);
+	    				int x=(int)((settlement.getLocation().getPoint().getX())/resulotionX);
+	    				int width=(int)((settlement.getLocation().getSize().getWidth())/resulotionX);
+	    				int height=(int)((settlement.getLocation().getSize().getHeight())/resulotionY);
 	    		 
 	    					if( (xFrame>=x && xFrame<=width+x) &&(yFrame>=y && yFrame<=height+y) )
 	    					{
@@ -111,7 +127,7 @@ public class GraphicMap extends JPanel {
 	    						statwindow.getallStats().newFilter1(name);
 	    						statwindow.setVisible(true);
 	    						
-	    					}
+	    					
 	    			}
 	    		  
 	    	}

@@ -81,10 +81,15 @@ public class statsJTable extends JPanel
 
 	private void newFilter()
 	{
-		try {sorter.setRowFilter(RowFilter.regexFilter(tf1.getText(),ColumnComboBox.getColumn()));
+		int currentColumn = ColumnComboBox.getColumn();
+		
+			try {sorter.setRowFilter(RowFilter.regexFilter(tf1.getText(),currentColumn));
 		}catch(PatternSyntaxException e) {
 			//wont update
+		
 		}
+		
+		
 	}
 	public void newFilter1(String name)
 	{

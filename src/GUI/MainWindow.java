@@ -72,7 +72,7 @@ public class MainWindow extends JFrame
 					BorderFactory.createTitledBorder("Graphic Map"),
 			BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 			    
-			center.setPreferredSize(new Dimension(800,800));
+			center.setPreferredSize(new Dimension(850,850));
 			setResizable(false);
 			this.pack();
 			this.setVisible(true);

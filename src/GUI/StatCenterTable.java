@@ -7,7 +7,7 @@ class StatCenterTable extends AbstractTableModel
 {
 	private final String[] columnNames = {"Settlement Name" , "Settlement Type"
 		,"RamzorColor" , "Sick percentages" , "Vaccine dose number","Dead people Number"
-		,"Current population number" ,"Sick people in settle" , "Healthy peopleIn settle"};
+		,"Current population number" ,"Sick people in settle" , "Non-Sick peopleIn settle"};
 	
 	
 	public StatCenterTable()
@@ -64,7 +64,7 @@ class StatCenterTable extends AbstractTableModel
 		int i=Integer.parseInt(aValue);  
 		Settlement settlement = Main.getMap().at(row);
 		switch(col) {
-		case 4:  settlement.setVaccineDose(i);
+		case 4:  settlement.addVaccineDose(i);
 			this.fireTableDataChanged();
 		}
 		System.out.println(Main.getMap().getSettlements()[row].getVaccineDose());

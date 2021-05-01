@@ -98,7 +98,7 @@ public class Settlement {
 		IVirus[] random = { new ChineseVariant(), new BritishVariant(), new SouthAfricanVariant() };
 		int randomVarient;
 		for (int i = 0; i < 0.01 * nonSickPeople.size(); i++) {
-			randomVarient = (int) Math.random() * 2;
+			randomVarient = (int) Math.random() * 3;
 			temp = nonSickPeople.get(i).contagion(random[randomVarient]);
 			sickPeople.add(temp);
 			nonSickPeople.remove(i);
@@ -197,7 +197,7 @@ public class Settlement {
 		return this.vaccineDose;
 	}
 
-	public void setVaccineDose(int newDoses) {
+	public void addVaccineDose(int newDoses) {
 		this.vaccineDose += newDoses;
 	}
 
@@ -232,6 +232,11 @@ public class Settlement {
 				&& this.getRamzorRating() == other.getRamzorRating()
 				&& this.getNonSickPeople() == other.getNonSickPeople());
 	}
+	
+	public void reduceOneVaccineDose() {
+		this.vaccineDose -= 1;
+	}
+	
 }
 	
 
