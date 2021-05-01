@@ -67,7 +67,7 @@ public class statsJTable extends JPanel
 	}
 	public int getCurrRow()
 	{
-		return table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
+		return table.getRowSorter().convertRowIndexToModel(table.getSelectedRow()); ///Problamatic << matan Fix this plz
 	}
 //	public JTable getCurrTable()
 //	{

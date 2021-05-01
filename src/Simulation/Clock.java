@@ -7,7 +7,6 @@ public class Clock
 {
 	private static long time =0;  //static time of the Class
 	private static long ticksPerDay = 1;
-	private static boolean playing = false;
 	
 	public static long now() // return the current time
 	{
@@ -15,24 +14,8 @@ public class Clock
 	}
 
 	public static void nextTick()  //add 1 time unit the the current time
-	{
-		while(!playing) {
-			Thread.yield();
-		}
-		
-			try {
-
-				Thread.sleep(1_000*MainWindow.getSliderValue());
-
-				}
-			catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
+	{				
 			time += 1;
-			
-		
 	}
 
 	public static long diffrence(long newTime) { // Gives time difference
@@ -50,15 +33,6 @@ public class Clock
 	{
 		Clock.time = time;
 	}
-	public static void setPlaying(boolean playing)
-	{
-		Clock.playing = playing;
-	}
-	
-	public static boolean getPlay()
-	{
-		return playing;
-	}
-	
+
 	
 }

@@ -26,7 +26,7 @@ public class Healthy extends Person
 		return vaccinated;
 	}
 	
-	public Person contagion(IVirus virus) // returns new similar person with different health condition , now he sick
+	public Sick contagion(IVirus virus) // returns new similar person with different health condition , now he sick
 	{
 		List<IVirus> mutations=new ArrayList<IVirus>();
 		mutations.add(virus);

@@ -44,7 +44,7 @@ class StatCenterTable extends AbstractTableModel
 			case 5: return settlement.getdeadPopulation();
 			case 6: return settlement.getPeopleSize();
 			case 7: return settlement.getSickPeopleSize();
-			case 8: return settlement.getHealthyPeopleSize();
+			case 8: return settlement.getNonSickPeopleSize();
 		}
 		return null;
 		

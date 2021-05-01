@@ -82,9 +82,6 @@ public class MainWindow extends JFrame
 				repaint();
 				}
 				});
-			
-			
-			
 		}
 		
 	

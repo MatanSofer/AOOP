@@ -49,19 +49,19 @@ public class Map {
 		for (int i = 0; i < settleNumber; i++) // run for each settle .
 		{
 			settle = this.settlements[i];
-			settleSize = settle.getPeople().size();
+			settleSize = settle.getPeopleSize();
 
 			for (int j = 0; j < (int) (settleSize * 0.01); j++) // make 1 percent of them as sick people .
 			{ // the modulo allowed us to set the viruses random.
 				if (j % 3 == 0) {
-					temp = settle.getPeople().get(j).contagion(new SouthAfricanVariant());
-					settle.getPeople().set(j, temp);
+					temp = settle.getNonSickPeople().get(j).contagion(new SouthAfricanVariant());
+					settle.getSickPeople().add(temp);
 				} else if (j % 3 == 1) {
-					temp = settle.getPeople().get(j).contagion(new ChineseVariant());
-					settle.getPeople().set(j, temp);
+					temp = settle.getNonSickPeople().get(j).contagion(new ChineseVariant());
+					settle.getSickPeople().add(temp);
 				} else {
-					temp = settle.getPeople().get(j).contagion(new BritishVariant());
-					settle.getPeople().set(j, temp);
+					temp = settle.getNonSickPeople().get(j).contagion(new BritishVariant());
+					settle.getSickPeople().add(temp);
 				}
 			}
 			this.getSettlements()[i].setColor(this.getSettlements()[i].calculateRamzorGrade()); // setting the ramzor grade and color
@@ -75,14 +75,9 @@ public class Map {
 		int sickCounter;
 
 		for (int i = 0; i < this.getSettlements().length; i++) {
-			sickCounter = 0;
-			for (int j = 0; j < this.getSettlements()[i].getPeople().size(); j++) {
-				if (this.getSettlements()[i].getPeople().get(j) instanceof Sick) {
-					sickCounter++;
-				}
-			}
+			sickCounter = this.getSettlements()[i].getSickPeopleSize();
 			System.out
-					.println("Settlement " + this.getSettlements()[i].getName() + " Sick number are : " + sickCounter);
+			.println("Settlement " + this.getSettlements()[i].getName() + " Sick number are : " + sickCounter);
 
 		}
 	}

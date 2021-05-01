@@ -10,7 +10,7 @@ public abstract class Person
 	private Settlement settlement;
 	 
 	public abstract double contagionProbability(); // abstract function returns the contagion probability
-	public abstract Person contagion(IVirus other);  // abstract function returns the new sick person
+	public abstract Sick contagion(IVirus other);  // abstract function returns the new sick person
 	public abstract String getType();	
 	public Person(int age , Point location , Settlement settlement)  //constructor for all fields
 	{

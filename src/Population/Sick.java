@@ -21,7 +21,7 @@ public class Sick extends Person
 		return 1; 
 	}
 	
-   public Person contagion(IVirus other) //Different from the other classes , now we can't return new sick person because he already sick 
+   public Sick contagion(IVirus other) //Different from the other classes , now we can't return new sick person because he already sick 
 	{
 		throw new IllegalArgumentException("Already sick!");
 	}

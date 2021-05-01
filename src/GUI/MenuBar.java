@@ -60,8 +60,8 @@ public class MenuBar extends JMenuBar {
 				// TODO Auto-generated method stub
 				SimulationFile simulationfile = new SimulationFile(Main.loadFileFunc());
 				Main.setMap(simulationfile.getMap()); //return value from simulation ; reference to map.
+				Main.setStop(false);
 				System.out.println(Main.getMap()); //print all settle string
-				Main.getMap().SickPplInnit();//Initialize 1% (infect population).
 			}
 		});
 		menuItem.getAccessibleContext().setAccessibleDescription(
@@ -137,7 +137,7 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Clock.setPlaying(true);
+				Main.setPlaying(true);
 				
 			}
 		});
@@ -153,7 +153,21 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Clock.setPlaying(false);
+				Main.setPlaying(false);
+			}
+		});
+		menuItem.setMnemonic(KeyEvent.VK_B);
+		menu.add(menuItem);
+		
+		menu.addSeparator();
+		
+		menuItem = new JMenuItem("Stop",new ImageIcon("img/stop.png"));
+		menuItem.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Main.setStop(true);
 			}
 		});
 		menuItem.setMnemonic(KeyEvent.VK_B);

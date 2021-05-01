@@ -93,7 +93,7 @@ public class GraphicMap extends JPanel {
 	private class CustomMouseListener implements MouseListener{
 
 	    public void mouseClicked(MouseEvent e) {
-	    	if(Clock.getPlay())
+	    	if(Main.getPlay())
 	    	{
 	    		 int xFrame=e.getX();
 	    		 int yFrame=e.getY();

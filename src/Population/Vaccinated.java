@@ -32,7 +32,7 @@ public class Vaccinated extends Person
 			return Math.max(0.05,1.05/(t-14));
 		}
 		else 
-			throw new IllegalArgumentException( "Error negative passed time.");
+			throw new IllegalArgumentException( "Error negative passed time. look into Vaccinated.contagionProbability ");
 	}
 	
 	public long getVaccinationTime() // return vaccination time
@@ -45,7 +45,7 @@ public class Vaccinated extends Person
 		return getVaccinationTime()-Clock.now();
 	}
 	
-	public Person contagion(IVirus virus)  // returns new similar person with different health condition , now he sick
+	public Sick contagion(IVirus virus)  // returns new similar person with different health condition , now he sick
 	{
 		List<IVirus> mutations=new ArrayList<IVirus>();
 		mutations.add(virus);
