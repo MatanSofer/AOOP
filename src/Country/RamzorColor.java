@@ -7,7 +7,7 @@ import java.awt.Color;
 public enum RamzorColor {
 	Green  (0.4,Color.GREEN,1),  //calls constructor with value 3
 	Yellow(0.6,Color.YELLOW,0.8),  //calls constructor with value 2
-	Orange   (0.7,Color.ORANGE,0.6),
+	Orange (0.7,Color.ORANGE,0.6),
 	Red (0.8,Color.RED,0.4)//calls constructor with value 1
     ; // semicolon needed when fields / methods follow
 	

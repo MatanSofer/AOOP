@@ -39,35 +39,6 @@ public class Map {
 		return true;
 	}
 
-	public void SickPplInnit() {
-		// Cpuntagious innitialization
-		int settleNumber = this.settlements.length;
-		Settlement settle;
-		int settleSize;
-		Person temp;
-
-		for (int i = 0; i < settleNumber; i++) // run for each settle .
-		{
-			settle = this.settlements[i];
-			settleSize = settle.getPeopleSize();
-
-			for (int j = 0; j < (int) (settleSize * 0.01); j++) // make 1 percent of them as sick people .
-			{ // the modulo allowed us to set the viruses random.
-				if (j % 3 == 0) {
-					temp = settle.getNonSickPeople().get(j).contagion(new SouthAfricanVariant());
-					settle.getSickPeople().add(temp);
-				} else if (j % 3 == 1) {
-					temp = settle.getNonSickPeople().get(j).contagion(new ChineseVariant());
-					settle.getSickPeople().add(temp);
-				} else {
-					temp = settle.getNonSickPeople().get(j).contagion(new BritishVariant());
-					settle.getSickPeople().add(temp);
-				}
-			}
-			this.getSettlements()[i].setColor(this.getSettlements()[i].calculateRamzorGrade()); // setting the ramzor grade and color
-
-		}
-	}
 
 	public void printSickPpl() {
 
@@ -100,9 +71,6 @@ public class Map {
 		return this.getSettlements()[rowIndex];
 	}
 	
-	public void SimulationV2() {
-		
-		
-	}
+	
 
 }

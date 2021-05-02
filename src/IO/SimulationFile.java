@@ -19,8 +19,8 @@ public class SimulationFile {
 				System.out.println(file.getName() + " ****************");
 				int populationCapacity;
 				List<Settlement> arr = new ArrayList<Settlement>();//Make an empty array of settlements
-				List<String> origin = new ArrayList<String>();
-				List<String> destination = new ArrayList<String>();
+				List<String> origin = new ArrayList<String>();//Make an empty array of origin settlements
+				List<String> destination = new ArrayList<String>();//Make an empty array of destination settlements to connect
 				String s1 = br.readLine();
 				while(s1 != null) // reading each line from file until we finish read all lines
 				{
@@ -54,11 +54,10 @@ public class SimulationFile {
 					s1 = br.readLine(); //read next line
 					
 					List<Person> people = new ArrayList<Person>(); //new empty dynamic people list
-
 					Point point = new Point(Integer.parseInt(words[2]),Integer.parseInt(words[3])); //build new point
 					Size size = new Size(Integer.parseInt(words[4]),Integer.parseInt(words[5]));  //build new size object
 					Location location = new Location(size,point);  //build new location object
-					populationCapacity = (int)(Integer.parseInt(words[6]) * 1.3);
+					populationCapacity = (int)(Integer.parseInt(words[6]) * 1.3); //max population capacity
 					if(words[0].equals("City"))            //check what is the right settle type , then build it by all the other object and green light 
 					{
 						settlement = new City(words[1],location,people,RamzorColor.Green,populationCapacity);
@@ -90,12 +89,10 @@ public class SimulationFile {
 	
 				
 				}
+				
 				this.map = new Map(arr); 
-				connectSettle(origin ,destination,arr);
-				for(int i = 0 ; i < arr.size(); i++)
-				{
-					map.getSettlements()[i].printconnectedSettlements();
-				}
+				connectSettle(origin ,destination,arr); //takes the list of connected settle and connect them
+				
 				System.out.println("EOF ****************");
 			}
 		catch(FileNotFoundException e) { 

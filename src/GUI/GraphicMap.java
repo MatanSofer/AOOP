@@ -13,20 +13,21 @@ import Simulation.Clock;
 import Simulation.Main;
 
 public class GraphicMap extends JPanel {
+	
 	double resulotionX=1,resulotionY=1;
-
 	private StatWindow statwindow;
-	public GraphicMap (StatWindow statwindow){
+	
+	
+	
+	public GraphicMap (StatWindow statwindow){  //create graphic panel and add mouse listener
 		super();
 		this.statwindow = statwindow;
 		this.addMouseListener(new CustomMouseListener());
 	}
 	
-	public void Screen() {
-		repaint();
-	}
+
 	
-	public void paintComponent(Graphics g ) {
+	public void paintComponent(Graphics g ) {  //paint component to draw map by lines and squares/rectengles from settlement data
 		super.paintComponent(g);
 		Graphics2D gr = (Graphics2D) g;
 		gr.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -38,6 +39,8 @@ public class GraphicMap extends JPanel {
 			x=settlement.getLocation().getPoint().getX();
 			width=settlement.getLocation().getSize().getWidth();
 			height=settlement.getLocation().getSize().getHeight();
+			
+			
 			if(y+height>maxY)
 				maxY=y+height;
 			if(x+width>maxX)
@@ -107,7 +110,7 @@ public class GraphicMap extends JPanel {
 	
 	
 	
-	private class CustomMouseListener implements MouseListener{
+	private class CustomMouseListener implements MouseListener{   //if user click on specific settle
 
 	    public void mouseClicked(MouseEvent e) {
 	    	

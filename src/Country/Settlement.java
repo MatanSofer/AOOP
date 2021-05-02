@@ -52,6 +52,7 @@ public class Settlement {
 		this.nonSickPeople = other.nonSickPeople;
 		this.ramzorcolor = other.getColor();
 		this.sickPeople = other.getSickPeople();
+		this.maxPopulation = other.maxPopulation;
 
 	}
 
@@ -92,13 +93,14 @@ public class Settlement {
 		return true;
 	}
 
-	public void jtableMakeSick() {
-		System.out.println("ss" + getSickPeopleSize());
+	public void jtableMakeSick() //for update add sick button in random varient
+	{
+		
 		Person temp;
 		IVirus[] random = { new ChineseVariant(), new BritishVariant(), new SouthAfricanVariant() };
 		int randomVarient;
 		for (int i = 0; i < 0.01 * nonSickPeople.size(); i++) {
-			randomVarient = (int) Math.random() * 3;
+			randomVarient = ((int) (Math.random() * 3));
 			temp = nonSickPeople.get(i).contagion(random[randomVarient]);
 			sickPeople.add(temp);
 			nonSickPeople.remove(i);
@@ -106,23 +108,8 @@ public class Settlement {
 		}
 	}
 
-//	 public void updateSickHealthy()
-//	 {
-//	
-//		 for(int i = 0 ; i < people.size() ; i++)
-//		 {
-//			   if(people.get(i) instanceof Sick )
-//				{
-//					this.sickPeople.add(people.get(i));
-//				}
-//				else if(people.get(i) instanceof Healthy )
-//				{
-//					this.nonSickPeople.add(people.get(i));
-//				}
-//		 }
-//	 }
 
-	public boolean transferPerson(Person other, Settlement one) // will be used in future
+	public boolean transferPerson(Person other, Settlement one) // for transfer person between settles
 	{
 		if (this.getPeopleSize() >= this.maxPopulation) {
 			return false;
@@ -135,15 +122,15 @@ public class Settlement {
 		return true;
 	}
 
-	public List<Settlement> getconnectedSettlements() {
+	public List<Settlement> getconnectedSettlements() {  //returns connected settle array
 		return this.connectedSettlements;
 	}
 
-	public void appendconnectedSettlements(Settlement other) {
+	public void appendconnectedSettlements(Settlement other) { //add connected settle
 		this.connectedSettlements.add(other);
 	}
 
-	public void printconnectedSettlements() {
+	public void printconnectedSettlements() {  //print all connected settles
 		System.out.println("For settlement " + getName() + " connected settlements are :");
 		for (int i = 0; i < this.connectedSettlements.size(); i++) {
 			System.out.println(this.connectedSettlements.get(i).getName());
@@ -171,40 +158,43 @@ public class Settlement {
 		return this.ramzorcolor;
 	}
 
-	public List<Person> getSickPeople() // get population list
+	public List<Person> getSickPeople() // get sick population list
 	{
 		return this.sickPeople;
 	}
 
-	public List<Person> getNonSickPeople() // get population list
+	public List<Person> getNonSickPeople() // get non sick population list
 	{
 		return this.nonSickPeople;
 	}
 
-	public int getPeopleSize() {
+	public int getPeopleSize() {   //get all population size
 		return getNonSickPeople().size() + getSickPeople().size();
 	}
 
-	public int getSickPeopleSize() {
+	public int getSickPeopleSize() { //get sickpeople size
 		return sickPeople.size();
 	}
 
-	public int getNonSickPeopleSize() {
+	public int getNonSickPeopleSize() { //get non sick people size
 		return nonSickPeople.size();
 	}
 
-	public int getVaccineDose() {
+	public int getVaccineDose() {  //returns number of vaccineDoses
 		return this.vaccineDose;
 	}
 
-	public void addVaccineDose(int newDoses) {
+	public void addVaccineDose(int newDoses) { //for add vaccine button
 		this.vaccineDose += newDoses;
 	}
 
-	public int getdeadPopulation() {
+	public int getdeadPopulation() {  //return dead population number
 		return this.deadpopulation;
 	}
 
+	public void reduceOneVaccineDose() { //reduce number of vaccine doses
+		this.vaccineDose -= 1;
+	}
 	public String getName() // return name
 	{
 		return this.name;
@@ -233,9 +223,7 @@ public class Settlement {
 				&& this.getNonSickPeople() == other.getNonSickPeople());
 	}
 	
-	public void reduceOneVaccineDose() {
-		this.vaccineDose -= 1;
-	}
+	
 	
 }
 	

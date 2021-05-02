@@ -30,29 +30,28 @@ import Country.Map;
 public class StatWindow extends JFrame {
 
 	private JTextField tf1;
-	//private Map map;
 	private statsJTable allStats;
 	private ColumnComboBox combobox;
 	private TableRowSorter<StatCenterTable> sorter;
 	JButton button6;
 
 	public StatWindow() {
-
-		super("Statistics Window");
-		//this.map = map;
+														//opens statistic window and create dialog for add doses
+		super("Statistics Window");    
 		JTextField tf1 = new JTextField();
 		allStats = new statsJTable( tf1);
 		Dialog doseFrame = new Dialog(this, button6 = new JButton("Vaccinate"), allStats);
-		combobox = new ColumnComboBox();
+		
+		combobox = new ColumnComboBox();   //create combobox
 
-		JButton button4 = new JButton("Save");
+		JButton button4 = new JButton("Save");            //reaction for save button
 		button4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StatisticsFile.SaveTable("Table" + Simulation.Clock.now() + "ticks", allStats.getJTable());
 			}
 		});
 
-		JButton button5 = new JButton("Add Sick");
+		JButton button5 = new JButton("Add Sick");        //reaction for add sick button
 		button5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -63,7 +62,7 @@ public class StatWindow extends JFrame {
 
 		});
 
-		this.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout());              //set layout and add panels
 
 		JPanel north = new JPanel();
 		JPanel center = new JPanel();
@@ -87,17 +86,17 @@ public class StatWindow extends JFrame {
 		this.add(north, BorderLayout.NORTH);
 		this.add(south, BorderLayout.SOUTH);
 
-		// this.setSize(1050,250);
+		
 
 		this.pack();
 		this.setVisible(true);
 
 	}
-
-	public void updateTable() {
+	public void updateTable()   //for update simulation
+	{
 		allStats.fireTableDataChanged();
 	}
-	public statsJTable getallStats ()
+	public statsJTable getallStats () //for graphic map use
 	{
 		return allStats;
 	}

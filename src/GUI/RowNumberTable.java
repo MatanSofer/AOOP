@@ -39,7 +39,7 @@ public class RowNumberTable extends JTable
 		setPreferredScrollableViewportSize(getPreferredSize());
 	}
 
-	@Override
+	
 	public void addNotify()
 	{
 		super.addNotify();
@@ -55,16 +55,13 @@ public class RowNumberTable extends JTable
 		}
 	}
 
-	/*
-	 *  Delegate method to main table
-	 */
-	@Override
+	
 	public int getRowCount()
 	{
 		return main.getRowCount();
 	}
 
-	@Override
+	
 	public int getRowHeight(int row)
 	{
 		int rowHeight = main.getRowHeight(row);
@@ -81,7 +78,7 @@ public class RowNumberTable extends JTable
 	 *  No model is being used for this table so just use the row number
 	 *  as the value of the cell.
 	 */
-	@Override
+	
 	public Object getValueAt(int row, int column)
 	{
 		return Integer.toString(row + 1);
@@ -90,7 +87,7 @@ public class RowNumberTable extends JTable
 	/*
 	 *  Don't edit data in the main TableModel by mistake
 	 */
-	@Override
+	
 	public boolean isCellEditable(int row, int column)
 	{
 		return false;
@@ -99,7 +96,7 @@ public class RowNumberTable extends JTable
 	/*
 	 *  Do nothing since the table ignores the model
 	 */
-	@Override
+	
 	public void setValueAt(Object value, int row, int column) {}
 //
 //  Implement the ChangeListener

@@ -28,18 +28,16 @@ import Simulation.Main;
 public class MainWindow extends JFrame
 {
 
-//		private final JLabel lb1,lb2;
 		private MenuBar bar;
 		private static JSlider slider;
 		private GraphicMap graphic_map;
-		//private StatWindow statwindow;
+		
 		public MainWindow(StatWindow statwindow)
 		{	
 			super("Main Window");
 
-			this.setLayout(new BorderLayout());
+			this.setLayout(new BorderLayout());    //set all layout and add to frame
 	
-			
 			JPanel north= new JPanel();
 			JPanel center = new JPanel();
 			JPanel south =  new JPanel();
@@ -50,13 +48,13 @@ public class MainWindow extends JFrame
 			
 			setJMenuBar(new MenuBar(statwindow));
 			
-			//north
+											//north
 			north.add(new JMenuBar());
 			
-			//center 
+											//center 
 			center.add(graphic_map = new GraphicMap(statwindow));
 			
-			//south
+											//south
 			south.add(slider = new JSlider(1,10,5));
 			slider.setPaintTicks(true);
 			slider.setMinorTickSpacing(1);
@@ -68,7 +66,7 @@ public class MainWindow extends JFrame
 			
 		
 			
-			center.setBorder(BorderFactory.createCompoundBorder(
+			center.setBorder(BorderFactory.createCompoundBorder(  //create title for graphic map
 					BorderFactory.createTitledBorder("Graphic Map"),
 			BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 			    
@@ -86,18 +84,18 @@ public class MainWindow extends JFrame
 		
 	
 		
-		public static int getSliderValue() {	
+		public static int getSliderValue() {	//get value from slider
 			return (int)slider.getValue();
 		}
 		
-		public GraphicMap getGraphicMap() {
+		public GraphicMap getGraphicMap() { //returns graphic map
 			return graphic_map;
 		}
 		
 		
-		public void updateMap() {
+		public void updateMap() {       //for simulation update
 			
-			graphic_map.repaint();
+			getGraphicMap().repaint();
 		}
 		
 

@@ -4,8 +4,8 @@ import Population.*;
 
 public class ChineseVariant implements IVirus
 {
-	private static boolean[] mutations = new boolean[] {false,true,false};
-	private static IVirus[] mutations_types = new IVirus[] {new SouthAfricanVariant(),new ChineseVariant(),new BritishVariant()};
+	private static boolean[] mutations = new boolean[] {false,true,false};//for Mutation boolean window
+	private static IVirus[] mutations_types = new IVirus[] {new SouthAfricanVariant(),new ChineseVariant(),new BritishVariant()};//to contagion another virus
 	
 	public double contagionProbability(Person other)//calculate the probability of person for contagion
 	{
@@ -30,6 +30,10 @@ public class ChineseVariant implements IVirus
 			return false;
 		}
     	
+    	if( ((Sick)(one)).daysFromContagion()< 5)
+    	{
+    		return false;
+    	}
 		double d = one.getDistance(two.getLocation());
     	double p = contagionProbability(two)*Math.min(1,0.14*Math.exp(2-(0.25*d)));
     	return p >= Math.random();
@@ -65,13 +69,10 @@ public class ChineseVariant implements IVirus
     public IVirus[] getMutations_types() {
     	return mutations_types;
     }
-    public static void setMutation(int val,boolean value) 
+    public static void setMutation(int val,boolean value) //to set mutation
 	{
 			mutations[val]=value;
-    //	if(name == mutations_types[0].getType())
-    //		mutations[0] = value;
-    //	else if(name == mutations_types[0].getType())
-    //		mutations[1] = value;
+
     }
     public String getType() {
     	return "Chinese";

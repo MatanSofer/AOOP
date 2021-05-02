@@ -12,18 +12,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public  class Dialog extends JDialog 
+public  class Dialog extends JDialog    //this is dialog for doses dialog
 {
 		private  JTextField doses;
 		JButton button6;
 		statsJTable allStats;
-		//private final JTextField tbPassword;
 		private int result = -1;
 		
 		
-		public Dialog(Frame window,JButton button6,statsJTable allStats) {
+		public Dialog(Frame window,JButton button6,statsJTable allStats) 
+		{
 			super(window, "Add Doses", true);
-			//this.setLayout(new GridLayout(0, 2));
 			this.button6 = button6;
 			this. allStats=allStats;
 			JPanel dosepanel = new JPanel();
@@ -31,10 +30,9 @@ public  class Dialog extends JDialog
 			
 			
 			JButton ok = new JButton("ENTER");
-				ok.addActionListener(new ActionListener() {
+				ok.addActionListener(new ActionListener() { //set table and doses values
 				public void actionPerformed(ActionEvent e) {
 					allStats.getmodel().setValueAt(doses.getText(),allStats.getCurrRow(),4);
-					
 					setVisible(false);
 					}
 				});
@@ -42,16 +40,14 @@ public  class Dialog extends JDialog
 				
 				
 				
-			button6.addActionListener(new ActionListener() {
+			button6.addActionListener(new ActionListener() { //to save number of doses user entered
 			public void actionPerformed(ActionEvent e) {
 				if (showDialog() == JOptionPane.OK_OPTION) {
 					doses.setText(doses.getText());
 					
-					
 				}
 			}
 			});
-			
 			
 			
 			dosepanel.add(new JLabel("number of doses : "));

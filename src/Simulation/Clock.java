@@ -21,15 +21,15 @@ public class Clock
 	public static long diffrence(long newTime) { // Gives time difference
 		return (long) Math.ceil((time - newTime) / ticksPerDay) ;
 	}
-	public static void setticksPerDay(long ticksPerDay)
+	public static void setticksPerDay(long ticksPerDay) //for set button
 	{
 		Clock.ticksPerDay = ticksPerDay;
 	}
-	public static long getticksPerDay()
+	public static long getticksPerDay() //get number of ticks per day
 	{
 		return ticksPerDay;
 	}
-	public static void settime(long time)
+	public static void settime(long time) //set time
 	{
 		Clock.time = time;
 	}

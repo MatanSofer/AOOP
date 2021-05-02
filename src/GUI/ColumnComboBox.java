@@ -11,11 +11,9 @@ import Country.Map;
 
 public class ColumnComboBox extends JPanel implements ActionListener
 {
-	private static final String[] names = {"Settlement Name" , "Settlement Type"
-			,"RamzorColor" };
-	
+	private static final String[] names = {"Settlement Name" , "Settlement Type", "RamzorColor" }; //combobox names
 	private  JComboBox<String> combo;
-	private static int column;
+	private static int column; //holds current column
 	
 	public ColumnComboBox()
 	{
@@ -32,24 +30,19 @@ public class ColumnComboBox extends JPanel implements ActionListener
 
 		if(e.getSource()==combo)
 		{
-			switch(combo.getItemAt(combo.getSelectedIndex()))
+			switch(combo.getItemAt(combo.getSelectedIndex())) //to know which column we hold so we can filter
 			{
 			case "Settlement Name":column=0;break;
 			case "Settlement Type":column=1;break;
 			case "RamzorColor":column=2;break;
-		//	case "Sick percentages":column=3;break;
-			//case "Vaccine dose number":column=4;break;
-		//	case "Dead people Number":column=5;break;
-		//	case "Current population number":column=6;break;
-		//	case "Sick people in settle":column=7;break;
-		//	case "Healthy peopleIn settle":column=8;break;
+
 			}
 		}
 		
 		
 	}
 	
-	public static int getColumn()
+	public static int getColumn()  //return current column
 	{
 		return column;
 	}

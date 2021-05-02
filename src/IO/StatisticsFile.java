@@ -8,7 +8,7 @@ import javax.swing.JTable;
 public abstract class StatisticsFile
 {
 	
-	
+	//save current table as csv
 	public static void SaveTable(String fileName , JTable currentTable)
 	{
 		File file = saveFileFunc(fileName);
@@ -17,7 +17,7 @@ public abstract class StatisticsFile
 			for (int col = 0; col < currentTable.getColumnCount(); col++) {
 					if(col!=0)
 						out.write(",");
-        			out.write((String)currentTable.getColumnName(col));
+        			out.write((String)currentTable.getColumnName(col));  
     			}
 
 			

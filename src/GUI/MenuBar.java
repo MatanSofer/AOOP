@@ -54,10 +54,8 @@ public class MenuBar extends JMenuBar {
 		
 		menuItem = new JMenuItem("Load",new ImageIcon("img/load.png"));
 		menuItem.addActionListener(new ActionListener(){
-
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				SimulationFile simulationfile = new SimulationFile(Main.loadFileFunc());
 				Main.setMap(simulationfile.getMap()); //return value from simulation ; reference to map.
 				Main.setStop(false);
@@ -67,13 +65,11 @@ public class MenuBar extends JMenuBar {
 		menuItem.getAccessibleContext().setAccessibleDescription(
 		      "This doesn't really do anything");
 		menu.add(menuItem);
-		
 		menu.addSeparator();
 		
-		menuItem = new JMenuItem("Statistics",new ImageIcon("img/stats.png"));
+		
+		menuItem = new JMenuItem("Statistics",new ImageIcon("img/stats.png"));  //opens statistic window
 		menuItem.addActionListener(new ActionListener(){
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				statwindow.setVisible(true);
 				
@@ -91,10 +87,8 @@ public class MenuBar extends JMenuBar {
 		});
 		menu.addSeparator();
 		
-		menuItem = new JMenuItem("Edit Mutations",new ImageIcon("img/virus.png"));
+		menuItem = new JMenuItem("Edit Mutations",new ImageIcon("img/virus.png"));   //opens mutation frame as dialog frame
 		menuItem.addActionListener(new ActionListener(){
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				JFrame topFrame1 = (JFrame) SwingUtilities.getWindowAncestor(getParent());
@@ -108,10 +102,8 @@ public class MenuBar extends JMenuBar {
 		menu.addSeparator();
 		
 		
-		menuItem = new JMenuItem("Exit",new ImageIcon("img/exit.png"));
+		menuItem = new JMenuItem("Exit",new ImageIcon("img/exit.png"));   //exit program
 		menuItem.addActionListener(new ActionListener(){
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 				
@@ -133,10 +125,7 @@ public class MenuBar extends JMenuBar {
 		
 		menuItem = new JMenuItem("Play",new ImageIcon("img/play.png"));
 		menuItem.addActionListener(new ActionListener(){
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				Main.setPlaying(true);
 				
 			}
@@ -222,7 +211,7 @@ public class MenuBar extends JMenuBar {
 		
 	}
 	
-	private class AboutDialog extends JDialog {
+	private class AboutDialog extends JDialog {   //dialog for about button non modal
 		
 		
 		public AboutDialog(Frame window) {
@@ -267,7 +256,7 @@ public class MenuBar extends JMenuBar {
 	
 
 
-	private class HelpDialog extends JDialog {
+	private class HelpDialog extends JDialog {   //dialog for help button is modal
 	
 			public HelpDialog(Frame window) {
 				    super(window, "Help",true);
@@ -285,7 +274,7 @@ public class MenuBar extends JMenuBar {
 
 }
 
-	private class SetClicks extends JDialog {
+	private class SetClicks extends JDialog {  //dialog for set click per day spinner
 		
 		public SetClicks(Frame window) {
 			    super(window, "Set Click per day",true);
@@ -299,7 +288,7 @@ public class MenuBar extends JMenuBar {
 						int currentValue = (int)jSpinner1.getValue();		    
 						Long l= new Long(currentValue);
 					    Clock.setticksPerDay(l);
-					    //System.out.println(Clock.getticksPerDay()); for check
+				
 					}
 				});
 			  
@@ -309,7 +298,7 @@ public class MenuBar extends JMenuBar {
 
 
 }
-	private Image getScaledImage(Image srcImg, int w, int h){
+	private Image getScaledImage(Image srcImg, int w, int h){           //fix image in about button
   		  BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
   		  Graphics2D g2 = resizedImg.createGraphics();
 

@@ -32,10 +32,10 @@ public class statsJTable extends JPanel
 	public statsJTable(JTextField tf1)
 	{
 		
-		model = new StatCenterTable();
-		table = new JTable(model);
+		model = new StatCenterTable();  //create model
+		table = new JTable(model);  //create jtable with model
 		this.tf1=tf1;
-		table.setRowSorter(sorter = new TableRowSorter<StatCenterTable>(model));
+		table.setRowSorter(sorter = new TableRowSorter<StatCenterTable>(model));   //set all table settings
 		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setPreferredScrollableViewportSize(new Dimension(1010,100));
@@ -45,7 +45,7 @@ public class statsJTable extends JPanel
 		
 		this.add(tf1 );
 		tf1.setToolTipText("FILTER NAME COLUMN");
-		tf1.getDocument().addDocumentListener(new DocumentListener() {
+		tf1.getDocument().addDocumentListener(new DocumentListener() { //for filtering
 			
 				public void insertUpdate(DocumentEvent e) {newFilter();}
 				public void removeUpdate(DocumentEvent e) {newFilter();}
@@ -57,49 +57,41 @@ public class statsJTable extends JPanel
         this.setVisible(true);
 	}
 	
-	public StatCenterTable getStatCenterTable()
-	{
-		return this.model ;
-	}
-	public JTable getJTable()
+	
+	public JTable getJTable() //return table
 	{
 		return this.table ;
 	}
-	public int getCurrRow()
+	public int getCurrRow() //return the last row we clicked
 	{
-		return table.getRowSorter().convertRowIndexToModel(table.getSelectedRow()); ///Problamatic << matan Fix this plz
+		return table.getRowSorter().convertRowIndexToModel(table.getSelectedRow()); 
 	}
-//	public JTable getCurrTable()
-//	{
-//	//	return table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
-//	}
-	public StatCenterTable getmodel()
+
+	public StatCenterTable getmodel() //return model
 	{
 		return this.model;
 	}
 	
 
-	private void newFilter()
+	private void newFilter() //filter by column and text
 	{
 		int currentColumn = ColumnComboBox.getColumn();
 		
 			try {sorter.setRowFilter(RowFilter.regexFilter(tf1.getText(),currentColumn));
 		}catch(PatternSyntaxException e) {
-			//wont update
 		
 		}
 		
 		
 	}
-	public void newFilter1(String name)
+	public void newFilter1(String name)  //open from graphic map the clicked settle
 	{
 		try {sorter.setRowFilter(RowFilter.regexFilter(name,0));
 		}catch(PatternSyntaxException e) {
-			//wont update)
+			
 		}
 	}
-	public void fireTableDataChanged() {
-		// TODO Auto-generated method stub
+	public void fireTableDataChanged() { //for refresh data
 		model.fireTableDataChanged();
 	}
 	

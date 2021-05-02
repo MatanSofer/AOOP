@@ -24,14 +24,18 @@ public class MutationDialog extends JDialog {
 	private String[] names = { "British", "Chinese", "SouthAfrican" };
 	private JPanel mainpanel = new JPanel();
 	private static Object[][] checkbox;
-	public MutationDialog(Frame window) {
+	
+	
+	
+	
+	public MutationDialog(Frame window) {      //opens dialog mutation frame
 		super(window, "Mutations", true);
 		setPreferredSize(new Dimension(499,111));
 		setResizable(false);
 
-		checkbox = new Boolean[3][3];
+		checkbox = new Boolean[3][3]; //boolean values for optional mutations
 		
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 3; i++) {        //when we open frame we get current mutation values
 			for (int j = 0; j < 3; j++) {
 				if(i==0)
 					checkbox[i][j]=Virus.SouthAfricanVariant.getMutations1()[j];
@@ -44,23 +48,19 @@ public class MutationDialog extends JDialog {
 
 		String[] columnNames = { "African", "Chinese", "British" };
 
-		JTable mainTable = new JTable(checkbox, columnNames) {
-			@Override
+		JTable mainTable = new JTable(checkbox, columnNames) {    //set them to boolean values
 			public Class getColumnClass (int column) {
 				   return Boolean.class;
 				}
 			
 		};
 		
-		mainTable.getModel().addTableModelListener(new TableModelListener() {
-            @Override
+		mainTable.getModel().addTableModelListener(new TableModelListener() {  //reaction to click on box and send it to function who change actual values
             public void tableChanged(TableModelEvent e) {
                 for(int i=0;i<mainTable.getModel().getRowCount();i++)
                 {
                   if ((Boolean) mainTable.getModel().getValueAt(i,0))
                   {  
-                    System.out.println(">\t"+mainTable.getSelectedRow() +">\t"+ mainTable.getSelectedColumn());
-                    
                     Boolean flag= (Boolean)checkbox[mainTable.getSelectedRow()][mainTable.getSelectedColumn()];
                     toggleMutation(mainTable.getSelectedRow(), mainTable.getSelectedColumn(), flag);
                     
@@ -73,7 +73,7 @@ public class MutationDialog extends JDialog {
   });
 		
 		
-		JScrollPane scrollPane = new JScrollPane(mainTable);
+		JScrollPane scrollPane = new JScrollPane(mainTable); //add all to frame
 		JTable rowTable = new RowNumberTable(mainTable);
 		scrollPane.setRowHeaderView(rowTable);
 		scrollPane.setCorner(JScrollPane.UPPER_LEFT_CORNER, rowTable.getTableHeader());
@@ -87,7 +87,7 @@ public class MutationDialog extends JDialog {
 
 	 
 
-	private void toggleMutation(int row, int column, boolean bool)
+	private void toggleMutation(int row, int column, boolean bool) //update mutation in varients classes
 	{
 			
 		if(row == 0 && column == 0 )
@@ -112,27 +112,7 @@ public class MutationDialog extends JDialog {
 			BritishVariant.setMutation(2, bool);
 		
 		
-		System.out.println("SouthAfricanVariant");
-		for(int i = 0 ; i < 3 ;i++)
-		{
-			System.out.println(SouthAfricanVariant.getMutations1()[i]);		
-		}
-		System.out.println("ChineseVariant");
-		for(int i = 0 ; i < 3 ;i++)
-		{		
-		System.out.println(ChineseVariant.getMutations1()[i]);
-		}
-		System.out.println("BritishVariant");
-		for(int i = 0 ; i < 3 ;i++)
-		{
-		System.out.println(BritishVariant.getMutations1()[i]);
-		}
-//		if (virus == names[0])
-//			BritishVariant.setMutation(mutation, bool);
-//		else if (virus == names[1])
-//			ChineseVariant.setMutation(mutation, bool);
-//		else if (virus == names[2])
-//			SouthAfricanVariant.setMutation(mutation, bool);
+		
 	}
 
 }
