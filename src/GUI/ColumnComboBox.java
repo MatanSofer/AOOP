@@ -2,12 +2,10 @@ package GUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import Country.Map;
 
 public class ColumnComboBox extends JPanel implements ActionListener
 {
@@ -17,7 +15,7 @@ public class ColumnComboBox extends JPanel implements ActionListener
 	
 	public ColumnComboBox()
 	{
-		this.setLayout(new BoxLayout(this , BoxLayout.PAGE_AXIS));
+		this.setLayout(new BoxLayout(this , BoxLayout.PAGE_AXIS));  //set layout and add combo box
 		combo = new JComboBox<String>(names);
 		this.add(combo);
 		combo.addActionListener(this);

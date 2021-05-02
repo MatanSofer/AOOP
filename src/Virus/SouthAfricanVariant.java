@@ -23,7 +23,7 @@ public class SouthAfricanVariant implements IVirus
 		{
 			return false;
 		}
-		if( ((Sick)(one)).daysFromContagion()< 5)
+		if( ((Sick)(one)).daysFromContagion() < 5)
     	{
     		return false;
     	}

@@ -5,19 +5,18 @@ import java.awt.Color;
 
 
 public enum RamzorColor {
-	Green  (0.4,Color.GREEN,1),  //calls constructor with value 3
-	Yellow(0.6,Color.YELLOW,0.8),  //calls constructor with value 2
-	Orange (0.7,Color.ORANGE,0.6),
-	Red (0.8,Color.RED,0.4)//calls constructor with value 1
+	Green  (Color.GREEN,1),  //calls constructor with value 0.4 grade
+	Yellow(Color.YELLOW,0.8),  //calls constructor with value 0.6 grade
+	Orange (Color.ORANGE,0.6),//calls constructor with value 0.7
+	Red (Color.RED,0.4)//calls constructor with value 0.4
     ; // semicolon needed when fields / methods follow
 	
 	private Color color ;
-    private final double val;
+    //private final double val;
     private final double inSettleProbability;
 
-    private RamzorColor(double d,Color color , double inSettleProbability) {
+    private RamzorColor(Color color , double inSettleProbability) {
         this.inSettleProbability=inSettleProbability;
-    	this.val = d;
         this.color = color;
     }
     
@@ -37,9 +36,7 @@ public enum RamzorColor {
     	return this.color;
     }
     
-    public double getVal() {
-    	return this.val;
-    }
+
     
     public double getInSettleProbability() {
     	return this.inSettleProbability;

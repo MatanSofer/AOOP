@@ -2,8 +2,6 @@ package GUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.regex.PatternSyntaxException;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -13,7 +11,7 @@ import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.TableRowSorter;
-import javax.swing.text.TableView.TableRow;
+
 
 import Country.*;
 

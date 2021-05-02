@@ -10,4 +10,8 @@ City; Efrat; 500;100; 10; 50; 35000
 #;Ashdod;Saad
 City;Maor; 699;100; 10; 50; 20000
 City;gayCity;600;600; 200; 200; 20000
+City;---AllHotGirls---;550;550; 4; 4; 0
 #;Maor;gayCity
+#;Maor;---AllHotGirls---
+Moshav;Matan;0;400; 10; 50; 1
+City;KolHagvarim;0;450; 200; 205; 1

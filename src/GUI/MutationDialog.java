@@ -2,15 +2,7 @@ package GUI;
 
 import java.awt.Dimension;
 import java.awt.Frame;
-
-import java.awt.GridLayout;
-
-import javax.swing.JCheckBox;
-
 import javax.swing.JDialog;
-
-import javax.swing.JLabel;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;

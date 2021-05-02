@@ -3,7 +3,7 @@ package Country;
 import java.util.List;
 import Location.Location;
 import Population.Person;
-import java.awt.Color;
+
 
 
 public class City extends Settlement

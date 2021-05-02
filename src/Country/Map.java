@@ -1,10 +1,7 @@
 //* Authors: Maor Arnon (ID: 205974553) and Matan Sofer (ID:208491811)
 package Country;
 import java.util.*;
-import GUI.MainWindow;
-import Population.*;
-import Simulation.Clock;
-import Virus.*;
+
 
 public class Map {
 

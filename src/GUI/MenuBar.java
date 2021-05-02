@@ -1,15 +1,9 @@
 package GUI;
-import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.Frame;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,12 +16,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
-
 import IO.SimulationFile;
-import IO.StatisticsFile;
 import Simulation.Clock;
 import Simulation.Main;
 
@@ -44,14 +35,10 @@ public class MenuBar extends JMenuBar {
 		//Create the menu bar.
 		super();
 
-		
-		//Build the first menu (File).
-		menu = new JMenu("File");
-		menu.setMnemonic(KeyEvent.VK_A);
-		menu.getAccessibleContext().setAccessibleDescription(
-		      "The only menu in this program that has menu items");
+		menu = new JMenu("File"); //The first menu on the menu bar - File.
 		add(menu);
 		
+		//Load button
 		menuItem = new JMenuItem("Load",new ImageIcon("img/load.png"));
 		menuItem.addActionListener(new ActionListener(){
 			
@@ -62,46 +49,36 @@ public class MenuBar extends JMenuBar {
 				System.out.println(Main.getMap()); //print all settle string
 			}
 		});
-		menuItem.getAccessibleContext().setAccessibleDescription(
-		      "This doesn't really do anything");
 		menu.add(menuItem);
-		menu.addSeparator();
+		menu.addSeparator();//The line between the buttons.
 		
-		
+		//Stats button
 		menuItem = new JMenuItem("Statistics",new ImageIcon("img/stats.png"));  //opens statistic window
 		menuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
+				statwindow.getallStats().newFilter1("");
 				statwindow.setVisible(true);
 				
-			}
-		});
-		menuItem.setMnemonic(KeyEvent.VK_B);
-		menu.add(menuItem);
-		menuItem.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
-		menu.addSeparator();
+		menu.add(menuItem);
+		menu.addSeparator();//The line between the buttons.
 		
+		//Edit Mutation button
 		menuItem = new JMenuItem("Edit Mutations",new ImageIcon("img/virus.png"));   //opens mutation frame as dialog frame
 		menuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				
+
 				JFrame topFrame1 = (JFrame) SwingUtilities.getWindowAncestor(getParent());
-				MutationDialog about = new MutationDialog(topFrame1);
+				new MutationDialog(topFrame1);
 
 			}
 		});
-		menuItem.setMnemonic(KeyEvent.VK_D);
 		menu.add(menuItem);
+		menu.addSeparator();//The line between the buttons.
 		
-		menu.addSeparator();
-		
-		
+		//Exit button
 		menuItem = new JMenuItem("Exit",new ImageIcon("img/exit.png"));   //exit program
 		menuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -109,114 +86,95 @@ public class MenuBar extends JMenuBar {
 				
 			}
 		});
-		menuItem.setMnemonic(KeyEvent.VK_D);
 		menu.add(menuItem);
 			
-		
 
-		
-		//Build second menu (Simulation) in the menu bar.
-		
+		//The 2nd menu on the menu bar - Simulation.
 		menu = new JMenu("Simulation");
-		menu.setMnemonic(KeyEvent.VK_A);
-		menu.getAccessibleContext().setAccessibleDescription(
-		      "The only menu in this program that has menu items");
 		add(menu);
 		
+		//Play button
 		menuItem = new JMenuItem("Play",new ImageIcon("img/play.png"));
 		menuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				Main.setPlaying(true);
-				
+				if(!Main.getStop())
+				{
+					Main.setPlaying(true);
+					Main.updateAll();
+				}
 			}
 		});
-		menuItem.getAccessibleContext().setAccessibleDescription(
-		      "This doesn't really do anything");
 		menu.add(menuItem);
+		menu.addSeparator();//The line between the buttons.
 		
-		menu.addSeparator();
-		
+		//Pause button
 		menuItem = new JMenuItem("Pause",new ImageIcon("img/pause.png"));
 		menuItem.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				Main.setPlaying(false);
 			}
 		});
-		menuItem.setMnemonic(KeyEvent.VK_B);
 		menu.add(menuItem);
+		menu.addSeparator();//The line between the buttons.
 		
-		menu.addSeparator();
-		
+		//Stop button
 		menuItem = new JMenuItem("Stop",new ImageIcon("img/stop.png"));
 		menuItem.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				Main.setStop(true);
+				Main.setPlaying(false);
 			}
 		});
-		menuItem.setMnemonic(KeyEvent.VK_B);
 		menu.add(menuItem);
+		menu.addSeparator();//The line between the buttons.
 		
-		menu.addSeparator();
-		
+		//Set Ticks Per Day button
 		menuItem = new JMenuItem("Set Ticks Per Day",new ImageIcon("img/ticks.png"));
 		menuItem.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFrame topFrame2 = (JFrame) SwingUtilities.getWindowAncestor(getParent());
-				SetClicks about = new SetClicks(topFrame2);
-				
+				new SetClicks(topFrame2);
 			}
 		});
-		menuItem.setMnemonic(KeyEvent.VK_D);
 		menu.add(menuItem);
-		
-			
-		//Build third menu in the menu bar (Help).
-		
-		
+
+
+		//The 3rd menu on the menu bar - Help
 		menu = new JMenu("Help");
-		menu.setMnemonic(KeyEvent.VK_N);
-		menu.getAccessibleContext().setAccessibleDescription(
-		      "This menu does nothing");
+		add(menu);
 		
+		//Help button
 		menuItem = new JMenuItem("Help",new ImageIcon("img/help.png"));
 		menuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				JFrame topFrame1 = (JFrame) SwingUtilities.getWindowAncestor(getParent());
-				HelpDialog about = new HelpDialog(topFrame1);
-				
+				new HelpDialog(topFrame1);
 			}
 		});
 		menu.add(menuItem);
+		menu.addSeparator();//The line between the buttons.
 		
+		//About button
 		menuItem = new JMenuItem("About",new ImageIcon("img/about.png"));
 		menuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(getParent());
-				AboutDialog about = new AboutDialog(topFrame);
+				new AboutDialog(topFrame);
 			}
 		});
 		menu.add(menuItem);
 		
-		add(menu);
-		
-		
-		
 	}
 	
 	private class AboutDialog extends JDialog {   //dialog for about button non modal
-		
-		
 		public AboutDialog(Frame window) {
-			    
-
 				super(window, "About",false);
 				this.setLayout(new BorderLayout());
 				JLabel dateCreated = new JLabel("The code for this assignment was wriiten between 21/4 - 29/4");
@@ -225,20 +183,18 @@ public class MenuBar extends JMenuBar {
 				ImageIcon moon = new ImageIcon("img/maor.jpg");
 				ImageIcon moon2 = new ImageIcon("img/matan.jpg");
 
-			    
 				Image image = moon.getImage(); // transform it 
 				Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+
 				moon = new ImageIcon(newimg);  // transform it back
 				
 				image = moon2.getImage(); // transform it 
 				newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 				moon2 = new ImageIcon(newimg);  // transform it back
-				
-				
-				imgLabel.setIcon(moon);
-				imgLabel2.setIcon(moon2);
+
+				imgLabel.setIcon(moon); // The name moon is derived from the lab we copied this code from
+				imgLabel2.setIcon(moon2);// i'm just too lazy to change it... but not too lazy to explain apperantly. 
 				this.add(imgLabel);
-				
 				
 			    JLabel text = new JLabel("The Authors are :\n Matan sofer \n Maor Arnon ");
 				
@@ -259,7 +215,7 @@ public class MenuBar extends JMenuBar {
 	private class HelpDialog extends JDialog {   //dialog for help button is modal
 	
 			public HelpDialog(Frame window) {
-				    super(window, "Help",true);
+				    super(window, "Help",true); //Sets a modal dialog.
 				    JLabel imgLabel =new JLabel();
 				    ImageIcon moon = new ImageIcon("img/background.jpg");
 				    Image image = moon.getImage(); // transform it 
@@ -274,21 +230,20 @@ public class MenuBar extends JMenuBar {
 
 }
 
-	private class SetClicks extends JDialog {  //dialog for set click per day spinner
+	private class SetClicks extends JDialog {  //dialog for set click (Ticks*) per day spinner.
 		
 		public SetClicks(Frame window) {
 			    super(window, "Set Click per day",true);
 			    this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.LINE_AXIS));
-			    JSpinner jSpinner1 = new JSpinner(new SpinnerNumberModel(0, 0, 30, 1));
+			    JSpinner jSpinner1 = new JSpinner(new SpinnerNumberModel(1, 1, 30, 1));
 			    this.add(jSpinner1);
 			    JButton ok = new JButton("Click to set");
 			    this.add(ok);
 			    ok.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int currentValue = (int)jSpinner1.getValue();		    
-						Long l= new Long(currentValue);
+						Long l = Long.valueOf(currentValue);
 					    Clock.setticksPerDay(l);
-				
 					}
 				});
 			  
@@ -298,15 +253,18 @@ public class MenuBar extends JMenuBar {
 
 
 }
-	private Image getScaledImage(Image srcImg, int w, int h){           //fix image in about button
-  		  BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-  		  Graphics2D g2 = resizedImg.createGraphics();
 
-  		  g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-   		  g2.drawImage(srcImg, 0, 0, w, h, null);
- 	      g2.dispose();
+//A function to change image size ... Here for future refrence
 
-   		  return resizedImg;
-}
+//	private Image getScaledImage(Image srcImg, int w, int h){           //Change image size in about dialog.
+//  		  BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+//  		  Graphics2D g2 = resizedImg.createGraphics();
+//
+//  		  g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+//   		  g2.drawImage(srcImg, 0, 0, w, h, null);
+// 	      g2.dispose();
+//
+//   		  return resizedImg;
+//}
 
 }

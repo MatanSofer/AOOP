@@ -2,28 +2,18 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
 import javax.swing.JMenuBar;
 import javax.swing.JSlider;
 
 
-import Country.Map;
-import Simulation.Main;
+
 
 public class MainWindow extends JFrame
 {
@@ -54,15 +44,18 @@ public class MainWindow extends JFrame
 											//center 
 			center.add(graphic_map = new GraphicMap(statwindow));
 			
-											//south
+			south.add(new JLabel("Fast "));								//south
 			south.add(slider = new JSlider(1,10,5));
+			south.add(new JLabel("Slow"));
 			slider.setPaintTicks(true);
 			slider.setMinorTickSpacing(1);
 			slider.setMajorTickSpacing(5);
 			
+			
 			this.add(center , BorderLayout.CENTER);
 			this.add(north , BorderLayout.NORTH);
 			this.add(south , BorderLayout.SOUTH);
+			
 			
 		
 			

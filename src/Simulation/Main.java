@@ -6,18 +6,16 @@ import java.awt.Frame;
 import java.io.File;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-
 import Country.*;
 import GUI.*;
-import IO.SimulationFile;
 import Population.*;
 import Virus.*;
 import java.util.List;
-import java.util.Random;
-import java.util.ArrayList;
+
 
 public class Main {
 
+//All the static files we are using.
 	private static Map map = new Map();
 	public static StatWindow statwindow;
 	public static MainWindow mainwindow;
@@ -26,7 +24,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		SwingUtilities.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() { //Doing GUI Changes on the AWT stack.
 			public void run() {			
 				statwindow = new StatWindow();
 				statwindow.setVisible(false);
@@ -38,8 +36,7 @@ public class Main {
 
 		
 		System.out.println("\n-------Simulating virus spread-------\n");
-		simulate();// Simulates virus spread.
-		System.out.println("END OF SIMULATION RESULT\n");
+		simulate();  // Simulates virus spread.
 		
       
 	}
@@ -64,17 +61,15 @@ public class Main {
 
 	public static void simulate() {
 		
-		// Wait for a file to be uploaded or to resume
-		while (!playing || stop)
+		                            // Wait for a file to be uploaded or to resume
+		while (!playing || stop)    //(I dont want the simulatin to run befor The GUI loads up.)
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		
-		
-		for (int p = 0; p >= 0; p++) {
 
+		for (int p = 0; p >= 0; p++) { //Loops Forever. 
 			updateAll();// Updates Gui
 			while (!playing || stop)
 				try {
@@ -111,7 +106,6 @@ public class Main {
 		
 		
 	}
-
 	public static void setPlaying(boolean playing) {
 		Main.playing = playing;
 	}
@@ -156,7 +150,7 @@ public class Main {
 
 	private static void simulateMapRecover() {
 		// for each settle all sick people who past 25 days from the day they were
-		// nidbeku become cov...
+		
 		Person conv;
 		for (int i = 0; i < getMap().getSettlements().length; i++) // run for each settle
 		{
