@@ -4,9 +4,9 @@
      alt="SCE logo" width="320" height="98">
 
 
- By: Maor Arnon | <img src="https://img.shields.io/badge/Maor-Programmer-blue" alt="Version" > 
+ By: Maor Arnon | <img src="https://img.shields.io/badge/Programmer-green" alt="Maor" > 
  
- &  Matan Sofer| <img src="https://img.shields.io/badge/Matan-Programmer-cyan" alt="Version" >
+ &  Matan Sofer|  <img src="https://img.shields.io/badge/Programmer-blue" alt="Matan" >
  
 <hr>
 <h1 align="center">
