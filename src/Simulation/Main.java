@@ -12,33 +12,30 @@ import Population.*;
 import Virus.*;
 import java.util.List;
 
-
 public class Main {
 
 //All the static files we are using.
 	private static Map map = new Map();
-	public static StatWindow statwindow;
-	public static MainWindow mainwindow;
+	private static StatWindow statwindow;
+	private static MainWindow mainwindow;
 	private static boolean playing = false;
 	private static boolean stop = true;
 
 	public static void main(String[] args) {
 
-		SwingUtilities.invokeLater(new Runnable() { //Doing GUI Changes on the AWT stack.
-			public void run() {			
+		SwingUtilities.invokeLater(new Runnable() { // Doing GUI Changes on the AWT stack.
+			public void run() {
 				statwindow = new StatWindow();
 				statwindow.setVisible(false);
 				mainwindow = new MainWindow(statwindow);
 				mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				statwindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);				
+				statwindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			}
 		});
 
-		
 		System.out.println("\n-------Simulating virus spread-------\n");
-		simulate();  // Simulates virus spread.
-		
-      
+		simulate(); // Simulates virus spread.
+
 	}
 
 	public static File loadFileFunc() {
@@ -60,27 +57,27 @@ public class Main {
 	}
 
 	public static void simulate() {
-		
-		                            // Wait for a file to be uploaded or to resume
-		while (!playing || stop)    //(I dont want the simulatin to run befor The GUI loads up.)
+
+		// Wait for a file to be uploaded or to resume
+		while (!playing || stop) // (I dont want the simulatin to run befor The GUI loads up.)
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 
-		for (int p = 0; p >= 0; p++) { //Loops Forever. 
+		for (int p = 0; p >= 0; p++) { // Loops Forever.
 			updateAll();// Updates Gui
 			while (!playing || stop)
 				try {
 					Thread.sleep(500);
-					} catch (InterruptedException e) {	
-						e.printStackTrace();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 			try {
 				Thread.sleep(250 * MainWindow.getSliderValue());
 			} catch (InterruptedException e) {
-					e.printStackTrace();
+				e.printStackTrace();
 			}
 
 			Clock.nextTick();// move the clock one tick forward
@@ -96,16 +93,16 @@ public class Main {
 	}
 
 	public static void updateAll() {
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				mainwindow.updateMap();
 				statwindow.updateTable();
 			}
 		});
-		
-		
+
 	}
+
 	public static void setPlaying(boolean playing) {
 		Main.playing = playing;
 	}
@@ -121,7 +118,7 @@ public class Main {
 	public static boolean getStop() {
 		return stop;
 	}
-
+	
 	private static void simulateMapContagious() {
 		IVirus virus;
 		Person newSicko;
@@ -132,14 +129,13 @@ public class Main {
 			{
 				virus = ((Sick) getMap().getSettlements()[i].getSickPeople().get(j)).getVirus();
 				for (int k = 0; k < 3; k++) {
-					if (virus.tryToContagion(getMap().getSettlements()[i].getSickPeople().get(j),
-							getMap().getSettlements()[i].getNonSickPeople().get(k))
-							&& getMap().getSettlements()[i].getNonSickPeople().size() > 4) {
-						newSicko = getMap().getSettlements()[i].getNonSickPeople().get(k).contagion(virus);
-						getMap().getSettlements()[i].addPerson(newSicko);
-						getMap().getSettlements()[i].getNonSickPeople().remove(k);
-						getMap().getSettlements()[i].setColor(getMap().getSettlements()[i].calculateRamzorGrade());
-					}
+					if (getMap().getSettlements()[i].getNonSickPeople().size()+1 < k )
+						if (virus.tryToContagion(getMap().getSettlements()[i].getSickPeople().get(j),getMap().getSettlements()[i].getNonSickPeople().get(k))) {
+							newSicko = getMap().getSettlements()[i].getNonSickPeople().get(k).contagion(virus);
+							getMap().getSettlements()[i].addPerson(newSicko);
+							getMap().getSettlements()[i].getNonSickPeople().remove(k);
+							getMap().getSettlements()[i].setColor(getMap().getSettlements()[i].calculateRamzorGrade());
+						}
 				}
 
 			}
@@ -150,7 +146,7 @@ public class Main {
 
 	private static void simulateMapRecover() {
 		// for each settle all sick people who past 25 days from the day they were
-		
+
 		Person conv;
 		for (int i = 0; i < getMap().getSettlements().length; i++) // run for each settle
 		{

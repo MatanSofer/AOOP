@@ -98,7 +98,7 @@ public class Settlement {
 		Person temp;
 		IVirus[] random = { new ChineseVariant(), new BritishVariant(), new SouthAfricanVariant() };
 		int randomVarient;
-		for (int i = 0; i < 0.01 * nonSickPeople.size(); i++) {
+		for (int i = 0; i < 0.001 * nonSickPeople.size(); i++) {
 			randomVarient = ((int) (Math.random() * 3));
 			temp = nonSickPeople.get(i).contagion(random[randomVarient]);
 			sickPeople.add(temp);

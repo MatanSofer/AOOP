@@ -65,9 +65,4 @@ class StatCenterTable extends AbstractTableModel
 		}
 		
 	}
-	
-	
-	
-	
-	
 }

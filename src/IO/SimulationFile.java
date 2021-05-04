@@ -5,6 +5,10 @@ import Country.*;
 import Country.Map;
 import Location.*;
 import Population.*;
+import Virus.BritishVariant;
+import Virus.ChineseVariant;
+import Virus.SouthAfricanVariant;
+
 import java.util.*;
 
 public class SimulationFile {
@@ -125,6 +129,8 @@ public class SimulationFile {
     		}
     		
     	}
+    	
+    	SickPplInnit();
     		
     }
 	
@@ -152,6 +158,40 @@ public class SimulationFile {
 	}
 	
 	
+	public void SickPplInnit() {
+		// Cpuntagious innitialization
+		
+		int settleNumber = getMap().getSettlements().length;
+		Settlement settle;
+		int settleSize;
+		Person temp;
+
+		for (int i = 0; i < settleNumber; i++) // run for each settle .
+		{
+			settle = getMap().getSettlements()[i];
+			settleSize = settle.getNonSickPeople().size();
+
+			for (int j = 0; j < (int) (settleSize * 0.01); j++) // make 1 percent of them as sick people .
+			{ // the modulo allowed us to set the viruses random.
+				if (j % 3 == 0) {
+					temp =settle.getNonSickPeople().get(j).contagion(new SouthAfricanVariant());
+					settle.addPerson(temp);
+					temp =settle.getNonSickPeople().remove(j);
+				} else if (j % 3 == 1) {
+					temp =settle.getNonSickPeople().get(j).contagion(new ChineseVariant());
+					settle.addPerson(temp);
+					temp =settle.getNonSickPeople().remove(j);
+				} else {
+					temp =settle.getNonSickPeople().get(j).contagion(new BritishVariant());
+					settle.addPerson(temp);
+					temp =settle.getNonSickPeople().remove(j);
+				}
+			}
+			settle.setColor(settle.calculateRamzorGrade()); // setting the ramzor
+																								// grade and color
+
+		}
+	}
 	
 }
 

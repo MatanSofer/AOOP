@@ -26,9 +26,10 @@ public class MenuBar extends JMenuBar {
 
 	//Where the GUI is created:
 	JMenu menu, submenu;
-	JMenuItem menuItem;
+	JMenuItem menuItem,loadButton,playButton,pauseButton,stopButton;
 	JRadioButtonMenuItem rbMenuItem;
 	JCheckBoxMenuItem cbMenuItem;
+
 	
 	public MenuBar(StatWindow statwindow) {
 	
@@ -39,17 +40,22 @@ public class MenuBar extends JMenuBar {
 		add(menu);
 		
 		//Load button
-		menuItem = new JMenuItem("Load",new ImageIcon("img/load.png"));
-		menuItem.addActionListener(new ActionListener(){
+		loadButton = new JMenuItem("Load",new ImageIcon("img/load.png"));
+
+		loadButton.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e) {
 				SimulationFile simulationfile = new SimulationFile(Main.loadFileFunc());
 				Main.setMap(simulationfile.getMap()); //return value from simulation ; reference to map.
 				Main.setStop(false);
 				System.out.println(Main.getMap()); //print all settle string
+				loadButton.setEnabled(false);
+				pauseButton.setEnabled(false);
+				playButton.setEnabled(true);
+				
 			}
 		});
-		menu.add(menuItem);
+		menu.add(loadButton);
 		menu.addSeparator();//The line between the buttons.
 		
 		//Stats button
@@ -94,43 +100,57 @@ public class MenuBar extends JMenuBar {
 		add(menu);
 		
 		//Play button
-		menuItem = new JMenuItem("Play",new ImageIcon("img/play.png"));
-		menuItem.addActionListener(new ActionListener(){
+		playButton = new JMenuItem("Play",new ImageIcon("img/play.png"));
+		playButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				if(!Main.getStop())
 				{
 					Main.setPlaying(true);
 					Main.updateAll();
+					playButton.setEnabled(false);
+					pauseButton.setEnabled(true);
+					stopButton.setEnabled(true);
 				}
 			}
 		});
-		menu.add(menuItem);
+		playButton.setEnabled(false);
+		menu.add(playButton);
 		menu.addSeparator();//The line between the buttons.
 		
 		//Pause button
-		menuItem = new JMenuItem("Pause",new ImageIcon("img/pause.png"));
-		menuItem.addActionListener(new ActionListener(){
+		pauseButton = new JMenuItem("Pause",new ImageIcon("img/pause.png"));
+		pauseButton.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.setPlaying(false);
+				playButton.setEnabled(true);
+				pauseButton.setEnabled(false);
+				stopButton.setEnabled(true);
+				
 			}
 		});
-		menu.add(menuItem);
+		pauseButton.setEnabled(false);
+		menu.add(pauseButton);
 		menu.addSeparator();//The line between the buttons.
 		
 		//Stop button
-		menuItem = new JMenuItem("Stop",new ImageIcon("img/stop.png"));
-		menuItem.addActionListener(new ActionListener(){
+		stopButton = new JMenuItem("Stop",new ImageIcon("img/stop.png"));
+		stopButton.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				Main.setStop(true);
 				Main.setPlaying(false);
+				loadButton.setEnabled(true);
+				playButton.setEnabled(false);
+				pauseButton.setEnabled(false);
+				stopButton.setEnabled(false);
 			}
 		});
-		menu.add(menuItem);
+		stopButton.setEnabled(false);
+		menu.add(stopButton);
 		menu.addSeparator();//The line between the buttons.
 		
 		//Set Ticks Per Day button
