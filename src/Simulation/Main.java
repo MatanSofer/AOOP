@@ -87,6 +87,11 @@ public class Main {
 			simulateMapContagious();
 			simulateMapRecover();
 			simulateMoveSettle();
+			
+			for(Settlement settlement : map.getSettlements()) {
+				settlement.killPeople();
+			}
+			
 			vaccinateMap();
 		}
 

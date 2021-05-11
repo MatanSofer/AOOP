@@ -1,0 +1,9 @@
+Log File
+Log: Simulation Day-1 Tick- 1 Settlement Name- Saad Sick population- 116 Dead population- 39
+Log: Simulation Day-1 Tick- 1 Settlement Name- Saad Sick population- 77 Dead population- 78
+Log: Simulation Day-2 Tick- 2 Settlement Name- Saad Sick population- 81 Dead population- 117
+Log: Simulation Day-3 Tick- 3 Settlement Name- Saad Sick population- 48 Dead population- 157
+Log: Simulation Day-4 Tick- 4 Settlement Name- Nirim Sick population- 9 Dead population- 70
+Log: Simulation Day-5 Tick- 5 Settlement Name- BeerTuvia Sick population- 32 Dead population- 669
+Log: Simulation Day-5 Tick- 5 Settlement Name- Saad Sick population- 12 Dead population- 197
+Log: Simulation Day-9 Tick- 9 Settlement Name- Beer-Sheva Sick population- 2 Dead population- 367

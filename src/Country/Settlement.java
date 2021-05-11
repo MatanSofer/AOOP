@@ -1,6 +1,8 @@
 //* Authors: Maor Arnon (ID: 205974553) and Matan Sofer (ID:208491811)
 package Country;
 import java.util.*;
+
+import IO.LogFile;
 import Population.*;
 import Virus.BritishVariant;
 import Virus.ChineseVariant;
@@ -8,7 +10,7 @@ import Virus.IVirus;
 import Virus.SouthAfricanVariant;
 import Location.*;
 
-public class Settlement {
+public class Settlement implements Runnable {
 
 	private String name; // all fields the included in settlement
 	private Location location;
@@ -17,6 +19,7 @@ public class Settlement {
 	private int maxPopulation;
 	private int vaccineDose = 0;
 	private int deadpopulation = 0;
+	private int deadCounterOnePer= 0; 
 	private List<Settlement> connectedSettlements = new ArrayList<Settlement>();
 	private List<Person> nonSickPeople;
 	private List<Person> sickPeople = new ArrayList<Person>();
@@ -54,7 +57,40 @@ public class Settlement {
 		this.maxPopulation = other.maxPopulation;
 
 	}
+	public void killPeople()
+	{
+		//int deadCounter= 0; 
+		int onePercOfPoPopulation= (int)((getPeopleSize()+deadpopulation)*0.01);
+		
+		System.out.println("One Precent of "+this.getName()+"Population is "+onePercOfPoPopulation);
+		
+		for(int i = 0 ; i < sickPeople.size() ; i++)
+		{
+			IVirus virus = ((Sick)sickPeople.get(i)).getVirus();
+			if(virus.tryToKill(((Sick)sickPeople.get(i))))
+			{
+				
+				sickPeople.remove(i);
+				deadpopulation++;
+				
+				deadCounterOnePer++;
+				
+				
+				if(deadCounterOnePer >= onePercOfPoPopulation )
+				{
+					
+					deadCounterOnePer=0;
+					LogFile.logSettlement(this);
+					///logFile
+				}
+				
+			}
+			
+		}
+		
+	}
 
+	
 	public RamzorColor calculateRamzorGrade() // this method implemented in "sons"
 	{
 		return ramzorcolor;
@@ -220,6 +256,13 @@ public class Settlement {
 				&& this.getSickPeople() == other.getSickPeople() && this.getColor() == other.getColor()
 				&& this.getRamzorRating() == other.getRamzorRating()
 				&& this.getNonSickPeople() == other.getNonSickPeople());
+	}
+
+	@Override
+	public void run() {
+		
+		//
+		
 	}
 	
 	

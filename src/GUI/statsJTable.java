@@ -39,13 +39,13 @@ public class statsJTable extends JPanel
 		table.setPreferredScrollableViewportSize(new Dimension(1010,100));
 		table.setBackground(Color.lightGray);
 		table.setFillsViewportHeight(true);
-		this.add(new JScrollPane(table));
+		this.add(new JScrollPane(table)); 
 		
 		this.add(tf1 );
 		tf1.setToolTipText("FILTER NAME COLUMN");
 		tf1.getDocument().addDocumentListener(new DocumentListener() { //for filtering
 			
-				public void insertUpdate(DocumentEvent e) {newFilter();}
+				 public void insertUpdate(DocumentEvent e) {newFilter();}
 				public void removeUpdate(DocumentEvent e) {newFilter();}
 				public void changedUpdate(DocumentEvent e) {newFilter();}
 			});

@@ -1,4 +1,5 @@
 package GUI;
+
 import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.Image;
@@ -24,56 +25,66 @@ import Simulation.Main;
 
 public class MenuBar extends JMenuBar {
 
-	//Where the GUI is created:
+	// Where the GUI is created:
 	JMenu menu, submenu;
-	JMenuItem menuItem,loadButton,playButton,pauseButton,stopButton;
+	JMenuItem menuItem, loadButton, playButton, pauseButton, stopButton;
 	JRadioButtonMenuItem rbMenuItem;
 	JCheckBoxMenuItem cbMenuItem;
 
-	
 	public MenuBar(StatWindow statwindow) {
-	
-		//Create the menu bar.
+
+		// Create the menu bar.
 		super();
 
-		menu = new JMenu("File"); //The first menu on the menu bar - File.
+		menu = new JMenu("File"); // The first menu on the menu bar - File.
 		add(menu);
-		
-		//Load button
-		loadButton = new JMenuItem("Load",new ImageIcon("img/load.png"));
 
-		loadButton.addActionListener(new ActionListener(){
-			
+		// Load button
+		loadButton = new JMenuItem("Load", new ImageIcon("img/load.png"));
+
+		loadButton.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				SimulationFile simulationfile = new SimulationFile(Main.loadFileFunc());
-				Main.setMap(simulationfile.getMap()); //return value from simulation ; reference to map.
+				Main.setMap(simulationfile.getMap()); // return value from simulation ; reference to map.
 				Main.setStop(false);
-				System.out.println(Main.getMap()); //print all settle string
+				System.out.println(Main.getMap()); // print all settle string
 				loadButton.setEnabled(false);
 				pauseButton.setEnabled(false);
 				playButton.setEnabled(true);
-				
+
 			}
 		});
 		menu.add(loadButton);
-		menu.addSeparator();//The line between the buttons.
-		
-		//Stats button
-		menuItem = new JMenuItem("Statistics",new ImageIcon("img/stats.png"));  //opens statistic window
-		menuItem.addActionListener(new ActionListener(){
+		menu.addSeparator();// The line between the buttons.
+
+		// LogFile button
+		menuItem = new JMenuItem("LogFile", new ImageIcon("img/log.png"));
+
+		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				statwindow.getallStats().newFilter1("");
-				statwindow.setVisible(true);
-				
-				
+				IO.LogFile.SaveTable("Log");
 			}
 		});
 		menu.add(menuItem);
-		menu.addSeparator();//The line between the buttons.
-		
-		//Edit Mutation button
-		menuItem = new JMenuItem("Edit Mutations",new ImageIcon("img/virus.png"));   //opens mutation frame as dialog frame
-		menuItem.addActionListener(new ActionListener(){
+		menu.addSeparator();// The line between the buttons.
+
+		// Stats button
+		menuItem = new JMenuItem("Statistics", new ImageIcon("img/stats.png")); // opens statistic window
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				statwindow.getallStats().newFilter1("");
+				statwindow.setVisible(true);
+
+			}
+		});
+		menu.add(menuItem);
+		menu.addSeparator();// The line between the buttons.
+
+		// Edit Mutation button
+		menuItem = new JMenuItem("Edit Mutations", new ImageIcon("img/virus.png")); // opens mutation frame as dialog
+																					// frame
+		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				JFrame topFrame1 = (JFrame) SwingUtilities.getWindowAncestor(getParent());
@@ -82,29 +93,27 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 		menu.add(menuItem);
-		menu.addSeparator();//The line between the buttons.
-		
-		//Exit button
-		menuItem = new JMenuItem("Exit",new ImageIcon("img/exit.png"));   //exit program
-		menuItem.addActionListener(new ActionListener(){
+		menu.addSeparator();// The line between the buttons.
+
+		// Exit button
+		menuItem = new JMenuItem("Exit", new ImageIcon("img/exit.png")); // exit program
+		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
-				
+
 			}
 		});
 		menu.add(menuItem);
-			
 
-		//The 2nd menu on the menu bar - Simulation.
+		// The 2nd menu on the menu bar - Simulation.
 		menu = new JMenu("Simulation");
 		add(menu);
-		
-		//Play button
-		playButton = new JMenuItem("Play",new ImageIcon("img/play.png"));
-		playButton.addActionListener(new ActionListener(){
+
+		// Play button
+		playButton = new JMenuItem("Play", new ImageIcon("img/play.png"));
+		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!Main.getStop())
-				{
+				if (!Main.getStop()) {
 					Main.setPlaying(true);
 					Main.updateAll();
 					playButton.setEnabled(false);
@@ -115,11 +124,11 @@ public class MenuBar extends JMenuBar {
 		});
 		playButton.setEnabled(false);
 		menu.add(playButton);
-		menu.addSeparator();//The line between the buttons.
-		
-		//Pause button
-		pauseButton = new JMenuItem("Pause",new ImageIcon("img/pause.png"));
-		pauseButton.addActionListener(new ActionListener(){
+		menu.addSeparator();// The line between the buttons.
+
+		// Pause button
+		pauseButton = new JMenuItem("Pause", new ImageIcon("img/pause.png"));
+		pauseButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -127,20 +136,20 @@ public class MenuBar extends JMenuBar {
 				playButton.setEnabled(true);
 				pauseButton.setEnabled(false);
 				stopButton.setEnabled(true);
-				
+
 			}
 		});
 		pauseButton.setEnabled(false);
 		menu.add(pauseButton);
-		menu.addSeparator();//The line between the buttons.
-		
-		//Stop button
-		stopButton = new JMenuItem("Stop",new ImageIcon("img/stop.png"));
-		stopButton.addActionListener(new ActionListener(){
+		menu.addSeparator();// The line between the buttons.
+
+		// Stop button
+		stopButton = new JMenuItem("Stop", new ImageIcon("img/stop.png"));
+		stopButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				Main.setStop(true);
 				Main.setPlaying(false);
 				loadButton.setEnabled(true);
@@ -151,11 +160,11 @@ public class MenuBar extends JMenuBar {
 		});
 		stopButton.setEnabled(false);
 		menu.add(stopButton);
-		menu.addSeparator();//The line between the buttons.
-		
-		//Set Ticks Per Day button
-		menuItem = new JMenuItem("Set Ticks Per Day",new ImageIcon("img/ticks.png"));
-		menuItem.addActionListener(new ActionListener(){
+		menu.addSeparator();// The line between the buttons.
+
+		// Set Ticks Per Day button
+		menuItem = new JMenuItem("Set Ticks Per Day", new ImageIcon("img/ticks.png"));
+		menuItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -165,114 +174,108 @@ public class MenuBar extends JMenuBar {
 		});
 		menu.add(menuItem);
 
-
-		//The 3rd menu on the menu bar - Help
+		// The 3rd menu on the menu bar - Help
 		menu = new JMenu("Help");
 		add(menu);
-		
-		//Help button
-		menuItem = new JMenuItem("Help",new ImageIcon("img/help.png"));
-		menuItem.addActionListener(new ActionListener(){
+
+		// Help button
+		menuItem = new JMenuItem("Help", new ImageIcon("img/help.png"));
+		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame topFrame1 = (JFrame) SwingUtilities.getWindowAncestor(getParent());
 				new HelpDialog(topFrame1);
 			}
 		});
 		menu.add(menuItem);
-		menu.addSeparator();//The line between the buttons.
-		
-		//About button
-		menuItem = new JMenuItem("About",new ImageIcon("img/about.png"));
-		menuItem.addActionListener(new ActionListener(){
+		menu.addSeparator();// The line between the buttons.
+
+		// About button
+		menuItem = new JMenuItem("About", new ImageIcon("img/about.png"));
+		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(getParent());
 				new AboutDialog(topFrame);
 			}
 		});
 		menu.add(menuItem);
-		
+
 	}
-	
-	private class AboutDialog extends JDialog {   //dialog for about button non modal
+
+	private class AboutDialog extends JDialog { // dialog for about button non modal
 		public AboutDialog(Frame window) {
-				super(window, "About",false);
-				this.setLayout(new BorderLayout());
-				JLabel dateCreated = new JLabel("The code for this assignment was wriiten between 21/4 - 29/4");
-			    JLabel imgLabel =new JLabel();
-				JLabel imgLabel2 =new JLabel();
-				ImageIcon moon = new ImageIcon("img/maor.jpg");
-				ImageIcon moon2 = new ImageIcon("img/matan.jpg");
+			super(window, "About", false);
+			this.setLayout(new BorderLayout());
+			JLabel dateCreated = new JLabel("The code for this assignment was wriiten between 21/4 - 29/4");
+			JLabel imgLabel = new JLabel();
+			JLabel imgLabel2 = new JLabel();
+			ImageIcon moon = new ImageIcon("img/maor.jpg");
+			ImageIcon moon2 = new ImageIcon("img/matan.jpg");
 
-				Image image = moon.getImage(); // transform it 
-				Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+			Image image = moon.getImage(); // transform it
+			Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
 
-				moon = new ImageIcon(newimg);  // transform it back
-				
-				image = moon2.getImage(); // transform it 
-				newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-				moon2 = new ImageIcon(newimg);  // transform it back
+			moon = new ImageIcon(newimg); // transform it back
 
-				imgLabel.setIcon(moon); // The name moon is derived from the lab we copied this code from
-				imgLabel2.setIcon(moon2);// i'm just too lazy to change it... but not too lazy to explain apperantly. 
-				this.add(imgLabel);
-				
-			    JLabel text = new JLabel("The Authors are :\n Matan sofer \n Maor Arnon ");
-				
-				this.add(text,BorderLayout.NORTH);
-				this.add(imgLabel,BorderLayout.WEST);
-				this.add(imgLabel2,BorderLayout.EAST);
-				this.add(dateCreated,BorderLayout.SOUTH);
-				
-				pack();
-				setVisible(true);
-				
+			image = moon2.getImage(); // transform it
+			newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+			moon2 = new ImageIcon(newimg); // transform it back
+
+			imgLabel.setIcon(moon); // The name moon is derived from the lab we copied this code from
+			imgLabel2.setIcon(moon2);// i'm just too lazy to change it... but not too lazy to explain apperantly.
+			this.add(imgLabel);
+
+			JLabel text = new JLabel("The Authors are :\n Matan sofer \n Maor Arnon ");
+
+			this.add(text, BorderLayout.NORTH);
+			this.add(imgLabel, BorderLayout.WEST);
+			this.add(imgLabel2, BorderLayout.EAST);
+			this.add(dateCreated, BorderLayout.SOUTH);
+
+			pack();
+			setVisible(true);
+
 		}
 	}
-		
-	
 
+	private class HelpDialog extends JDialog { // dialog for help button is modal
 
-	private class HelpDialog extends JDialog {   //dialog for help button is modal
-	
-			public HelpDialog(Frame window) {
-				    super(window, "Help",true); //Sets a modal dialog.
-				    JLabel imgLabel =new JLabel();
-				    ImageIcon moon = new ImageIcon("img/background.jpg");
-				    Image image = moon.getImage(); // transform it 
-					Image newimg = image.getScaledInstance(1267, 950,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-					moon = new ImageIcon(newimg);  // transform it back
-					imgLabel.setIcon(moon);
-					this.add(imgLabel);
-					pack();
-					setVisible(true);		
-			}
-
-
-}
-
-	private class SetClicks extends JDialog {  //dialog for set click (Ticks*) per day spinner.
-		
-		public SetClicks(Frame window) {
-			    super(window, "Set Click per day",true);
-			    this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.LINE_AXIS));
-			    JSpinner jSpinner1 = new JSpinner(new SpinnerNumberModel(1, 1, 30, 1));
-			    this.add(jSpinner1);
-			    JButton ok = new JButton("Click to set");
-			    this.add(ok);
-			    ok.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						int currentValue = (int)jSpinner1.getValue();		    
-						Long l = Long.valueOf(currentValue);
-					    Clock.setticksPerDay(l);
-					}
-				});
-			  
-				pack();
-				setVisible(true);		
+		public HelpDialog(Frame window) {
+			super(window, "Help", true); // Sets a modal dialog.
+			JLabel imgLabel = new JLabel();
+			ImageIcon moon = new ImageIcon("img/background.jpg");
+			Image image = moon.getImage(); // transform it
+			Image newimg = image.getScaledInstance(1267, 950, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+			moon = new ImageIcon(newimg); // transform it back
+			imgLabel.setIcon(moon);
+			this.add(imgLabel);
+			pack();
+			setVisible(true);
 		}
 
+	}
 
-}
+	private class SetClicks extends JDialog { // dialog for set click (Ticks*) per day spinner.
+
+		public SetClicks(Frame window) {
+			super(window, "Set Click per day", true);
+			this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.LINE_AXIS));
+			JSpinner jSpinner1 = new JSpinner(new SpinnerNumberModel(1, 1, 30, 1));
+			this.add(jSpinner1);
+			JButton ok = new JButton("Click to set");
+			this.add(ok);
+			ok.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int currentValue = (int) jSpinner1.getValue();
+					Long l = Long.valueOf(currentValue);
+					Clock.setticksPerDay(l);
+				}
+			});
+
+			pack();
+			setVisible(true);
+		}
+
+	}
 
 //A function to change image size ... Here for future refrence
 
