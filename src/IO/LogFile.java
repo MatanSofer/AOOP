@@ -6,6 +6,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import Country.Settlement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.*;
 
 public abstract class LogFile {
 
@@ -28,14 +32,13 @@ public abstract class LogFile {
 	public static void logSettlement(Settlement settlement) {
 		
 		if (file != null) {
-			int day = (int) (Simulation.Clock.now() / Simulation.Clock.getticksPerDay());
-			long tick = Simulation.Clock.now();
+			String time = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT));
 			int numberOfSick = settlement.getSickPeopleSize();
 			int numberOfDead = settlement.getdeadPopulation();
 			String name = settlement.getName();
 
 			try (FileWriter out = new FileWriter(file,true)) {
-				out.append("Log: Simulation Day-" + day + " Tick- " + tick + " Settlement Name- " + name + " Sick population- " + numberOfSick + " Dead population- " + numberOfDead);
+				out.append("Log: [" + time  + "] Settlement Name- " + name + " Sick population- " + numberOfSick + " Dead population- " + numberOfDead);
 				out.append('\n');
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
