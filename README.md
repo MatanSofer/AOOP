@@ -19,7 +19,7 @@
    <hr>
    
    In this project we demonstrate our knowledge in:
-   * **multy-threading** 
+   * **multi-threading** 
    * **GUI** 
    * **advanced OOP** 
    * **and Java in general .**
