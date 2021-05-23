@@ -13,9 +13,9 @@
 <img src="https://github.com/MatanSofer/AOOP/blob/main/img/Logo.gif?raw=true" alt="Logo" class="center">
      </h1>
 
-     This project is a simplified simulation of a spreading virus using binomial distribution , 
-     drawn map representing location and hazzard level of each settlement , 
-     mutation chart and more.
+     This project is a simplified simulation of a spreading virus using the binomial distribution,
+     a drawn map representing each settlement's location and hazard level,
+     mutation chart, and more.
    <hr>
    
    In this project we demonstrate our knowledge in:
