@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import Country.Map;
+
 import javax.swing.JMenuBar;
 import javax.swing.JSlider;
 
@@ -21,11 +24,11 @@ public class MainWindow extends JFrame
 		private MenuBar bar;
 		private static JSlider slider;
 		private GraphicMap graphic_map;
-		
-		public MainWindow(StatWindow statwindow)
+		private Map map;
+		public MainWindow(StatWindow statwindow,Map map)
 		{	
 			super("Main Window");
-
+			this.map=map;
 			this.setLayout(new BorderLayout());    //set all layout and add to frame
 	
 			JPanel north= new JPanel();
@@ -36,13 +39,13 @@ public class MainWindow extends JFrame
 			north.setLayout(new BoxLayout(north , BoxLayout.LINE_AXIS));
 			south.setLayout(new BoxLayout(south, BoxLayout.LINE_AXIS));
 			
-			setJMenuBar(new MenuBar(statwindow));
+			setJMenuBar(new MenuBar(statwindow,this,map));
 			
 											//north
 			north.add(new JMenuBar());
 			
 											//center 
-			center.add(graphic_map = new GraphicMap(statwindow));
+			center.add(graphic_map = new GraphicMap(statwindow,map));
 			
 			south.add(new JLabel("Fast "));								//south
 			south.add(slider = new JSlider(1,10,5));

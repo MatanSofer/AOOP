@@ -27,10 +27,10 @@ public class statsJTable extends JPanel
 	
 	
 	
-	public statsJTable(JTextField tf1)
+	public statsJTable(JTextField tf1,Map map)
 	{
 		
-		model = new StatCenterTable();  //create model
+		model = new StatCenterTable(map);  //create model
 		table = new JTable(model);  //create jtable with model
 		this.tf1=tf1;
 		table.setRowSorter(sorter = new TableRowSorter<StatCenterTable>(model));   //set all table settings

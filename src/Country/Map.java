@@ -2,11 +2,24 @@
 package Country;
 import java.util.*;
 
+import javax.swing.SwingUtilities;
+
+import GUI.MainWindow;
+import GUI.StatWindow;
+import Simulation.Main;
+
 
 public class Map {
 
 	private Settlement[] settlements; // field include all settles
-
+	private Map map;
+	private boolean playing = false;
+	private boolean stop = true;
+	
+	
+	
+	
+	
 	public Map(List<Settlement> other) // constructor get a dynamic array but we convert it to static array(as field type)
 	{
 		this.settlements = new Settlement[other.size()];
@@ -19,12 +32,52 @@ public class Map {
 	{
 		this.settlements = new Settlement[0];
 	}
-
+	public void setMap(Map map)
+	{
+		this.map=map;
+		this.settlements = new Settlement[map.getSettlements().length];
+		for (int i = 0; i < map.getSettlements().length; i++) {
+			this.settlements[i] = map.getSettlements()[i];
+		}
+		
+	}
+	public Map getMap() {
+		
+		return this.map;
+	}
 	public Settlement[] getSettlements() // return the list of settlements
 	{
 		return this.settlements;
 	}
 
+	
+	public void setPlaying(boolean playing) {
+		this.playing = playing;
+	}
+
+	public boolean getPlay() {
+		return playing;
+	}
+
+	public void setStop(boolean stop) {
+		this.stop = stop;
+	}
+
+	public boolean getStop() {
+		return stop;
+	}
+	public  void updateAll(MainWindow mainwindow , StatWindow statwindow) {
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				mainwindow.updateMap();
+				statwindow.updateTable();
+			}
+		});
+
+	}
+	
+	
 	public boolean isEqual(Map other) // is equal
 	{
 		if (this.getSettlements().length != (other.getSettlements().length))

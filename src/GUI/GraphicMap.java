@@ -14,12 +14,14 @@ public class GraphicMap extends JPanel {
 	
 	double resulotionX=1,resulotionY=1;
 	private StatWindow statwindow;
+	private Map map;
 	
 	
-	
-	public GraphicMap (StatWindow statwindow){  //create graphic panel and add mouse listener
+	public GraphicMap (StatWindow statwindow,Map map){  //create graphic panel and add mouse listener
+		
 		super();
 		this.statwindow = statwindow;
+		this.map=map;
 		this.addMouseListener(new CustomMouseListener());
 	}
 	
@@ -31,7 +33,8 @@ public class GraphicMap extends JPanel {
 		gr.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
 		int maxX=0,maxY=0,x,y,width,height,center1_x,center1_y,y2,x2,width2,height2,center2_x,center2_y;
-		for (Settlement settlement : Main.getMap().getSettlements())
+		
+		for (Settlement settlement : map.getSettlements())
 		{
 			y=settlement.getLocation().getPoint().getY()+10;
 			x=settlement.getLocation().getPoint().getX();
@@ -48,7 +51,7 @@ public class GraphicMap extends JPanel {
 		}
 		
 		
-		for (Settlement settlement : Main.getMap().getSettlements())
+		for (Settlement settlement : map.getSettlements())
 		{
 			for (Settlement settlement2 : settlement.getconnectedSettlements()) {
 				gr.setColor(Color.BLACK);
@@ -72,7 +75,7 @@ public class GraphicMap extends JPanel {
 			
 		}
 		
-		for (Settlement settlement : Main.getMap().getSettlements())
+		for (Settlement settlement : map.getSettlements())
 		{
 			y=settlement.getLocation().getPoint().getY()+10;
 			x=settlement.getLocation().getPoint().getX();
@@ -92,7 +95,7 @@ public class GraphicMap extends JPanel {
 		}
 		
 		gr.setColor(Color.BLACK);
-		for (Settlement settlement : Main.getMap().getSettlements())
+		for (Settlement settlement :map.getSettlements())
 		{
 			y=settlement.getLocation().getPoint().getY()+10;
 			x=settlement.getLocation().getPoint().getX();
@@ -115,7 +118,7 @@ public class GraphicMap extends JPanel {
 	    		 int xFrame=e.getX();
 	    		 int yFrame=e.getY();
 	    		 
-	    		 for (Settlement settlement : Main.getMap().getSettlements())
+	    		 for (Settlement settlement : map.getSettlements())
 	    			{
 	    				int y=(int)((settlement.getLocation().getPoint().getY()+10)/resulotionY);
 	    				int x=(int)((settlement.getLocation().getPoint().getX())/resulotionX);

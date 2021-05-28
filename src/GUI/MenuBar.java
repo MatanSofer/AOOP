@@ -1,10 +1,13 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.FileDialog;
 import java.awt.Frame;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +22,8 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
+
+import Country.Map;
 import IO.SimulationFile;
 import Simulation.Clock;
 import Simulation.Main;
@@ -30,12 +35,17 @@ public class MenuBar extends JMenuBar {
 	JMenuItem menuItem, loadButton, playButton, pauseButton, stopButton;
 	JRadioButtonMenuItem rbMenuItem;
 	JCheckBoxMenuItem cbMenuItem;
-
-	public MenuBar(StatWindow statwindow) {
+	private StatWindow statwindow;
+	private MainWindow mainwindow;
+	private Map map;
+	
+	public MenuBar(StatWindow statwindow,MainWindow mainwindow,Map map) {
 
 		// Create the menu bar.
 		super();
-
+		this.statwindow=statwindow;
+		this.mainwindow=mainwindow;
+		this.map=map;
 		menu = new JMenu("File"); // The first menu on the menu bar - File.
 		add(menu);
 
@@ -45,10 +55,15 @@ public class MenuBar extends JMenuBar {
 		loadButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				SimulationFile simulationfile = new SimulationFile(Main.loadFileFunc());
-				Main.setMap(simulationfile.getMap()); // return value from simulation ; reference to map.
-				Main.setStop(false);
-				System.out.println(Main.getMap()); // print all settle string
+				SimulationFile simulationfile = new SimulationFile(loadFileFunc());
+		
+				map.setMap(simulationfile.getMap()); // return value from simulation ; reference to map.
+				map.setStop(false);
+				
+				System.out.println(map.getMap()); // print all settle string
+				for(int i = 0 ; i < map.getSettlements().length;i++ )
+					map.getSettlements()[i].addReference(map);
+				
 				loadButton.setEnabled(false);
 				pauseButton.setEnabled(false);
 				playButton.setEnabled(true);
@@ -113,9 +128,9 @@ public class MenuBar extends JMenuBar {
 		playButton = new JMenuItem("Play", new ImageIcon("img/play.png"));
 		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!Main.getStop()) {
-					Main.setPlaying(true);
-					Main.updateAll();
+				if (!map.getStop()) {
+					map.setPlaying(true);
+					map.updateAll(mainwindow,statwindow);
 					playButton.setEnabled(false);
 					pauseButton.setEnabled(true);
 					stopButton.setEnabled(true);
@@ -132,7 +147,7 @@ public class MenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.setPlaying(false);
+				map.setPlaying(false);
 				playButton.setEnabled(true);
 				pauseButton.setEnabled(false);
 				stopButton.setEnabled(true);
@@ -150,8 +165,8 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				Main.setStop(true);
-				Main.setPlaying(false);
+				map.setStop(true);
+				map.setPlaying(false);
 				loadButton.setEnabled(true);
 				playButton.setEnabled(false);
 				pauseButton.setEnabled(false);
@@ -276,7 +291,26 @@ public class MenuBar extends JMenuBar {
 		}
 
 	}
+	
+	public File loadFileFunc() {
+		FileDialog fd = new FileDialog((Frame) null, "Please choose a file:", FileDialog.LOAD);
+		fd.setVisible(true);
+		if (fd.getFile() == null)
+			return null;
+		File f = new File(fd.getDirectory(), fd.getFile());
+		System.out.println(f.getPath());
+		return f;
+	}
+	public  void updateAll() {
 
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				mainwindow.updateMap();
+				statwindow.updateTable();
+			}
+		});
+
+	}
 //A function to change image size ... Here for future refrence
 
 //	private Image getScaledImage(Image srcImg, int w, int h){           //Change image size in about dialog.

@@ -15,3 +15,5 @@ Log: [20.5.2021, 14:10] Settlement Name- Saad Sick population- 63 Dead populatio
 Log: [20.5.2021, 14:10] Settlement Name- Saad Sick population- 26 Dead population- 197
 Log: [20.5.2021, 14:10] Settlement Name- Nirim Sick population- 9 Dead population- 72
 Log: [20.5.2021, 14:10] Settlement Name- BeerTuvia Sick population- 23 Dead population- 672
+Log File
+Log File

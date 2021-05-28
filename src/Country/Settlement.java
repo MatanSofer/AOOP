@@ -23,7 +23,7 @@ public class Settlement implements Runnable {
 	private List<Settlement> connectedSettlements = new ArrayList<Settlement>();
 	private List<Person> nonSickPeople;
 	private List<Person> sickPeople = new ArrayList<Person>();
-
+	private Map map;
 	public Settlement() // default constructor (there isn't use now , maybe in future )
 	{
 		this.name = "NULL";
@@ -57,12 +57,116 @@ public class Settlement implements Runnable {
 		this.maxPopulation = other.maxPopulation;
 
 	}
+	public void addReference(Map map)
+	{
+		this.map=map;
+	}
+	
+	public  void simulateMapContagious() {
+		IVirus virus;
+		Person newSicko;
+		//for (int i = 0; i < map.getSettlements().length; i++) // run for each settle
+		//{
+			for (int j = 0; j < getSickPeople().size() * 0.2; j++) // run for 20% of people
+																								// in the settle
+			{
+				virus = ((Sick) getSickPeople().get(j)).getVirus();
+				for (int k = 0; k < 3; k++) {
+					if (getNonSickPeople().size()+1 < k )
+						if (virus.tryToContagion(getSickPeople().get(j),getNonSickPeople().get(k))) {
+							newSicko = getNonSickPeople().get(k).contagion(virus);
+							addPerson(newSicko);
+							getNonSickPeople().remove(k);
+							setColor(calculateRamzorGrade());
+						}
+				}
+
+			}
+
+	//	}
+
+	}
+	
+	public void simulateMapRecover() {
+		// for each settle all sick people who past 25 days from the day they were
+
+		Person conv;
+		//for (int i = 0; i < map.getSettlements().length; i++) // run for each settle
+		//{
+
+			for (int j = 0; j < getSickPeopleSize(); j++) {
+				if (((Sick) getSickPeople().get(j)).daysFromContagion() > 25) {
+					conv = ((Sick) getSickPeople().get(j)).recover();
+					addPerson(conv);
+					getSickPeople().remove(j);
+					setColor(calculateRamzorGrade());
+
+				}
+			}
+		//}
+	}
+	
+	public  void simulateMoveSettle() {
+		// for each settle we have to check 0.03 from people who try to move to a
+		// connected settle and to transfer them
+		int size;
+		int randomSettleIndex;
+		List<Person> currentPpl;
+		Settlement currentDestenation;
+		//for (Settlement settlement : map.getSettlements()) {
+			if (getconnectedSettlements().size() > 0) {
+				size = (int) (getSickPeopleSize() * 0.3);
+				for (int i = 0; i < size; i++) { // For 30% of sick ppl
+					currentPpl =getSickPeople();
+					randomSettleIndex = ((int) ((Math.random()) * getconnectedSettlements().size()));
+					currentDestenation = getconnectedSettlements().get(randomSettleIndex);
+					if (currentPpl.get(i) != null)
+						if (currentDestenation.transferPerson(currentPpl.get(i),this)) {// Attempts to transfer
+																								// (Boolean)
+							currentDestenation.addPerson(currentPpl.get(i));
+							currentPpl.remove(i);
+							setColor(calculateRamzorGrade());
+						}
+				}
+				size = (int) (getNonSickPeopleSize() * 0.3);
+				for (int i = 0; i < size; i++) { // For 30% of Non-sick ppl
+					currentPpl = getNonSickPeople();
+					randomSettleIndex = ((int) ((Math.random()) * getconnectedSettlements().size()));
+					currentDestenation = getconnectedSettlements().get(randomSettleIndex);
+					if (currentPpl.get(i) != null)
+						if (currentDestenation.transferPerson(currentPpl.get(i), this)) {// Attempts to transfer
+																								// (Boolean)
+							currentDestenation.addPerson(currentPpl.get(i));
+							currentPpl.remove(i);
+							setColor(calculateRamzorGrade());
+						}
+				}
+			}
+		//}
+	}
+	
+	public void vaccinateMap() {
+		
+			if (getNonSickPeopleSize() > 0 && getVaccineDose() > 0) {
+				for (int i = 0; i < getNonSickPeopleSize(); i++)
+					if (getNonSickPeopleSize() > 0 && getVaccineDose() > 0)
+						if (getNonSickPeople().get(i) instanceof Healthy) {
+							addPerson(((Healthy) getNonSickPeople().get(i)).vaccinate());
+							getNonSickPeople().remove(getNonSickPeople().get(i));
+							reduceOneVaccineDose();
+						}
+
+			}
+		
+
+	}
+
+	
 	public void killPeople()
 	{
 		//int deadCounter= 0; 
 		int onePercOfPoPopulation= (int)((getPeopleSize()+deadpopulation)*0.01);
 		
-		System.out.println("One Precent of "+this.getName()+"Population is "+onePercOfPoPopulation);
 		
 		for(int i = 0 ; i < sickPeople.size() ; i++)
 		{
@@ -90,6 +194,14 @@ public class Settlement implements Runnable {
 		
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public RamzorColor calculateRamzorGrade() // this method implemented in "sons"
 	{

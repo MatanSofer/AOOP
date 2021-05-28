@@ -9,16 +9,21 @@ class StatCenterTable extends AbstractTableModel
 		,"RamzorColor" , "Sick percentages" , "Vaccine dose number","Dead people Number"
 		,"Current population number" ,"Sick people in settle" , "Non-Sick peopleIn settle"};
 	
-	
-		
+	private Map map;
+	public StatCenterTable(Map map)
+	{
+		this.map=map;
+	}
 	public String getColumnName(int column)	   //enter col name
 	{
+		
 		return this.columnNames[column];
 	}
 	
 	public int getRowCount()  //count rows by number of settles
 	{
-		return Main.getMap().getSettlements().length;
+		
+		return map.getSettlements().length;
 	}
 
 	
@@ -30,7 +35,7 @@ class StatCenterTable extends AbstractTableModel
 
 	public Object getValueAt(int rowIndex, int columnIndex)  //enter data to table
 	{
-		Settlement settlement = Main.getMap().at(rowIndex);
+		Settlement settlement = map.at(rowIndex);
 		switch(columnIndex)
 		{
 			case 0: return settlement.getName();
@@ -58,7 +63,7 @@ class StatCenterTable extends AbstractTableModel
 		
 	
 		int i=Integer.parseInt(aValue);  
-		Settlement settlement = Main.getMap().at(row);
+		Settlement settlement = map.at(row);
 		switch(col) {
 		case 4:  settlement.addVaccineDose(i);
 			this.fireTableDataChanged();

@@ -33,13 +33,15 @@ public class StatWindow extends JFrame {
 	private statsJTable allStats;
 	private ColumnComboBox combobox;
 	private TableRowSorter<StatCenterTable> sorter;
+	private Map map;
 	JButton button6;
 
-	public StatWindow() {
+	public StatWindow(Map map) {
 														//opens statistic window and create dialog for add doses
 		super("Statistics Window");    
+		this.map=map;
 		JTextField tf1 = new JTextField();
-		allStats = new statsJTable( tf1);
+		allStats = new statsJTable(tf1,map);
 		Dialog doseFrame = new Dialog(this, button6 = new JButton("Vaccinate"), allStats);
 		
 		combobox = new ColumnComboBox();   //create combobox
@@ -56,7 +58,7 @@ public class StatWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				int selectedRow = allStats.getCurrRow();
-				Main.getMap().getSettlements()[selectedRow].jtableMakeSick();
+				map.getSettlements()[selectedRow].jtableMakeSick();
 				allStats.fireTableDataChanged();
 			}
 

@@ -137,6 +137,7 @@ public class SimulationFile {
 
 	public Map getMap() // return map field
 	{
+		
 		return map;
 	}
 
@@ -161,14 +162,14 @@ public class SimulationFile {
 	public void SickPplInnit() {
 		// Cpuntagious innitialization
 		
-		int settleNumber = getMap().getSettlements().length;
+		int settleNumber = map.getSettlements().length;
 		Settlement settle;
 		int settleSize;
 		Person temp;
 
 		for (int i = 0; i < settleNumber; i++) // run for each settle .
 		{
-			settle = getMap().getSettlements()[i];
+			settle = map.getSettlements()[i];
 			settleSize = settle.getNonSickPeople().size();
 
 			for (int j = 0; j < (int) (settleSize * 0.01); j++) // make 1 percent of them as sick people .
