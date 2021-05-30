@@ -1,6 +1,7 @@
 //* Authors: Maor Arnon (ID: 205974553) and Matan Sofer (ID:208491811)
 package Country;
 import java.util.*;
+import java.util.concurrent.CyclicBarrier;
 
 import javax.swing.SwingUtilities;
 
@@ -11,15 +12,24 @@ import Simulation.Main;
 
 public class Map {
 
-	private Settlement[] settlements; // field include all settles
-	private Map map;
+	private Settlement[] settlements ; // field include all settles
 	private boolean playing = false;
-	private boolean stop = true;
+	private boolean stop = false;
 	
+	public CyclicBarrier cyclic ;
 	
-	
-	
-	
+
+	public void spawn_all()
+	{
+		for(Settlement s : settlements)
+		{
+			new Thread(s).start();
+		}
+	}
+	public CyclicBarrier getBarrier()
+	{
+		return cyclic;
+	}
 	public Map(List<Settlement> other) // constructor get a dynamic array but we convert it to static array(as field type)
 	{
 		this.settlements = new Settlement[other.size()];
@@ -32,19 +42,21 @@ public class Map {
 	{
 		this.settlements = new Settlement[0];
 	}
+	
 	public void setMap(Map map)
 	{
-		this.map=map;
+	//	this.map=map;
+		System.out.println("number of settlements are " + this.settlements.length);
 		this.settlements = new Settlement[map.getSettlements().length];
 		for (int i = 0; i < map.getSettlements().length; i++) {
 			this.settlements[i] = map.getSettlements()[i];
 		}
 		
 	}
-	public Map getMap() {
-		
-		return this.map;
-	}
+//	public Map getMap() {
+//		
+//		return this;
+//	}
 	public Settlement[] getSettlements() // return the list of settlements
 	{
 		return this.settlements;

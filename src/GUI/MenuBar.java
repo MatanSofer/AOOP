@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.concurrent.CyclicBarrier;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -38,14 +39,14 @@ public class MenuBar extends JMenuBar {
 	private StatWindow statwindow;
 	private MainWindow mainwindow;
 	private Map map;
-	
-	public MenuBar(StatWindow statwindow,MainWindow mainwindow,Map map) {
+
+	public MenuBar(StatWindow statwindow, MainWindow mainwindow, Map map) {
 
 		// Create the menu bar.
-		super();
-		this.statwindow=statwindow;
-		this.mainwindow=mainwindow;
-		this.map=map;
+		super();        
+		this.statwindow = statwindow;
+		this.mainwindow = mainwindow;
+		this.map = map;
 		menu = new JMenu("File"); // The first menu on the menu bar - File.
 		add(menu);
 
@@ -56,14 +57,34 @@ public class MenuBar extends JMenuBar {
 
 			public void actionPerformed(ActionEvent e) {
 				SimulationFile simulationfile = new SimulationFile(loadFileFunc());
-		
+
 				map.setMap(simulationfile.getMap()); // return value from simulation ; reference to map.
 				map.setStop(false);
+
+				System.out.println(map); // print all settle string
 				
-				System.out.println(map.getMap()); // print all settle string
-				for(int i = 0 ; i < map.getSettlements().length;i++ )
+				for (int i = 0; i < map.getSettlements().length; i++)  //for each settlement add map reference
 					map.getSettlements()[i].addReference(map);
-				
+
+				map.cyclic = new CyclicBarrier(map.getSettlements().length, new Runnable() {  //cyclic barrier with all required updates
+					public void run() {
+						map.updateAll(mainwindow, statwindow);
+						Clock.nextTick();// move the clock one tick forward
+						System.out.println("\"############################################   Simulation number : " + (Clock.now())
+								+ "    ############################################"); // the number of simulation
+					
+						
+						try {
+							Thread.sleep(250 * MainWindow.getSliderValue());  //sleep up to slider value
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+
+					}
+				});
+
+				map.spawn_all(); //create threads
+
 				loadButton.setEnabled(false);
 				pauseButton.setEnabled(false);
 				playButton.setEnabled(true);
@@ -128,13 +149,15 @@ public class MenuBar extends JMenuBar {
 		playButton = new JMenuItem("Play", new ImageIcon("img/play.png"));
 		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!map.getStop()) {
-					map.setPlaying(true);
-					map.updateAll(mainwindow,statwindow);
-					playButton.setEnabled(false);
-					pauseButton.setEnabled(true);
-					stopButton.setEnabled(true);
+				map.setPlaying(true);
+				map.updateAll(mainwindow, statwindow);
+				synchronized (map) {
+					map.notifyAll();
 				}
+				
+				playButton.setEnabled(false);
+				pauseButton.setEnabled(true);
+				stopButton.setEnabled(true);
 			}
 		});
 		playButton.setEnabled(false);
@@ -164,7 +187,10 @@ public class MenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				synchronized(map)
+				{
+					map.notifyAll();
+				}
 				map.setStop(true);
 				map.setPlaying(false);
 				loadButton.setEnabled(true);
@@ -291,8 +317,8 @@ public class MenuBar extends JMenuBar {
 		}
 
 	}
-	
-	public File loadFileFunc() {
+
+	public File loadFileFunc() {  //choosing file path
 		FileDialog fd = new FileDialog((Frame) null, "Please choose a file:", FileDialog.LOAD);
 		fd.setVisible(true);
 		if (fd.getFile() == null)
@@ -301,7 +327,8 @@ public class MenuBar extends JMenuBar {
 		System.out.println(f.getPath());
 		return f;
 	}
-	public  void updateAll() {
+
+	public void updateAll() {  //update gui and table 
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -310,7 +337,12 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 
+	
 	}
+	
+	
+	
+
 //A function to change image size ... Here for future refrence
 
 //	private Image getScaledImage(Image srcImg, int w, int h){           //Change image size in about dialog.

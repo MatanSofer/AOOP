@@ -30,6 +30,8 @@ public class statsJTable extends JPanel
 	public statsJTable(JTextField tf1,Map map)
 	{
 		
+		
+
 		model = new StatCenterTable(map);  //create model
 		table = new JTable(model);  //create jtable with model
 		this.tf1=tf1;
@@ -40,7 +42,6 @@ public class statsJTable extends JPanel
 		table.setBackground(Color.lightGray);
 		table.setFillsViewportHeight(true);
 		this.add(new JScrollPane(table)); 
-		
 		this.add(tf1 );
 		tf1.setToolTipText("FILTER NAME COLUMN");
 		tf1.getDocument().addDocumentListener(new DocumentListener() { //for filtering
@@ -51,7 +52,7 @@ public class statsJTable extends JPanel
 			});
 		
 		
-		
+
         this.setVisible(true);
 	}
 	
