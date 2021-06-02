@@ -22,11 +22,11 @@ class StatCenterTable extends AbstractTableModel
 	
 	public int getRowCount()  //count rows by number of settles
 	{
-		if(map.getSettlements().length == 0)
+		if(map.getSettlements().size() == 0)
 		{
 			return 0 ;
 		}
-		return map.getSettlements().length;
+		return map.getSettlements().size();
 	}
 
 	
@@ -39,7 +39,7 @@ class StatCenterTable extends AbstractTableModel
 	public Object getValueAt(int rowIndex, int columnIndex)  //enter data to table
 	{
 		
-		if(map.getSettlements().length == 0){
+		if(map.getSettlements().size() == 0){
 			return 0;
 		}
 		Settlement settlement = map.at(rowIndex);

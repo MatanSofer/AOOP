@@ -20,12 +20,20 @@ import javax.swing.JSlider;
 
 public class MainWindow extends JFrame
 {
-
+		private static MainWindow mainWindow ;
 		private MenuBar bar;
 		private static JSlider slider;
 		private GraphicMap graphic_map;
 		private Map map;
-		public MainWindow(StatWindow statwindow,Map map)
+		
+		public static MainWindow getInstance(StatWindow statwindow,Map map) {
+			if (mainWindow == null) {
+				mainWindow = new MainWindow(statwindow,map);
+			}
+			return mainWindow;
+		}
+		
+		private MainWindow(StatWindow statwindow,Map map)
 		{	
 			super("Main Window");
 			this.map=map;

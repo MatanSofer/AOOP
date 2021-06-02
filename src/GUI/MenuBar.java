@@ -63,10 +63,10 @@ public class MenuBar extends JMenuBar {
 
 				System.out.println(map); // print all settle string
 				
-				for (int i = 0; i < map.getSettlements().length; i++)  //for each settlement add map reference
-					map.getSettlements()[i].addReference(map);
+				for (int i = 0; i < map.getSettlements().size(); i++)  //for each settlement add map reference
+					map.getSettlements().get(i).addReference(map);
 
-				map.cyclic = new CyclicBarrier(map.getSettlements().length, new Runnable() {  //cyclic barrier with all required updates
+				map.cyclic = new CyclicBarrier(map.getSettlements().size(), new Runnable() {  //cyclic barrier with all required updates
 					public void run() {
 						map.updateAll(mainwindow, statwindow);
 						Clock.nextTick();// move the clock one tick forward

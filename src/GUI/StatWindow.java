@@ -29,6 +29,7 @@ import Country.Map;
 
 public class StatWindow extends JFrame {
 
+	private static StatWindow statWindow; 
 	private JTextField tf1;
 	private statsJTable allStats;
 	private ColumnComboBox combobox;
@@ -36,7 +37,15 @@ public class StatWindow extends JFrame {
 	private Map map;
 	JButton button6;
 
-	public StatWindow(Map map) {
+	
+	public static StatWindow getInstance(Map map) {
+		if (statWindow == null) {
+			statWindow = new StatWindow(map);
+		}
+		return statWindow;
+	}
+	
+	private StatWindow(Map map) {
 														//opens statistic window and create dialog for add doses
 		super("Statistics Window");    
 		this.map=map;
@@ -58,7 +67,7 @@ public class StatWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				int selectedRow = allStats.getCurrRow();
-				map.getSettlements()[selectedRow].jtableMakeSick();
+				map.getSettlements().get(selectedRow).jtableMakeSick();
 				allStats.fireTableDataChanged();
 			}
 

@@ -34,7 +34,7 @@ public class GraphicMap extends JPanel {
 		
 		int maxX=0,maxY=0,x,y,width,height,center1_x,center1_y,y2,x2,width2,height2,center2_x,center2_y;
 		
-		for (Settlement settlement : map.getSettlements())
+		for (Settlement settlement : map)
 		{
 			y=settlement.getLocation().getPoint().getY()+10;
 			x=settlement.getLocation().getPoint().getX();

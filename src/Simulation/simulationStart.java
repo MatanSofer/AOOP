@@ -20,9 +20,9 @@ public class simulationStart {
 			SwingUtilities.invokeLater(new Runnable() { // Doing GUI Changes on the AWT stack.
 				public void run() {
 					
-					statwindow = new StatWindow(map);	//create stat window and hiding it
+					statwindow = StatWindow.getInstance(map);	//create stat window and hiding it
 					statwindow.setVisible(false);
-					mainwindow = new MainWindow(statwindow,map); //create main window
+					mainwindow = MainWindow.getInstance(statwindow,map); //create main window
 					mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					statwindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 				}

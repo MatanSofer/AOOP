@@ -62,29 +62,34 @@ public class SimulationFile {
 					Size size = new Size(Integer.parseInt(words[4]),Integer.parseInt(words[5]));  //build new size object
 					Location location = new Location(size,point);  //build new location object
 					populationCapacity = (int)(Integer.parseInt(words[6]) * 1.3); //max population capacity
-					if(words[0].equals("City"))            //check what is the right settle type , then build it by all the other object and green light 
-					{
-						settlement = new City(words[1],location,people,RamzorColor.Green,populationCapacity);
-						arr.add(settlement);
-					}
-					else if(words[0].equals("Moshav"))
-					{	
-						settlement = new Moshav(words[1],location,people,RamzorColor.Green,populationCapacity);
-						arr.add(settlement);
-					}
-					else if(words[0].equals("Kibbutz"))
-					{	
-						settlement = new Kibbutz(words[1],location,people,RamzorColor.Green,populationCapacity);
-						arr.add(settlement);
-					}
-					else                 //this is for condition when we didnt fount a match for settle kind from file
-					{
-						
-						settlement = new Settlement(words[1],location,people,RamzorColor.Green,populationCapacity);
-						arr.add(settlement);
-						System.out.println("Couldnt read settlement - " + words[1]);
-					}
 					
+//					if(words[0].equals("City"))            //check what is the right settle type , then build it by all the other object and green light 
+//					{
+//						settlement = new City(words[1],location,people,RamzorColor.Green,populationCapacity);
+//						arr.add(settlement);
+//					}
+//					else if(words[0].equals("Moshav"))
+//					{	
+//						settlement = new Moshav(words[1],location,people,RamzorColor.Green,populationCapacity);
+//						arr.add(settlement);
+//					}
+//					else if(words[0].equals("Kibbutz"))
+//					{	
+//						settlement = new Kibbutz(words[1],location,people,RamzorColor.Green,populationCapacity);
+//						arr.add(settlement);
+//					}
+//					else                 //this is for condition when we didnt fount a match for settle kind from file
+//					{
+//						
+//						settlement = new Settlement(words[1],location,people,RamzorColor.Green,populationCapacity);
+//						arr.add(settlement);
+//						System.out.println("Couldnt read settlement - " + words[1]);
+//					}
+					
+					settlement = FactorySettlements.getSettlement(words[0],words[1],location,people,RamzorColor.Green,populationCapacity);
+					arr.add(settlement);
+					
+
 					for(int i = 0 ; i < Integer.parseInt(words[6]) ; i ++) //create and add all healthy people to the settle population
 					{
 						
@@ -131,6 +136,7 @@ public class SimulationFile {
     	}
     	
     	SickPplInnit();
+    	
     		
     }
 	
@@ -162,14 +168,14 @@ public class SimulationFile {
 	public void SickPplInnit() {
 		// Cpuntagious innitialization
 		
-		int settleNumber = map.getSettlements().length;
+		int settleNumber = map.getSettlements().size();
 		Settlement settle;
 		int settleSize;
 		Person temp;
 
 		for (int i = 0; i < settleNumber; i++) // run for each settle .
 		{
-			settle = map.getSettlements()[i];
+			settle = map.getSettlements().get(i);
 			settleSize = settle.getNonSickPeople().size();
 
 			for (int j = 0; j < (int) (settleSize * 0.01); j++) // make 1 percent of them as sick people .
