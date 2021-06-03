@@ -1,6 +1,8 @@
 //* Authors: Maor Arnon (ID: 205974553) and Matan Sofer (ID:208491811)
 package Country;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.util.*;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -58,6 +60,7 @@ public class Settlement implements Runnable {
 		this.ramzorcolor = other.getColor();
 		this.sickPeople = other.getSickPeople();
 		this.maxPopulation = other.maxPopulation;
+		this.connectedSettlements=other.connectedSettlements;
 
 	}
 
@@ -416,6 +419,29 @@ public class Settlement implements Runnable {
 				&& this.getSickPeople() == other.getSickPeople() && this.getColor() == other.getColor()
 				&& this.getRamzorRating() == other.getRamzorRating()
 				&& this.getNonSickPeople() == other.getNonSickPeople());
+	}
+	
+	public void drawSettlementConnections(Graphics2D gr,double resulotionX,double resulotionY) {
+		int x,y,width,height,center1_x,center1_y,y2,x2,width2,height2,center2_x,center2_y;
+		for (Settlement settlement2 : this.getconnectedSettlements()) {
+			gr.setColor(Color.BLACK);
+			
+			y=this.getLocation().getPoint().getY()+10;
+			x=this.getLocation().getPoint().getX();
+			width=this.getLocation().getSize().getWidth();
+			height=this.getLocation().getSize().getHeight();
+			center1_x= x+width/2;
+			center1_y= y+height/2;
+					
+			y2=settlement2.getLocation().getPoint().getY()+10;
+			x2=settlement2.getLocation().getPoint().getX();
+			width2=settlement2.getLocation().getSize().getWidth();
+			height2=settlement2.getLocation().getSize().getHeight();
+			center2_x= x2+width2/2;
+			center2_y= y2+height2/2;
+			
+			gr.drawLine((int)(center1_x/resulotionX),(int)(center1_y/resulotionY),(int)(center2_x/resulotionX),(int)(center2_y/resulotionY));
+		}
 	}
 
 }

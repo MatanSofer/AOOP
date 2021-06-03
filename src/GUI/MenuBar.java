@@ -25,6 +25,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 
 import Country.Map;
+import Country.Settlement;
 import IO.SimulationFile;
 import Simulation.Clock;
 import Simulation.Main;
@@ -63,8 +64,8 @@ public class MenuBar extends JMenuBar {
 
 				System.out.println(map); // print all settle string
 				
-				for (int i = 0; i < map.getSettlements().size(); i++)  //for each settlement add map reference
-					map.getSettlements().get(i).addReference(map);
+				for (Settlement settle : map)  //for each settlement add map reference
+					settle.addReference(map);
 
 				map.cyclic = new CyclicBarrier(map.getSettlements().size(), new Runnable() {  //cyclic barrier with all required updates
 					public void run() {

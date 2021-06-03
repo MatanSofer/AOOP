@@ -26,7 +26,7 @@ public class Map implements Iterable<Settlement> {
 	
 	public void spawn_all()
 	{
-		for(Settlement s : settlements)
+		for(Settlement s : this)
 		{
 			new Thread(s).start();
 		}
@@ -109,10 +109,10 @@ public class Map implements Iterable<Settlement> {
 		// check number of sick for each settle , then print it .
 		int sickCounter;
 
-		for (int i = 0; i < this.getSettlements().size(); i++) {
-			sickCounter = this.getSettlements().get(i).getSickPeopleSize();
+		for (Settlement settle : this) {
+			sickCounter = settle.getSickPeopleSize();
 			System.out
-			.println("Settlement " + this.getSettlements().get(i).getName() + " Sick number are : " + sickCounter);
+			.println("Settlement " + settle.getName() + " Sick number are : " + sickCounter);
 
 		}
 	}
@@ -121,10 +121,10 @@ public class Map implements Iterable<Settlement> {
 
 	public String toString() {
 		String settlementlist = "-------toString for all settlements-------\n";
-		for (int i = 0; i < this.settlements.size(); i++) 
+		for( Settlement settle : this)
 		{
 			
-			settlementlist += getSettlements().get(i).toString()+"\n";
+			settlementlist += settle.toString()+"\n";
 		}
 		return settlementlist;
 	}
