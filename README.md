@@ -22,7 +22,7 @@
    * **multi-threading** 
    * **GUI** 
    * **advanced OOP** 
-   *  **Implementation of complex Design Patterns (documented on 'DP implementations' file)** 
+   *  **Implementation of complex Design Patterns (documented on 'DP implementations.docx' file)** 
    * **and Java in general .**
 
 Feel free to use this code for any porpuse <sup> (Please do not misuse for malicious intent) </sub>
