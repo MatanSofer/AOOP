@@ -106,6 +106,22 @@ public class MenuBar extends JMenuBar {
 		menu.add(menuItem);
 		menu.addSeparator();// The line between the buttons.
 
+		
+		// UndoLogFile button
+		menuItem = new JMenuItem("UndoLogFile");
+
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//for check
+				
+				IO.LogFile.getMemento();
+
+				
+			}
+		});
+		menu.add(menuItem);
+		menu.addSeparator();// The line between the buttons.
+		
 		// Stats button
 		menuItem = new JMenuItem("Statistics", new ImageIcon("img/stats.png")); // opens statistic window
 		menuItem.addActionListener(new ActionListener() {
