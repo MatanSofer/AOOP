@@ -108,7 +108,11 @@ public class MenuBar extends JMenuBar {
 
 		
 		// UndoLogFile button
+<<<<<<< HEAD
 		menuItem = new JMenuItem("UndoLogFile", new ImageIcon("img/undo.png"));
+=======
+		menuItem = new JMenuItem("UndoLogFile");
+>>>>>>> b90ea2f683dd72f768ba1593001dabbb21249b75
 
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
