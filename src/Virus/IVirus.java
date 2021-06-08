@@ -9,4 +9,5 @@ public interface IVirus {  // this interface is for all the viruses classes 3 me
     public boolean[] getMutations();
     public String getType();
     public IVirus[] getMutations_types();
+    public Boolean isEqual(IVirus other);
 }

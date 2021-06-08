@@ -78,4 +78,7 @@ public class ChineseVariant implements IVirus
     	return "Chinese";
     }
     
+	public Boolean isEqual(IVirus other){
+			return getType() == other.getType();
+    }
 }

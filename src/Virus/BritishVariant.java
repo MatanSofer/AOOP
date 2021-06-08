@@ -61,4 +61,8 @@ public class BritishVariant implements IVirus
     public String getType() {
     	return "British";
     }
+
+	public Boolean isEqual(IVirus other){
+			return getType() == other.getType();
+    }
 }

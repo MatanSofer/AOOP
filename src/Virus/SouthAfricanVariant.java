@@ -64,4 +64,9 @@ public class SouthAfricanVariant implements IVirus
     public String getType() {
     	return "SouthAfrican";
     }
+
+	public Boolean isEqual(IVirus other){
+			return getType() == other.getType();
+    }
+
 }
