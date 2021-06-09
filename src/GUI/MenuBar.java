@@ -64,9 +64,12 @@ public class MenuBar extends JMenuBar {
 
 				System.out.println(map); // print all settle string
 				
+				
 				for (Settlement settle : map)  //for each settlement add map reference
 					settle.addReference(map);
-
+				
+				mainwindow.getGraphicMap().updateDecorators();
+				
 				map.cyclic = new CyclicBarrier(map.getSettlements().size(), new Runnable() {  //cyclic barrier with all required updates
 					public void run() {
 						map.updateAll(mainwindow, statwindow);

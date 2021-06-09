@@ -6,6 +6,9 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JPanel;
 import Country.*;
 import Simulation.Main;
@@ -15,10 +18,11 @@ public class GraphicMap extends JPanel {
 	static double resulotionX=1,resulotionY=1;
 	private StatWindow statwindow;
 	private Map map;
+	private List<ConnectionDecorator> decorators ; 
 	
-	class CoonnectionDecorator extends Settlement{ //a decorator for settlement
+	class ConnectionDecorator extends Settlement{ //a decorator for settlement
 		Color color;//the connection color
-		CoonnectionDecorator(Settlement settle){
+		ConnectionDecorator(Settlement settle){
 			super(settle); //using copy constructor
 		}
 		public Color updateConnectionColor(Settlement neibor) {//updates the connection color and returns it
@@ -61,9 +65,22 @@ public class GraphicMap extends JPanel {
 		this.statwindow = statwindow;
 		this.map=map;
 		this.addMouseListener(new CustomMouseListener());
+		
+		decorators = new ArrayList<ConnectionDecorator>();
+		
+		for (Settlement settlement : map)//Draws the connections
+		{
+			decorators.add(new ConnectionDecorator(settlement)); 
+		}
 	}
 	
-
+	public void updateDecorators() {
+		decorators.clear();
+		for (Settlement settlement : map)//Draws the connections
+		{
+			decorators.add(new ConnectionDecorator(settlement)); 
+		}
+	}
 	
 	public void paintComponent(Graphics g ) {  //paint component to draw map by lines and squares/rectengles from settlement data
 		super.paintComponent(g);
@@ -89,9 +106,9 @@ public class GraphicMap extends JPanel {
 		}
 		
 		
-		for (Settlement settlement : map)//Draws the connections
+		for (ConnectionDecorator decor : decorators)//Draws the connections
 		{
-			new CoonnectionDecorator(settlement).drawSettlementConnections(gr,resulotionX,resulotionY); 
+			decor.drawSettlementConnections(gr,resulotionX,resulotionY); 
 			//Would have used private statics values and sent only settlement if we weren't told not to use statics
 		}
 		
