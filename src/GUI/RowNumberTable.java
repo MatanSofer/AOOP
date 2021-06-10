@@ -14,8 +14,7 @@ import javax.swing.table.*;
 public class RowNumberTable extends JTable
 	implements ChangeListener, PropertyChangeListener, TableModelListener
 {
-	private static String[] columnNames = {"African" , "Chinese"
-			,"British"};
+	private static String[] columnNames = {"Chinese","British","African"};
 	private JTable main;
 
 	public RowNumberTable(JTable table)

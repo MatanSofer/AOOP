@@ -18,14 +18,15 @@ public class LogFile {
 	private  File file = null;
 	private  int fileCounter=0;
 	
-	private  ArrayList<Memento> pathList=new ArrayList<Memento>();
+//	private  ArrayList<Memento> pathList=new ArrayList<Memento>();
 	
 	private  String path;
 	public  void setPath(String path1){path=path1;}
-	public  ArrayList<Memento> getPathList()
-	{
-		return pathList;
-	}
+	
+//	public  ArrayList<Memento> getPathList()
+//	{
+//		return pathList;
+//	}
 	public  void setMemento(Memento path1)
 	{
 		path=path1.getPath();

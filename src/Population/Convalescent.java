@@ -25,12 +25,14 @@ public class Convalescent extends Person
 
 	public Sick contagion(IVirus virus)  // returns new similar person with different health condition , now he sick
 	{
-		List<IVirus> mutations=new ArrayList<IVirus>();    //we try contagian him in one of the random current available mutation
-		mutations.add(virus);
-		for (int i =0 ;i<virus.getMutations().length; i++)
-			if(virus.getMutations()[i])
-				mutations.add(virus.getMutations_types()[i]);
-		IVirus new_virus = mutations.get((int)(Math.random()*mutations.size()));
+//		List<IVirus> mutations=new ArrayList<IVirus>();    //we try contagian him in one of the random current available mutation
+//		mutations.add(virus);
+//		for (int i =0 ;i<virus.getMutations().length; i++)
+//			if(virus.getMutations()[i])
+//				mutations.add(virus.getMutations_types()[i]);
+//		IVirus new_virus = mutations.get((int)(Math.random()*mutations.size()));
+//		
+		IVirus new_virus = VirusManager.randomContagion(virus);
 		Point locationCopy = new Point(getLocation());
 		Sick sickperson = new Sick(getAge(),locationCopy,getSettlement(),Clock.now(),new_virus);
 		return sickperson;

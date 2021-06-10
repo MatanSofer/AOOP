@@ -408,6 +408,10 @@ public class Settlement implements Runnable {
 	public String getType() {
 		return "Settlement";
 	}
+	
+	public Map getMap() {
+		return map;
+	}
 
 	public String toString() // to string
 	{

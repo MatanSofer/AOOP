@@ -7,6 +7,7 @@ import javax.swing.SwingUtilities;
 import GUI.MainWindow;
 import GUI.StatWindow;
 import Simulation.Main;
+import Virus.VirusManager;
 
 
 public class Map implements Iterable<Settlement> {
@@ -15,6 +16,7 @@ public class Map implements Iterable<Settlement> {
 	private List<Settlement> settlements = new ArrayList<Settlement>();  //implements iterable
 	private boolean playing = false;
 	private boolean stop = false;
+
 	
 	public CyclicBarrier cyclic ;
 	
@@ -80,6 +82,7 @@ public class Map implements Iterable<Settlement> {
 	public boolean getStop() {
 		return stop;
 	}
+
 	public  void updateAll(MainWindow mainwindow , StatWindow statwindow) {
 
 		SwingUtilities.invokeLater(new Runnable() {

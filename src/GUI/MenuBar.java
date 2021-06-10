@@ -32,6 +32,7 @@ import IO.LogFile;
 import IO.LogFile.Memento;
 import Simulation.Clock;
 import Simulation.Main;
+import Virus.VirusManager;
 
 public class MenuBar extends JMenuBar {
 
@@ -154,6 +155,13 @@ public class MenuBar extends JMenuBar {
 
 				JFrame topFrame1 = (JFrame) SwingUtilities.getWindowAncestor(getParent());
 				new MutationDialog(topFrame1);
+				
+				for(int i = 0 ; i < 3 ; i++) {
+					for(Boolean a : VirusManager.getData()[i])
+						System.out.print(" "+a);
+					System.out.println("\n");
+				}
+				
 
 			}
 		});
