@@ -29,6 +29,7 @@ public class Settlement implements Runnable {
 	private List<Person> nonSickPeople;
 	private List<Person> sickPeople = new ArrayList<Person>();
 	private Map map;
+	private LogFile LF;
 
 	public Settlement() // default constructor (there isn't use now , maybe in future )
 	{
@@ -64,9 +65,10 @@ public class Settlement implements Runnable {
 
 	}
 
-	public void addReference(Map map) { //call this function from menubar->load
+	public void addReference(Map map,LogFile LF) { //call this function from menubar->load
 		
 		this.map = map;
+		this.LF=LF;
 		
 	}
 
@@ -245,7 +247,7 @@ public class Settlement implements Runnable {
 
 				if (deadCounterOnePer >= onePercOfPoPopulation) {
 					deadCounterOnePer = 0;
-					LogFile.logSettlement(this);
+					LF.logSettlement(this);
 				}
 
 			}

@@ -27,6 +27,9 @@ import javax.swing.SwingUtilities;
 import Country.Map;
 import Country.Settlement;
 import IO.SimulationFile;
+import IO.CareTaker;
+import IO.LogFile;
+import IO.LogFile.Memento;
 import Simulation.Clock;
 import Simulation.Main;
 
@@ -40,6 +43,8 @@ public class MenuBar extends JMenuBar {
 	private StatWindow statwindow;
 	private MainWindow mainwindow;
 	private Map map;
+	private LogFile LF=new LogFile();
+	private CareTaker CT=new CareTaker(LF);
 
 	public MenuBar(StatWindow statwindow, MainWindow mainwindow, Map map) {
 
@@ -58,7 +63,7 @@ public class MenuBar extends JMenuBar {
 
 			public void actionPerformed(ActionEvent e) {
 				SimulationFile simulationfile = new SimulationFile(loadFileFunc());
-
+				
 				map.setMap(simulationfile.getMap()); // return value from simulation ; reference to map.
 				map.setStop(false);
 
@@ -66,7 +71,7 @@ public class MenuBar extends JMenuBar {
 				
 				
 				for (Settlement settle : map)  //for each settlement add map reference
-					settle.addReference(map);
+					settle.addReference(map,LF);
 				
 				mainwindow.getGraphicMap().updateDecorators();
 				
@@ -103,7 +108,11 @@ public class MenuBar extends JMenuBar {
 
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				IO.LogFile.SaveTable("Log");
+				
+				LF.SaveTable("Log");
+				Memento a = LF.createMemento();
+				CT.addMemento(a);
+				
 			}
 		});
 		menu.add(menuItem);
@@ -117,7 +126,7 @@ public class MenuBar extends JMenuBar {
 			public void actionPerformed(ActionEvent e) {
 				//for check
 				
-				IO.LogFile.getMemento();
+				CT.getMemento();
 
 				
 			}

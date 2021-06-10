@@ -13,30 +13,30 @@ import java.util.ArrayList;
 
 
 
-public abstract class LogFile {
+public class LogFile {
 
-	private static File file = null;
-	private static int fileCounter=0;
+	private  File file = null;
+	private  int fileCounter=0;
 	
-	private static ArrayList<Memento> pathList=new ArrayList<Memento>();
+	private  ArrayList<Memento> pathList=new ArrayList<Memento>();
 	
-	private static String path;
-	public static void setPath(String path1){path=path1;}
-	public static ArrayList<Memento> getPathList()
+	private  String path;
+	public  void setPath(String path1){path=path1;}
+	public  ArrayList<Memento> getPathList()
 	{
 		return pathList;
 	}
-	public static void setMemento(Memento path1)
+	public  void setMemento(Memento path1)
 	{
 		path=path1.getPath();
 		
 	}
-	public static Memento createMemento() {
+	public  Memento createMemento() {
 		return new Memento(path);
 	}
 	
 	/////Creating a memento object
-	public static class Memento
+	public  class Memento
 	{
 		private  String path;
 		public Memento(String path1)
@@ -49,35 +49,35 @@ public abstract class LogFile {
 	///////care taker 
 	
 	//public static class careTaker{
-		public static void addMemento(Memento m)
-		{
-			pathList.add(m);
-		}
-		public static void getMemento()
-		{
-			if(pathList.size()>1) {
-			Memento m = pathList.get(pathList.size()-1);
-			setMemento(m);
-			pathList.remove(pathList.size()-1);
-			changeFile(pathList.get(pathList.size()-1));
-			}
-			else {
-				System.out.println("You cant restore because you have reached to the first PATH!!!");
-			}
-			
-		}
+//		public static void addMemento(Memento m)
+//		{
+//			pathList.add(m);
+//		}
+//		public static void getMemento()
+//		{
+//			if(pathList.size()>1) {
+//			Memento m = pathList.get(pathList.size()-1);
+//			setMemento(m);
+//			pathList.remove(pathList.size()-1);
+//			changeFile(pathList.get(pathList.size()-1));
+//			}
+//			else {
+//				System.out.println("You cant restore because you have reached to the first PATH!!!");
+//			}
+//			
+//		}
 		
 	//}
 		
 	//after we restore last file location , we are changing the FILE path for writing	
-	public static void changeFile(Memento m)
+	public  void changeFile(Memento m)
 	{
 		setPath(m.getPath());
 		file = new File(path);
 
 		
 	}
-	public static File SaveTable(String fileName)  {
+	public  File SaveTable(String fileName)  {
 		/**
 		 * This function opens save file dialog using saveFileFunc for the deaths logs to be saved and writing a header.
 		 * @param fileName : The default name for the file.
@@ -86,8 +86,9 @@ public abstract class LogFile {
 		
 		file = saveFileFunc(fileName);
 		setPath(fileName+fileCounter+".log");
-		Memento a = createMemento();
-		addMemento(a);
+//		Memento a = createMemento();
+//		
+//		addMemento(a);
 		System.out.println("Created a Log File\n");
 		try (FileWriter out = new FileWriter(file,true);) {
 			out.append("Log File");
@@ -99,7 +100,7 @@ public abstract class LogFile {
 		return file;
 	}
 
-	public static void logSettlement(Settlement settlement) {
+	public  void logSettlement(Settlement settlement) {
 		/**
 		 * This function save the deaths on the log file that was previously selected.
 		 * @param settlement : The settlement that need to be logged.
@@ -125,7 +126,7 @@ public abstract class LogFile {
 		
 	}
 
-	private static File saveFileFunc(String fileName) {
+	private  File saveFileFunc(String fileName) {
 		/**
 		 * This function opens save file dialog.
 		 * @param fileName : The default name for the file.
