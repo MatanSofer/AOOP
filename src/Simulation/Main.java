@@ -14,8 +14,7 @@ import java.util.List;
 
 public class Main {
 
-public static void main(String[] args) {  //the main creates only start object which create all needed for simulation
-	
+public static void main(String[] args) {  //the main creates only start object which create all needed for simulation	
 		simulationStart start = new simulationStart();
 	}
 }

@@ -12,44 +12,34 @@ import Virus.VirusManager;
 
 public class Map implements Iterable<Settlement> {
 
-	//private Settlement[] settlements ; // field include all settles
 	private List<Settlement> settlements = new ArrayList<Settlement>();  //implements iterable
 	private boolean playing = false;
 	private boolean stop = false;
-
-	
 	public CyclicBarrier cyclic ;
 	
 
 	 public Iterator<Settlement> iterator() {
-	      //  return this.settlements.iterator();
 	        return settlements.stream().iterator();
 	    }
 	
-	public void spawn_all()
-	{
+	public void spawn_all(){
 		for(Settlement s : this)
 		{
 			new Thread(s).start();
 		}
 	}
-	public CyclicBarrier getBarrier()
-	{
+	public CyclicBarrier getBarrier() {
 		return cyclic;
 	}
-	public Map(List<Settlement> other) // constructor get a dynamic array but we convert it to static array(as field type)
-	{
+	public Map(List<Settlement> other) { // constructor get a dynamic array but we convert it to static array(as field type)
 		this.settlements = other;
 	}
 	
-	public Map()
-	{
+	public Map() {
 		this.settlements = new ArrayList<Settlement>();
 	}
 	
-	public void setMap(Map map)
-	{
-	//	this.map=map;
+	public void setMap(Map map){
 		System.out.println("number of settlements are " + this.settlements.size());
 		this.settlements = map.getSettlements();
 		for (int i = 0; i < map.getSettlements().size(); i++) {
@@ -57,12 +47,8 @@ public class Map implements Iterable<Settlement> {
 		}
 		
 	}
-//	public Map getMap() {
-//		
-//		return this;
-//	}
-	public List<Settlement> getSettlements() // return the list of settlements
-	{
+
+	public List<Settlement> getSettlements(){ // return the list of settlements
 		return this.settlements;
 	}
 
@@ -83,7 +69,7 @@ public class Map implements Iterable<Settlement> {
 		return stop;
 	}
 
-	public  void updateAll(MainWindow mainwindow , StatWindow statwindow) {
+	public  void updateAll(MainWindow mainwindow , StatWindow statwindow) { //update windows
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -95,8 +81,7 @@ public class Map implements Iterable<Settlement> {
 	}
 	
 	
-	public boolean isEqual(Map other) // is equal
-	{
+	public boolean isEqual(Map other) { // is equal
 		if (this.getSettlements().size() != (other.getSettlements().size()))
 			return false;
 		for (int i = 0; i <= this.getSettlements().size(); i++) {

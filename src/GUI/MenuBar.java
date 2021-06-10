@@ -125,9 +125,7 @@ public class MenuBar extends JMenuBar {
 
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//for check
-				
-				CT.getMemento();
+				CT.getMemento(); //restore previous path for writing
 
 				
 			}
@@ -155,13 +153,6 @@ public class MenuBar extends JMenuBar {
 
 				JFrame topFrame1 = (JFrame) SwingUtilities.getWindowAncestor(getParent());
 				new MutationDialog(topFrame1);
-				
-				for(int i = 0 ; i < 3 ; i++) {
-					for(Boolean a : VirusManager.getData()[i])
-						System.out.print(" "+a);
-					System.out.println("\n");
-				}
-				
 
 			}
 		});
@@ -380,17 +371,6 @@ public class MenuBar extends JMenuBar {
 	
 	
 
-//A function to change image size ... Here for future refrence
 
-//	private Image getScaledImage(Image srcImg, int w, int h){           //Change image size in about dialog.
-//  		  BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-//  		  Graphics2D g2 = resizedImg.createGraphics();
-//
-//  		  g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-//   		  g2.drawImage(srcImg, 0, 0, w, h, null);
-// 	      g2.dispose();
-//
-//   		  return resizedImg;
-//}
 
 }

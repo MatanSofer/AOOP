@@ -15,11 +15,9 @@ public class simulationStart {
 		private StatWindow statwindow;
 		private MainWindow mainwindow;
 		
-		public simulationStart() //when we are calling constructor 
-		{
+		public simulationStart() { //when we are calling constructor 
 			SwingUtilities.invokeLater(new Runnable() { // Doing GUI Changes on the AWT stack.
 				public void run() {
-					
 					statwindow = StatWindow.getInstance(map);	//create stat window and hiding it
 					statwindow.setVisible(false);
 					mainwindow = MainWindow.getInstance(statwindow,map); //create main window
@@ -27,14 +25,6 @@ public class simulationStart {
 					statwindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 				}
 			});
-
-			System.out.println("\n-------Simulating virus spread-------\n");
-		
-		}
-		
-
-		
-		
-		
-		
+			System.out.println("\n-------Simulating virus spread-------\n");		
+		}	
 }

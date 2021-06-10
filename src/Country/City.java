@@ -8,23 +8,18 @@ import Population.Person;
 
 public class City extends Settlement
 {
-	public City(String name , Location location, List<Person> people , RamzorColor ramzorcolor,int maxPopulation)  //constructor for all fields
-	{
+	public City(String name , Location location, List<Person> people , RamzorColor ramzorcolor,int maxPopulation) {  //constructor for all fields
 		super(name,location,people,ramzorcolor,maxPopulation);
 	}
 	
-	public String getType()
-	{
+	public String getType() {
 		return "City";
 	}
-	public RamzorColor calculateRamzorGrade()  //calculate ramzor grade , set ramzor rating value
-	{
+	public RamzorColor calculateRamzorGrade() {  //calculate ramzor grade , set ramzor rating value
 		double p = contagiousPercent();
 		double result = 0.2*(Math.pow(4,1.25*p));
-		this.setRamzorRating(result);
-		
+		this.setRamzorRating(result);	
 		return RamzorColor.gradeToColor(result);
-
-		
+	
 	}
 }

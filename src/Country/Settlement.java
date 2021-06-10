@@ -31,8 +31,7 @@ public class Settlement implements Runnable {
 	private Map map;
 	private LogFile LF;
 
-	public Settlement() // default constructor (there isn't use now , maybe in future )
-	{
+	public Settlement() {// default constructor (there isn't use now , maybe in future )
 		this.name = "NULL";
 		this.location = null;
 		this.nonSickPeople = null;
@@ -41,10 +40,7 @@ public class Settlement implements Runnable {
 		this.vaccineDose.set(0); 
 	}
 
-	public Settlement(String name, Location location, List<Person> nonsick, RamzorColor ramzorcolor, int maxPopulation) // constructor
-																														// for
-																														// all																													// fields
-	{
+	public Settlement(String name, Location location, List<Person> nonsick, RamzorColor ramzorcolor, int maxPopulation) { // constructor
 		this.name = new String(name);
 		this.location = new Location(location);
 		this.nonSickPeople = new ArrayList<Person>(nonsick);
@@ -53,8 +49,7 @@ public class Settlement implements Runnable {
 		this.vaccineDose.set(0); 
 	}
 
-	public Settlement(Settlement other) // copy constructor
-	{
+	public Settlement(Settlement other) { // copy constructor
 		this.name = new String(other.getName());
 		this.location = new Location(other.getLocation());
 		this.nonSickPeople = other.nonSickPeople;
@@ -93,6 +88,7 @@ public class Settlement implements Runnable {
 			vaccinateSettle();
 			killPeople();
 			
+			
 			try {	//barrier waits for all thread to reach this point before starting another simulation loop
 				map.cyclic.await();
 			} catch (InterruptedException | BrokenBarrierException e) {
@@ -115,7 +111,7 @@ public class Settlement implements Runnable {
 		{
 			virus = ((Sick) getSickPeople().get(j)).getVirus();
 			for (int k = 0; k < 3; k++) {
-				if (getNonSickPeople().size() + 1 < k)
+				if (getNonSickPeople().size() + 1 >= k)
 					if (virus.tryToContagion(getSickPeople().get(j), getNonSickPeople().get(k))) {
 						newSicko = getNonSickPeople().get(k).contagion(virus);
 						addPerson(newSicko);
@@ -256,13 +252,11 @@ public class Settlement implements Runnable {
 
 	}
 
-	public RamzorColor calculateRamzorGrade() // this method implemented in "sons"
-	{
+	public RamzorColor calculateRamzorGrade() { // this method implemented in "sons"
 		return ramzorcolor;
 	}
 
-	public double contagiousPercent() // calculate the percent value between 0 to 1 of sick people
-	{
+	public double contagiousPercent() { // calculate the percent value between 0 to 1 of sick people
 		double precent = (double) sickPeople.size() / ((double) getPeopleSize());
 
 		return precent; // return the percent
@@ -276,15 +270,13 @@ public class Settlement implements Runnable {
 		return precent_s;
 	}
 
-	public static Point randomLocation(Point point, Size size) // return random location in the settle
-	{
+	public static Point randomLocation(Point point, Size size) { // return random location in the settle
 		int x = ((int) (Math.random() * size.getWidth())) + point.getX();
 		int y = ((int) (Math.random() * size.getHeight())) + point.getY();
 		return new Point(x, y);
 	}
 
-	public boolean addPerson(Person other) // add another person to settle people array
-	{
+	public boolean addPerson(Person other) { // add another person to settle people array
 		if (other instanceof Sick) {
 			this.sickPeople.add(other);
 		} else {
@@ -293,13 +285,11 @@ public class Settlement implements Runnable {
 		return true;
 	}
 
-	public void jtableMakeSick() // for update add sick button in random varient
-	{
-
+	public void jtableMakeSick() { // for update add sick button in random varient
 		Person temp;
 		IVirus[] random = { new ChineseVariant(), new BritishVariant(), new SouthAfricanVariant() };
 		int randomVarient;
-		for (int i = 0; i < 1 * nonSickPeople.size(); i++) {
+		for (int i = 0; i < 0.001 * nonSickPeople.size(); i++) {
 			randomVarient = ((int) (Math.random() * 3));
 			temp = nonSickPeople.get(i).contagion(random[randomVarient]);
 			sickPeople.add(temp);
@@ -336,34 +326,27 @@ public class Settlement implements Runnable {
 		}
 	}
 
-	public void setColor(RamzorColor newColor) // set the ramzor color
-	{
+	public void setColor(RamzorColor newColor) { // set the ramzor color
 		this.ramzorcolor = newColor;
-
 	}
 
-	public double getRamzorRating() // get ramzor rating
-	{
+	public double getRamzorRating() { // get ramzor rating
 		return this.ramzorRating;
 	}
 
-	public void setRamzorRating(double newRating) // set ramzor rating
-	{
+	public void setRamzorRating(double newRating) { // set ramzor rating
 		this.ramzorRating = newRating;
 	}
 
-	public RamzorColor getColor() // get ramzor color
-	{
+	public RamzorColor getColor() { // get ramzor color
 		return this.ramzorcolor;
 	}
 
-	public List<Person> getSickPeople() // get sick population list
-	{
+	public List<Person> getSickPeople(){ // get sick population list
 		return this.sickPeople;
 	}
 
-	public List<Person> getNonSickPeople() // get non sick population list
-	{
+	public List<Person> getNonSickPeople(){ // get non sick population list
 		return this.nonSickPeople;
 	}
 
@@ -395,13 +378,11 @@ public class Settlement implements Runnable {
 		this.vaccineDose.set(this.vaccineDose.get()-1); 
 	}
 
-	public String getName() // return name
-	{
+	public String getName() { // return name
 		return this.name;
 	}
 
-	public Location getLocation() // return location
-	{
+	public Location getLocation() { // return location
 		return this.location;
 	}
 
@@ -413,21 +394,19 @@ public class Settlement implements Runnable {
 		return map;
 	}
 
-	public String toString() // to string
-	{
+	public String toString() { // to string
 		return "The name is: " + name + "\nThe location on the map is:" + location + "\nThe ramzor color is: "
 				+ ramzorcolor + "\n";
 	}
 
-	public boolean isEqual(Settlement other) // is equal
-	{
+	public boolean isEqual(Settlement other) { // is equal
 		return (this.getName() == other.getName() && this.getLocation() == other.getLocation()
 				&& this.getSickPeople() == other.getSickPeople() && this.getColor() == other.getColor()
 				&& this.getRamzorRating() == other.getRamzorRating()
 				&& this.getNonSickPeople() == other.getNonSickPeople());
 	}
 	
-	public void drawSettlementConnections(Graphics2D gr,double resulotionX,double resulotionY) {
+	public void drawSettlementConnections(Graphics2D gr,double resulotionX,double resulotionY) {  //for black line connection between settlement 
 		int x,y,width,height,center1_x,center1_y,y2,x2,width2,height2,center2_x,center2_y;
 		for (Settlement settlement2 : this.getconnectedSettlements()) {
 			gr.setColor(Color.BLACK);

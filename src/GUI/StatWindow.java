@@ -103,12 +103,10 @@ public class StatWindow extends JFrame {
 		this.setVisible(true);
 
 	}
-	public void updateTable()   //for update simulation
-	{
+	public void updateTable() {   //for update simulation
 		allStats.fireTableDataChanged();
 	}
-	public statsJTable getallStats () //for graphic map use
-	{
+	public statsJTable getallStats() {//for graphic map use
 		return allStats;
 	}
 

@@ -22,16 +22,8 @@ public class statsJTable extends JPanel
 	private StatCenterTable model;
 	private JTable table;
 	private JTextField tf1;
-	
-	
-	
-	
-	
-	public statsJTable(JTextField tf1,Map map)
-	{
-		
-		
 
+	public statsJTable(JTextField tf1,Map map) {
 		model = new StatCenterTable(map);  //create model
 		table = new JTable(model);  //create jtable with model
 		this.tf1=tf1;
@@ -57,34 +49,28 @@ public class statsJTable extends JPanel
 	}
 	
 	
-	public JTable getJTable() //return table
-	{
+	public JTable getJTable() {//return table
 		return this.table ;
 	}
-	public int getCurrRow() //return the last row we clicked
-	{
+	public int getCurrRow() {//return the last row we clicked
 		return table.getRowSorter().convertRowIndexToModel(table.getSelectedRow()); 
 	}
 
-	public StatCenterTable getmodel() //return model
-	{
+	public StatCenterTable getmodel() { //return model
 		return this.model;
 	}
 	
 
-	private void newFilter() //filter by column and text
-	{
+	private void newFilter() { //filter by column and text
 		int currentColumn = ColumnComboBox.getColumn();
 		
 			try {sorter.setRowFilter(RowFilter.regexFilter(tf1.getText(),currentColumn));
 		}catch(PatternSyntaxException e) {
 		
 		}
-		
-		
+			
 	}
-	public void newFilter1(String name)  //open from graphic map the clicked settle
-	{
+	public void newFilter1(String name) { //open from graphic map the clicked settle
 		try {sorter.setRowFilter(RowFilter.regexFilter(name,0));
 		}catch(PatternSyntaxException e) {
 			

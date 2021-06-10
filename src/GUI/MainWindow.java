@@ -33,8 +33,7 @@ public class MainWindow extends JFrame
 			return mainWindow;
 		}
 		
-		private MainWindow(StatWindow statwindow,Map map)
-		{	
+		private MainWindow(StatWindow statwindow,Map map)	{
 			super("Main Window");
 			this.map=map;
 			this.setLayout(new BorderLayout());    //set all layout and add to frame

@@ -182,7 +182,7 @@ public class GraphicMap extends JPanel {
 	 
 	 }
 	
-	public static void drawSettlement(Graphics2D gr,double resulotionX,double resulotionY,Settlement settlement) {
+	public static void drawSettlement(Graphics2D gr,double resulotionX,double resulotionY,Settlement settlement) { //draw the line between two connected settlement by new color AVG
 		int x,y,width,height;
 		y=settlement.getLocation().getPoint().getY()+10;
 		x=settlement.getLocation().getPoint().getX();

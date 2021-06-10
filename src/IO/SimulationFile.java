@@ -15,8 +15,7 @@ public class SimulationFile {
 	
 	private Map map; //map field include all settlement list
 
-	public SimulationFile(File file)  //file parameter
-	{
+	public SimulationFile(File file) { //file parameter
 		try (BufferedReader br = new BufferedReader( new FileReader(file) )) 
 		{
 		
@@ -49,12 +48,7 @@ public class SimulationFile {
 						words = s1.split(";"); //split each line for indexes sapereted by ;
 	                    for (int i = 0 ; i < words.length ;i++) //this loop for spaces removal
 	                    	words[i]=words[i].trim();
-				
-                    
-					    
-                    
-                    
-                    
+
 					s1 = br.readLine(); //read next line
 					
 					List<Person> people = new ArrayList<Person>(); //new empty dynamic people list
@@ -63,35 +57,12 @@ public class SimulationFile {
 					Location location = new Location(size,point);  //build new location object
 					populationCapacity = (int)(Integer.parseInt(words[6]) * 1.3); //max population capacity
 					
-//					if(words[0].equals("City"))            //check what is the right settle type , then build it by all the other object and green light 
-//					{
-//						settlement = new City(words[1],location,people,RamzorColor.Green,populationCapacity);
-//						arr.add(settlement);
-//					}
-//					else if(words[0].equals("Moshav"))
-//					{	
-//						settlement = new Moshav(words[1],location,people,RamzorColor.Green,populationCapacity);
-//						arr.add(settlement);
-//					}
-//					else if(words[0].equals("Kibbutz"))
-//					{	
-//						settlement = new Kibbutz(words[1],location,people,RamzorColor.Green,populationCapacity);
-//						arr.add(settlement);
-//					}
-//					else                 //this is for condition when we didnt fount a match for settle kind from file
-//					{
-//						
-//						settlement = new Settlement(words[1],location,people,RamzorColor.Green,populationCapacity);
-//						arr.add(settlement);
-//						System.out.println("Couldnt read settlement - " + words[1]);
-//					}
-					
+					//using factory for building settlements
 					settlement = FactorySettlements.getSettlement(words[0],words[1],location,people,RamzorColor.Green,populationCapacity);
 					arr.add(settlement);
 					
 
-					for(int i = 0 ; i < Integer.parseInt(words[6]) ; i ++) //create and add all healthy people to the settle population
-					{
+					for(int i = 0 ; i < Integer.parseInt(words[6]) ; i ++) { //create and add all healthy people to the settle population
 						
 						settlement.addPerson(new Healthy(CalculateAge() , Settlement.randomLocation(point,size) ,settlement));
 					}
@@ -112,8 +83,7 @@ public class SimulationFile {
 		}
 	}
 		
-    public void connectSettle(List<String> origin ,List<String> destination , List<Settlement> arr)
-    {
+    public void connectSettle(List<String> origin ,List<String> destination , List<Settlement> arr) {
     	for(int i = 0 ; i <arr.size() ; i++)
     	{
     		for(int j = 0 ; j < origin.size(); j++)
@@ -141,16 +111,13 @@ public class SimulationFile {
     }
 	
 
-	public Map getMap() // return map field
-	{
-		
+	public Map getMap() {// return map field
 		return map;
 	}
 
 	
 	
-	public int CalculateAge() //function that calculate age by normal distribution
-	{
+	public int CalculateAge() { //function that calculate age by normal distribution
 		double y =  Math.random()*4;  
         Random x = new Random();
         double val;
@@ -167,14 +134,12 @@ public class SimulationFile {
 	
 	public void SickPplInnit() {
 		// Cpuntagious innitialization
-		
 		int settleNumber = map.getSettlements().size();
 		Settlement settle;
 		int settleSize;
 		Person temp;
 
-		for (int i = 0; i < settleNumber; i++) // run for each settle .
-		{
+		for (int i = 0; i < settleNumber; i++) { // run for each settle .
 			settle = map.getSettlements().get(i);
 			settleSize = settle.getNonSickPeople().size();
 

@@ -19,8 +19,7 @@ public  class Dialog extends JDialog    //this is dialog for doses dialog
 		private int result = -1;
 		
 		
-		public Dialog(Frame window,JButton button6,statsJTable allStats) 
-		{
+		public Dialog(Frame window,JButton button6,statsJTable allStats) {
 			super(window, "Add Doses", true);
 			this.button6 = button6;
 			this. allStats=allStats;

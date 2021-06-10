@@ -13,66 +13,34 @@ import java.util.ArrayList;
 
 
 
-public class LogFile {
+public class LogFile { //originator
 
 	private  File file = null;
 	private  int fileCounter=0;
-	
-//	private  ArrayList<Memento> pathList=new ArrayList<Memento>();
-	
 	private  String path;
 	public  void setPath(String path1){path=path1;}
 	
-//	public  ArrayList<Memento> getPathList()
-//	{
-//		return pathList;
-//	}
-	public  void setMemento(Memento path1)
-	{
+
+	public  void setMemento(Memento path1) {//update this path to memento path		
 		path=path1.getPath();
 		
 	}
-	public  Memento createMemento() {
+	public  Memento createMemento() {//create new memento to hold path
 		return new Memento(path);
 	}
 	
-	/////Creating a memento object
-	public  class Memento
-	{
+	/////Memento object which holds path
+	public  class Memento{
 		private  String path;
-		public Memento(String path1)
-		{
+		public Memento(String path1) {
 			path=path1;
 		}
 		public String getPath() {return path;}
 	}
 	
-	///////care taker 
-	
-	//public static class careTaker{
-//		public static void addMemento(Memento m)
-//		{
-//			pathList.add(m);
-//		}
-//		public static void getMemento()
-//		{
-//			if(pathList.size()>1) {
-//			Memento m = pathList.get(pathList.size()-1);
-//			setMemento(m);
-//			pathList.remove(pathList.size()-1);
-//			changeFile(pathList.get(pathList.size()-1));
-//			}
-//			else {
-//				System.out.println("You cant restore because you have reached to the first PATH!!!");
-//			}
-//			
-//		}
-		
-	//}
-		
+
 	//after we restore last file location , we are changing the FILE path for writing	
-	public  void changeFile(Memento m)
-	{
+	public  void changeFile(Memento m) {
 		setPath(m.getPath());
 		file = new File(path);
 
@@ -87,9 +55,6 @@ public class LogFile {
 		
 		file = saveFileFunc(fileName);
 		setPath(fileName+fileCounter+".log");
-//		Memento a = createMemento();
-//		
-//		addMemento(a);
 		System.out.println("Created a Log File\n");
 		try (FileWriter out = new FileWriter(file,true);) {
 			out.append("Log File");

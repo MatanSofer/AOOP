@@ -8,46 +8,33 @@ import Location.Point;
 import Virus.*;
 import Simulation.*;
 
-public class Convalescent extends Person
-{
+public class Convalescent extends Person {
 	private IVirus virus;	
     private static  double infectionCoefficient=0.2; //static as requested
   
-    public Convalescent(int age , Point location , Settlement settlement,IVirus virus) //constructor for all fields
-    {
+    public Convalescent(int age , Point location , Settlement settlement,IVirus virus) {//constructor for all fields
   	  super(age,location,settlement);
   	  this.virus=virus;
     }
-    public double contagionProbability() // return the contagionProbability static double
-    {
+    public double contagionProbability() {// return the contagionProbability static double
 	    return infectionCoefficient;
     }
 
-	public Sick contagion(IVirus virus)  // returns new similar person with different health condition , now he sick
-	{
-//		List<IVirus> mutations=new ArrayList<IVirus>();    //we try contagian him in one of the random current available mutation
-//		mutations.add(virus);
-//		for (int i =0 ;i<virus.getMutations().length; i++)
-//			if(virus.getMutations()[i])
-//				mutations.add(virus.getMutations_types()[i]);
-//		IVirus new_virus = mutations.get((int)(Math.random()*mutations.size()));
-//		
+	public Sick contagion(IVirus virus)  {// returns new similar person with different health condition , now he sick
 		IVirus new_virus = VirusManager.randomContagion(virus);
+		System.out.println(virus+"->"+new_virus);
 		Point locationCopy = new Point(getLocation());
 		Sick sickperson = new Sick(getAge(),locationCopy,getSettlement(),Clock.now(),new_virus);
 		return sickperson;
 	}
 	
 	public  IVirus getVirus(){  //return virus type
-		
 		return virus;
 	}
-	public String getType() 
-	{
+	public String getType() { //return type as a string
 		return "Convalescent";
 	}
-	public boolean isEqual(Convalescent other)  //is equal
-	{
+	public boolean isEqual(Convalescent other) { //is equal
 		return super.isEqual((Person)other) &&
 		this.getVirus().getClass().equals(other.getVirus().getClass());
 	}

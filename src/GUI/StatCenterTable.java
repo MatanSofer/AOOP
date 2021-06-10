@@ -10,18 +10,14 @@ class StatCenterTable extends AbstractTableModel
 		,"Current population number" ,"Sick people in settle" , "Non-Sick peopleIn settle"};
 	
 	private Map map;
-	public StatCenterTable(Map map)
-	{
+	public StatCenterTable(Map map) {
 		this.map=map;
 	}
-	public String getColumnName(int column)	   //enter col name
-	{
-		
+	public String getColumnName(int column)	{   //enter col name
 		return this.columnNames[column];
 	}
 	
-	public int getRowCount()  //count rows by number of settles
-	{
+	public int getRowCount() { //count rows by number of settles
 		if(map.getSettlements().size() == 0)
 		{
 			return 0 ;
@@ -30,15 +26,12 @@ class StatCenterTable extends AbstractTableModel
 	}
 
 	
-	public int getColumnCount() //number of columns in table
-	{
+	public int getColumnCount() { //number of columns in table
 		return 9;
 	}
 
 
-	public Object getValueAt(int rowIndex, int columnIndex)  //enter data to table
-	{
-		
+	public Object getValueAt(int rowIndex, int columnIndex) {  //enter data to table
 		if(map.getSettlements().size() == 0){
 			return 0;
 		}
@@ -59,15 +52,11 @@ class StatCenterTable extends AbstractTableModel
 	}
 	
 	
-	public boolean isCellEditable(int rowIndex , int columnIndex)
-	{
+	public boolean isCellEditable(int rowIndex , int columnIndex) {
 		return columnIndex >0 ;
 	}
 	
-	public void setValueAt(String aValue , int row , int col) //to set values in table
-	{
-		
-	
+	public void setValueAt(String aValue , int row , int col) {//to set values in table
 		int i=Integer.parseInt(aValue);  
 		Settlement settlement = map.at(row);
 		switch(col) {

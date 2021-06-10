@@ -14,7 +14,7 @@ import Virus.*;
 
 public class MutationDialog extends JDialog {
 
-	private String[] names = { "British", "Chinese", "SouthAfrican" };
+	private String[] names = { "Chinese","British","SouthAfrican" };
 	private JPanel mainpanel = new JPanel();
 	private static Object[][] checkbox;
 	
@@ -47,17 +47,15 @@ public class MutationDialog extends JDialog {
             public void tableChanged(TableModelEvent e) {
                 for(int i=0;i<mainTable.getModel().getRowCount();i++)
                 {
-                  if ((Boolean) mainTable.getModel().getValueAt(i,0))
-                  {  
+                 {  
                     Boolean flag= (Boolean)checkbox[mainTable.getSelectedRow()][mainTable.getSelectedColumn()];
                     toggleMutation(mainTable.getSelectedRow(), mainTable.getSelectedColumn(), flag);
-                    
-                    
                     break;
-                   
-                  }
+                 }
                }     
             }
+            
+            
   });
 		
 		
@@ -77,28 +75,8 @@ public class MutationDialog extends JDialog {
 
 	private void toggleMutation(int row, int column, boolean bool) //update mutation in varients classes
 	{
-			
-//		if(row == 0 && column == 0 )
-//			SouthAfricanVariant.setMutation(0, bool);
-//		if(row == 0 && column == 1 )
-//			SouthAfricanVariant.setMutation(1, bool);
-//		if(row == 0 && column == 2 )
-//			SouthAfricanVariant.setMutation(2, bool);
-//		
-//		if(row == 1 && column == 0 )
-//			ChineseVariant.setMutation(0, bool);
-//		if(row == 1 && column == 1 )
-//			ChineseVariant.setMutation(1, bool);
-//		if(row == 1 && column == 2 )
-//			ChineseVariant.setMutation(2, bool);
-//		
-//		if(row == 2 && column == 0 )
-//			BritishVariant.setMutation(0, bool);
-//		if(row == 2 && column == 1 )
-//			BritishVariant.setMutation(1, bool);
-//		if(row == 2 && column == 2 )
-//			BritishVariant.setMutation(2, bool);
-		if (VirusManager.getData()[row][column] != bool)
+
+		if (VirusManager.getData()[row][column] != bool) //by virus manager class
 			VirusManager.Change(row, column);
 		
 		
